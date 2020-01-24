@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - image: gitlab/gitlab-ce
+        imagePullPolicy: IfNotPresent
+        name: gitlab
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /etc/gitlab
+            name: gitlab-config-volume
+          - mountPath: /var/logs/gitlab
+            name: gitlab-logs-volume
+          - mountPath: /var/opt/gitlab
+            name: gitlab-data-volume
+      volumes:
+        - name: gitlab-config-volume
+          persistentVolumeClaim:
+            claimName: gitlab-config-pvc
+        - name: gitlab-logs-volume
+          persistentVolumeClaim:
+            claimName: gitlab-logs-pvc
+        - name: gitlab-data-volume
+          persistentVolumeClaim:
+            claimName: gitlab-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-service
+  namespace: gitlab
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: gitlab
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab-ingress
+  namespace: gitlab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: gitlab.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gitlab-service
+          servicePort: 80

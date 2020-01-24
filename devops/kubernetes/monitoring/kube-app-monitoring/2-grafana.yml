@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ms-grafana
+  namespace: ms-monitoring
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ms-grafana
+    spec:
+      containers:
+        - image: grafana/grafana
+          name: ms-grafana
+          env:
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              value: "admin"
+            - name: GF_SECURITY_ADMIN_USER
+              value: "admin"
+            - name: GF_USERS_ALLOW_SIGN_UP
+              value: "false"
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-data
+      volumes:
+        - name: grafana-data
+          hostPath:
+            path: /home/fli/grafana/data
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-grafana
+  namespace: ms-monitoring
+  labels:
+    app: ms-grafana
+spec:
+  ports:
+    - name: "http"
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: ms-grafana
+

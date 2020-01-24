@@ -1,0 +1,351 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/path: /prometheus
+      prometheus.io/port: "9411"
+      fabric8.io/app-menu: management
+      fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+      fabric8.io/git-branch: release-v0.1.9
+      fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+      fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+      fabric8.io/scm-tag: 0.1.9
+      fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin/
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/zipkin/target/zipkin-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin
+      version: 0.1.9
+      group: io.fabric8.zipkin
+      expose: "true"
+    name: zipkin
+    namespace: zipkin
+  spec:
+    ports:
+    - port: 9411
+      protocol: TCP
+      targetPort: 9411
+    selector:
+      project: zipkin
+      provider: fabric8
+      group: io.fabric8.zipkin
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+      fabric8.io/git-branch: release-v0.1.9
+      fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+      fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+      fabric8.io/scm-tag: 0.1.9
+      fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin-mysql/
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/mysql/target/zipkin-mysql-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin-mysql
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin-mysql
+    namespace: zipkin
+  spec:
+    ports:
+    - port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      project: zipkin-mysql
+      provider: fabric8
+      group: io.fabric8.zipkin
+    type: ClusterIP
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      volume.beta.kubernetes.io/storage-class: standard
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/mysql/target/zipkin-mysql-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin-mysql
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin-mysql-data
+    namespace: zipkin
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+    volumeName: zipkin-mysql-data
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    annotations:
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/mysql/target/zipkin-mysql-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin-mysql
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin-mysql-cnf
+    namespace: zipkin
+  data:
+    custom.cnf: |
+      [mysqld]
+      sql-mode=""
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    annotations:
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/mysql/target/zipkin-mysql-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin-mysql
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin-mysql-initdb
+    namespace: zipkin
+  data:
+    init.sql: |
+      CREATE TABLE IF NOT EXISTS zipkin_spans (
+        `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
+        `trace_id` BIGINT NOT NULL,
+        `id` BIGINT NOT NULL,
+        `name` VARCHAR(255) NOT NULL,
+        `parent_id` BIGINT,
+        `debug` BIT(1),
+        `start_ts` BIGINT COMMENT 'Span.timestamp(): epoch micros used for endTs query and to implement TTL',
+        `duration` BIGINT COMMENT 'Span.duration(): micros used for minDuration and maxDuration query'
+      ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
+
+      ALTER TABLE zipkin_spans ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `id`) COMMENT 'ignore insert on duplicate';
+      ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`, `id`) COMMENT 'for joining with zipkin_annotations';
+      ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTracesByIds';
+      ALTER TABLE zipkin_spans ADD INDEX(`name`) COMMENT 'for getTraces and getSpanNames';
+      ALTER TABLE zipkin_spans ADD INDEX(`start_ts`) COMMENT 'for getTraces ordering and range';
+
+      CREATE TABLE IF NOT EXISTS zipkin_annotations (
+        `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
+        `trace_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.trace_id',
+        `span_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.id',
+        `a_key` VARCHAR(255) NOT NULL COMMENT 'BinaryAnnotation.key or Annotation.value if type == -1',
+        `a_value` BLOB COMMENT 'BinaryAnnotation.value(), which must be smaller than 64KB',
+        `a_type` INT NOT NULL COMMENT 'BinaryAnnotation.type() or -1 if Annotation',
+        `a_timestamp` BIGINT COMMENT 'Used to implement TTL; Annotation.timestamp or zipkin_spans.timestamp',
+        `endpoint_ipv4` INT COMMENT 'Null when Binary/Annotation.endpoint is null',
+        `endpoint_ipv6` BINARY(16) COMMENT 'Null when Binary/Annotation.endpoint is null, or no IPv6 address',
+        `endpoint_port` SMALLINT COMMENT 'Null when Binary/Annotation.endpoint is null',
+        `endpoint_service_name` VARCHAR(255) COMMENT 'Null when Binary/Annotation.endpoint is null'
+      ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
+
+      ALTER TABLE zipkin_annotations ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `span_id`, `a_key`, `a_timestamp`) COMMENT 'Ignore insert on duplicate';
+      ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`, `span_id`) COMMENT 'for joining with zipkin_spans';
+      ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTraces/ByIds';
+      ALTER TABLE zipkin_annotations ADD INDEX(`endpoint_service_name`) COMMENT 'for getTraces and getServiceNames';
+      ALTER TABLE zipkin_annotations ADD INDEX(`a_type`) COMMENT 'for getTraces';
+      ALTER TABLE zipkin_annotations ADD INDEX(`a_key`) COMMENT 'for getTraces';
+      ALTER TABLE zipkin_annotations ADD INDEX(`trace_id`, `span_id`, `a_key`) COMMENT 'for dependencies job';
+
+      CREATE TABLE IF NOT EXISTS zipkin_dependencies (
+        `day` DATE NOT NULL,
+        `parent` VARCHAR(255) NOT NULL,
+        `child` VARCHAR(255) NOT NULL,
+        `call_count` BIGINT,
+        `error_count` BIGINT
+      ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
+
+      ALTER TABLE zipkin_dependencies ADD UNIQUE KEY(`day`, `parent`, `child`);
+      GRANT SELECT, INSERT, UPDATE, DELETE ON zipkin.* TO zipkin@'%' IDENTIFIED BY 'zipkin' WITH GRANT OPTION ;
+      FLUSH PRIVILEGES;
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=zipkin&var-version=0.1.9
+      fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+      fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin/
+      fabric8.io/git-branch: release-v0.1.9
+      fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+      fabric8.io/scm-tag: 0.1.9
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/zipkin/target/zipkin-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin
+    namespace: zipkin
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        provider: fabric8
+        project: zipkin
+        group: io.fabric8.zipkin
+        version: 0.1.9
+    template:
+      metadata:
+        annotations:
+          fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=zipkin&var-version=0.1.9
+          fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+          fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin/
+          fabric8.io/git-branch: release-v0.1.9
+          fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin
+          fabric8.io/scm-tag: 0.1.9
+        labels:
+          provider: fabric8
+          project: zipkin
+          version: 0.1.9
+          group: io.fabric8.zipkin
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_HOST
+            value: zipkin-mysql
+          - name: STORAGE_TYPE
+            value: mysql
+          - name: TRANSPORT_TYPE
+            value: http
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: openzipkin/zipkin:2.11.5
+          name: zipkin
+          readinessProbe:
+            httpGet:
+              path: /api/v2/services
+              port: 9411
+            initialDelaySeconds: 5
+          resources:
+            limits:
+              cpu: "0"
+              memory: "0"
+            requests:
+              cpu: "0"
+              memory: "0"
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=zipkin-mysql&var-version=0.1.9
+      fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+      fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin-mysql/
+      fabric8.io/git-branch: release-v0.1.9
+      fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+      fabric8.io/scm-tag: 0.1.9
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/workspace/cd_kubernetes-zipkin_master-B7LMZZ7OFPMTGQZLAYSHZPUWCW3S2GY447R76X4T4TJEKKYQDEKA/mysql/target/zipkin-mysql-0.1.9.jar!/META-INF/fabric8/kubernetes.yml
+    labels:
+      provider: fabric8
+      project: zipkin-mysql
+      version: 0.1.9
+      group: io.fabric8.zipkin
+    name: zipkin-mysql
+    namespace: zipkin
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        provider: fabric8
+        project: zipkin-mysql
+        group: io.fabric8.zipkin
+        version: 0.1.9
+    template:
+      metadata:
+        annotations:
+          fabric8.io/git-commit: d08998bf477eff7154e8fa871c45e6183a3ced08
+          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=zipkin-mysql&var-version=0.1.9
+          fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+          fabric8.io/scm-url: http://github.com/fabric8io/kubeflix/zipkin-mysql/
+          fabric8.io/git-branch: release-v0.1.9
+          fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/kubeflix.git/zipkin-mysql
+          fabric8.io/scm-tag: 0.1.9
+          pod.alpha.kubernetes.io/init-containers: '[{"image":"busybox","imagePullPolicy":"IfNotPresent","name":"fmp-volume-permission","command":["chmod","777","/var/lib/mysql"],"volumeMounts":[{"mountPath":"/var/lib/mysql","name":"zipkin-mysql-data"}]}]'
+        labels:
+          provider: fabric8
+          project: zipkin-mysql
+          version: 0.1.9
+          group: io.fabric8.zipkin
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_USER
+            value: zipkin
+          - name: MYSQL_PASSWORD
+            value: zipkin
+          - name: MYSQL_ROOT_PASSWORD
+            value: zipkin
+          - name: MYSQL_DATABASE
+            value: zipkin
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: mysql:5.7.14
+          name: zipkin-mysql
+          readinessProbe:
+            initialDelaySeconds: 5
+            tcpSocket:
+              port: 3306
+          resources:
+            limits:
+              cpu: "0"
+              memory: "0"
+            requests:
+              cpu: "0"
+              memory: "0"
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: zipkin-mysql-data
+          - mountPath: /docker-entrypoint-initdb.d/
+            name: mysql-init-script
+          - mountPath: /etc/mysql/conf.d/
+            name: mysql-confd
+        volumes:
+        - name: zipkin-mysql-data
+          persistentVolumeClaim:
+            claimName: zipkin-mysql-data
+        - configMap:
+            name: zipkin-mysql-initdb
+          name: mysql-init-script
+        - configMap:
+            name: zipkin-mysql-cnf
+          name: mysql-confd
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      io.kompose.service: dependencies
+    name: dependencies
+    namespace: zipkin
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          io.kompose.service: dependencies
+      spec:
+        containers:
+        - command:
+          - crond
+          - -f
+          env:
+          - name: MYSQL_HOST
+            value: zipkin-mysql
+          - name: MYSQL_PASS
+            value: zipkin
+          - name: MYSQL_USER
+            value: zipkin
+          - name: STORAGE_TYPE
+            value: mysql
+          image: openzipkin/zipkin-dependencies:2.0.1
+          name: dependencies

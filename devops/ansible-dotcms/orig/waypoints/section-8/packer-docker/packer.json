@@ -1,0 +1,29 @@
+{
+  "builders": [
+    {
+      "name": "docker",
+      "type": "docker",
+      "image": "ubuntu:16.04",
+      "commit": true
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/python.sh"
+    },
+    {
+      "type": "ansible",
+      "playbook_file": "playbook.yaml"
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "docker-tag",
+      "repository": "alanhohn/dotcms-postgresql",
+      "tag": "0.0.1"
+    }
+  ]
+}

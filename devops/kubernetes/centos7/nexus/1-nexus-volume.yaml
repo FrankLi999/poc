@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-nexus
+  labels:
+    type: local
+spec:
+  storageClassName: nexus-pv
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/admin/volume-nexus"

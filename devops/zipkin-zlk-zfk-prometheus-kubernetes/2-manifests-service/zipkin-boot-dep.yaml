@@ -1,0 +1,31 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zipkin-boot
+  labels:
+    name: zipkin-boot
+  namespace: zipkin-boot
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: zipkin-boot
+    spec:
+      containers:
+      - name: zipkin-boot
+        image: xli9999/zipkin-demo:latest
+        env:
+         - name: ZIPKIN
+           value: zipkin.zipkin.svc.cluster.local
+         - name: ZIPKIN_HOST
+           value: zipkin.zipkin.svc.cluster.local
+         - name: ZIPKIN_ENABLED
+           value: "true"
+         - name: JAVA_OPTS
+           value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+        ports:
+        - containerPort: 3380
+      nodeSelector:
+        beta.kubernetes.io/os: linux

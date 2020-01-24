@@ -1,0 +1,8 @@
+version: "2"
+services:
+  calculator:
+    image: nexus.bpwizard.com:8950/bpw/calculator:1
+    ports:
+      - 8080:8080
+  redis:
+    image: redis:latest

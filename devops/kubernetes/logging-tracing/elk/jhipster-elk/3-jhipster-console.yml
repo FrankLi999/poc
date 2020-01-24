@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-console
+  namespace: jhipster-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jhipster-console
+    spec:
+      containers:
+      - image: jhipster/jhipster-console:v3.0.1
+        name: jhipster-console
+        env:
+        - name: ELASTICSEARCH_URL
+          value: http://jhipster-elasticsearch:9200
+        ports:
+        - containerPort: 5601
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-console
+  namespace: jhipster-system
+  labels:
+    app: jhipster-console
+spec:
+  ports:
+  - name: http
+    port: 5601
+    targetPort: 5601
+  type: ClusterIP
+  selector:
+    app: jhipster-console

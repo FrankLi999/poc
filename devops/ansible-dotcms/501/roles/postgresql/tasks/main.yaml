@@ -1,0 +1,50 @@
+---
+- name: install
+  package: name={{ item }} state=installed
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - python-psycopg2    # For Ansible PostgreSQL modules
+
+- name: configure
+  copy:
+    src: postgresql.conf
+    dest: /etc/postgresql/{{ postgresql_version }}/main/postgresql.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+  notify:
+    - restart postgresql
+
+- name: authentication
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0640
+  notify:
+    - reload postgresql
+
+- name: service
+  service: name=postgresql state=started enabled=yes
+
+- meta: flush_handlers
+
+- name: users
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: "{{ item.key }}"
+    password: "{{ item.value.pw }}"
+  with_dict: "{{ postgresql_users }}"
+
+- name: databases
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: "{{ item.key }}"
+    owner: "{{ item.value.owner }}"
+    encoding: "{{ item.value.encoding | default('UTF-8') }}"
+    template: "{{ item.value.template | default('template0') }}"
+  with_dict: "{{ postgresql_databases }}"

@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: camunda-mysql
+  namespace: camunda
+spec:
+  type: ExternalName
+  externalName: shared-mysql.shared-mysql.svc.wcm.local
+  ports:
+  - port: 3306

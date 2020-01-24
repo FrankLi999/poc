@@ -1,0 +1,3 @@
+---
+- debug:
+    msg: "Running tomcat role"

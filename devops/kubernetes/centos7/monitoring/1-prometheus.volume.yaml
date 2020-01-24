@@ -1,0 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-prometheus
+  labels:
+    type: local
+spec:
+  storageClassName: prometheus-pv
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/prometheus/data"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-prometheus-alert
+  labels:
+    type: local
+spec:
+  storageClassName: prometheus-alert-pv
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/prometheus/alert"

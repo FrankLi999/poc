@@ -1,0 +1,44 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-dotcms-cms-shared
+  labels:
+    type: local
+spec:
+  storageClassName: dotcms-cms-shared-pv
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/dotcms/cms-shared"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-dotcms-pgdata
+  labels:
+    type: local
+spec:
+  storageClassName: dotcms-pgdata-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/dotcms/pgdata"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-dotcms-esdata
+  labels:
+    type: local
+spec:
+  storageClassName: dotcms-esdata-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/dotcms/esdata"

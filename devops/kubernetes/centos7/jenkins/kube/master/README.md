@@ -1,0 +1,1 @@
+1. docker build -t bpwjenkins-master1.0 .

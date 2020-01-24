@@ -1,0 +1,80 @@
+- name: nodesource repository
+  yum_repository:
+    name: nodesource
+    description: Nodesource Yum Repo
+    baseurl: https://rpm.nodesource.com/pub_8.x/el/7/$basearch/
+
+- name: nodesource repository
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_8.x xenial main
+    state: present
+
+- name: tensorflow
+  pip:
+    name: tensorflow
+    virtualenv: /opt/tensorflow
+
+- name: rake
+  gem:
+    name: rake
+    state: present
+
+- name: ensure localhost in hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: '127.0.0.1 localhost'
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: installation directory
+  file:
+    name: "/opt/dotcms"
+    state: directory
+    owner: "dotcms"
+    group: "dotcms"
+    mode: 0755
+
+- name: install
+  unarchive:
+    src: "/opt/dotcms.tar.gz"
+    dest: "/opt/dotcms"
+    owner: "dotcms"
+    group: "dotcms"
+    creates: "/opt/dotcms/bin/startup.sh"
+
+- name: context xml
+  template:
+    src: context.xml
+    dest: "/opt/dotcms/dotserver/tomcat-8.0.18/webapps/ROOT/META-INF/context.xml"
+    owner: "dotcms"
+    group: "dotcms"
+    mode: 0644
+
+- name: group
+  group: name=dotcms state=present
+
+- name: user
+  user:
+    name: "dotcms"
+    group: "dotcms"
+    home: "/opt/dotcms"
+    state: present
+    system: yes
+
+- name: allow httpd to make network connections
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+
+- name: schedule yum autoupdate
+  cron:
+    name: yum autoupdate
+    weekday: 2
+    minute: 0
+    hour: 12
+    user: root
+    job: "YUMINTERACTIVE: 0 /usr/sbin/yum-autoupdate"

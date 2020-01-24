@@ -1,0 +1,17 @@
+com\vlotar\demo\dao\UserDAO.class
+com\vlotar\demo\web\request\UserResourceRequest.class
+com\vlotar\demo\web\response\SuccessResponse.class
+com\vlotar\demo\service\UserService.class
+com\vlotar\demo\web\response\CustomErrorResponse.class
+com\vlotar\demo\web\response\UserResourceResponse.class
+com\vlotar\demo\web\controller\UserController.class
+com\vlotar\demo\service\converter\UserResourceConverter.class
+com\vlotar\demo\web\controller\ErrorHandler$ERROR_CODE.class
+com\vlotar\demo\domain\User.class
+com\vlotar\demo\web\response\ResourceIdResponse.class
+com\vlotar\demo\SwaggerConfiguration.class
+com\vlotar\demo\MetricAndHealthExporterService.class
+com\vlotar\demo\web\controller\ErrorHandler.class
+com\vlotar\demo\RequestLoggingFilter.class
+com\vlotar\demo\JavaLogAggregationApplication.class
+com\vlotar\demo\exception\ResourceNotFoundException.class

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hazelcast-mancenter
+  name: hazelcast-mancenter
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: hazelcast-mancenter
+    spec:
+      containers:
+      - env:
+        - name: HZ_SVC_NAMES
+          value: hazelcast
+        image: dotcms/hazelcast-mancenter:3.9.2-prelim
+        name: hazelcast-mancenter
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+status: {}

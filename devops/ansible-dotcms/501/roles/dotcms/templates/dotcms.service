@@ -1,0 +1,17 @@
+[Unit]
+Description=DotCMS
+
+[Service]
+Type=forking
+Environment=JAVA_HOME={{ java_home }}
+Environment=CATALINA_PID={{ dotcms_path }}/dotcms.pid
+WorkingDirectory={{ dotcms_path }}
+PIDFile={{ dotcms_path }}/dotcms.pid
+ExecStartPre=/bin/rm -f {{ dotcms_path }}/dotcms.pid
+ExecStart={{ dotcms_path }}/bin/startup.sh
+ExecStop={{ dotcms_path }}/bin/shutdown.sh
+User={{ dotcms_user }}
+Group={{ dotcms_group }}
+
+[Install]
+WantedBy=multi-user.target

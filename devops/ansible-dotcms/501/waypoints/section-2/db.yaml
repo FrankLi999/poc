@@ -1,0 +1,27 @@
+---
+- hosts: database
+  become: true
+  tasks:
+    - name: install
+      package: name=postgresql state=installed
+    - name: configure
+      copy:
+        src: postgresql.conf
+        dest: /etc/postgresql/9.5/main/postgresql.conf
+        owner: postgres
+        group: postgres
+        mode: 0644
+      notify:
+        - restart postgresql
+    - name: service
+      service: name=postgresql state=started enabled=yes
+    - meta: flush_handlers
+    - name: users
+      become: true # boolean
+      become_user: postgres
+      postgresql_user:
+        name: "dbuser"
+        password: "supersecret"
+  handlers:
+    - name: restart postgresql
+      service: name=postgresql state=restarted

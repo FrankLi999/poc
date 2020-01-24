@@ -1,0 +1,10 @@
+---
+postgresql_cidr: "{{ private_cidr }}"
+
+postgresql_users:
+  dotcmsuser:
+    pw: "{{ dotcms_db_password }}"
+
+postgresql_databases:
+  dotcms:
+    owner: dotcmsuser

@@ -1,0 +1,20 @@
+---
+- hosts: database
+  become: true
+  roles:
+    - postgresql
+- hosts: dotcms
+  become: true
+  roles:
+    - pip
+    - java
+    - dotcms
+- hosts: balancer
+  become: true
+  roles:
+    - haproxy
+- hosts: nfs
+  become: true
+  roles:
+    - volume
+    - nfs

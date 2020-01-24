@@ -1,0 +1,8 @@
+---
+dotcms_path: /opt/dotcms
+dotcms_user: dotcms
+dotcms_group: dotcms
+dotcms_db_name: dotcms
+dotcms_db_user: dotcmsuser
+dotcms_server_port_http: 28080
+dotcms_server_port_https: 28443

@@ -1,0 +1,134 @@
+NAME:   confluent
+LAST DEPLOYED: Sat Sep 15 22:44:50 2018
+NAMESPACE: confluent
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1beta1/PodDisruptionBudget
+NAME                        MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+confluent-cp-zookeeper-pdb  N/A            1                0                    0s
+
+==> v1/Pod(related)
+NAME                                          READY  STATUS             RESTARTS  AGE
+confluent-cp-kafka-connect-5dff8d9cdd-vfgp8   0/2    ContainerCreating  0         0s
+confluent-cp-kafka-rest-69cc5d9d66-wd9nh      0/2    ContainerCreating  0         0s
+confluent-cp-ksql-server-7b8ff9459b-lslwf     0/2    ContainerCreating  0         0s
+confluent-cp-schema-registry-c8ff6864b-4dhrq  0/2    ContainerCreating  0         0s
+confluent-cp-kafka-0                          0/2    Pending            0         0s
+confluent-cp-zookeeper-0                      0/2    Pending            0         0s
+
+==> v1/ConfigMap
+NAME                                             DATA  AGE
+confluent-cp-kafka-connect-jmx-configmap         1     0s
+confluent-cp-kafka-rest-jmx-configmap            1     0s
+confluent-cp-kafka-jmx-configmap                 1     0s
+confluent-cp-ksql-server-jmx-configmap           1     0s
+confluent-cp-ksql-server-ksql-queries-configmap  1     0s
+confluent-cp-schema-registry-jmx-configmap       1     0s
+confluent-cp-zookeeper-jmx-configmap             1     0s
+
+==> v1/Service
+NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)            AGE
+confluent-cp-kafka-connect       ClusterIP  10.233.10.215  <none>       8083/TCP           0s
+confluent-cp-kafka-rest          ClusterIP  10.233.61.187  <none>       8082/TCP           0s
+confluent-cp-kafka-headless      ClusterIP  None           <none>       9092/TCP           0s
+confluent-cp-kafka               ClusterIP  10.233.37.47   <none>       9092/TCP           0s
+confluent-cp-ksql-server         ClusterIP  10.233.36.214  <none>       8088/TCP           0s
+confluent-cp-schema-registry     ClusterIP  10.233.27.98   <none>       8081/TCP           0s
+confluent-cp-zookeeper-headless  ClusterIP  None           <none>       2888/TCP,3888/TCP  0s
+confluent-cp-zookeeper           ClusterIP  10.233.25.236  <none>       2181/TCP           0s
+
+==> v1beta2/Deployment
+NAME                          DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+confluent-cp-kafka-connect    1        1        1           0          0s
+confluent-cp-kafka-rest       1        1        1           0          0s
+confluent-cp-ksql-server      1        1        1           0          0s
+confluent-cp-schema-registry  1        1        1           0          0s
+
+==> v1beta1/StatefulSet
+NAME                    DESIRED  CURRENT  AGE
+confluent-cp-kafka      3        1        0s
+confluent-cp-zookeeper  3        1        0s
+
+
+NOTES:
+## ------------------------------------------------------
+## Zookeeper
+## ------------------------------------------------------
+Connection string for Confluent Kafka:
+  confluent-cp-zookeeper-0.confluent-cp-zookeeper-headless:2181,confluent-cp-zookeeper-1.confluent-cp-zookeeper-headless:2181,...
+
+To connect from a client pod:
+
+1. Deploy a zookeeper client pod with configuration:
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: zookeeper-client
+      namespace: confluent
+    spec:
+      containers:
+      - name: zookeeper-client
+        image: confluentinc/cp-zookeeper:5.0.0
+        command:
+          - sh
+          - -c
+          - "exec tail -f /dev/null"
+
+2. Log into the Pod
+
+  kubectl exec -it zookeeper-client -- /bin/bash
+
+3. Use zookeeper-shell to connect in the zookeeper-client Pod:
+
+  zookeeper-shell confluent-cp-zookeeper:2181
+
+4. Explore with zookeeper commands, for example:
+
+  # Gives the list of active brokers
+  ls /brokers/ids
+
+  # Gives the list of topics
+  ls /brokers/topics
+
+  # Gives more detailed information of the broker id '0'
+  get /brokers/ids/0## ------------------------------------------------------
+## Kafka
+## ------------------------------------------------------
+To connect from a client pod:
+
+1. Deploy a kafka client pod with configuration:
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: kafka-client
+      namespace: confluent
+    spec:
+      containers:
+      - name: kafka-client
+        image: confluentinc/cp-kafka:5.0.0
+        command:
+          - sh
+          - -c
+          - "exec tail -f /dev/null"
+
+2. Log into the Pod
+
+  kubectl exec -it kafka-client -- /bin/bash
+
+3. Explore with kafka commands:
+
+  # Create the topic
+  kafka-topics --zookeeper confluent-cp-zookeeper-headless:2181 --topic confluent-topic --create --partitions 1 --replication-factor 1 --if-not-exists
+
+  # Create a message
+  MESSAGE="`date -u`"
+
+  # Produce a test message to the topic
+  echo "$MESSAGE" | kafka-console-producer --broker-list confluent-cp-kafka-headless:9092 --topic confluent-topic
+
+  # Consume a test message from the topic
+  kafka-console-consumer --bootstrap-server confluent-cp-kafka-headless:9092 --topic confluent-topic --from-beginning --timeout-ms 2000 --max-messages 1 | grep "$MESSAGE"
+

@@ -1,0 +1,22 @@
+---
+- hosts: database
+  become: true
+  tasks:
+    - name: install
+      package: name=postgresql state=installed
+    - name: service
+      service: name=postgresql state=started enabled=yes
+      tags: service
+- hosts: dotcms
+  become: true
+  tasks:
+    - name: install jre
+      package: name=openjdk-8-jre state=installed
+- hosts: balancer
+  become: true
+  tasks:
+    - name: install
+      package: name=haproxy state=installed
+    - name: service
+      service: name=haproxy state=started enabled=yes
+      tags: service

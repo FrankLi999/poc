@@ -1,0 +1,16 @@
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\request\UserResourceRequest.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\controller\ErrorHandler.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\domain\User.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\exception\ResourceNotFoundException.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\JavaLogAggregationApplication.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\controller\UserController.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\response\CustomErrorResponse.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\service\converter\UserResourceConverter.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\response\SuccessResponse.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\service\UserService.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\RequestLoggingFilter.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\MetricAndHealthExporterService.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\response\ResourceIdResponse.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\web\response\UserResourceResponse.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\dao\UserDAO.java
+C:\workspaces\kubernetes\zipkin-zfk-monitoring-demo\spring-boot-elk\java-log-aggregation\src\main\java\com\vlotar\demo\SwaggerConfiguration.java

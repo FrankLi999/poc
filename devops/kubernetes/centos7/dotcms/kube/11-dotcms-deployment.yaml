@@ -1,0 +1,84 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: dotcms
+    app: dotcms
+  name: dotcms
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: dotcms
+    spec:
+      containers:
+      - env:
+        - name: ELASTICSEARCH_SERVICE_NAMES
+          value: elasticsearch-static,elasticsearch
+        - name: HAZELCAST_SERVICE_NAMES
+          value: hazelcast
+        - name: TOMCAT_HEAP_SIZE
+          value: 1500m
+        image: dotcms/dotcms:5.0.2-prelim
+        livenessProbe:
+          exec:
+            command:
+            - /srv/bin/healthcheck.sh
+          failureThreshold: 3
+          periodSeconds: 5
+          timeoutSeconds: 3
+        name: dotcms
+        resources: {}
+        volumeMounts:
+        - mountPath: /data/shared
+          name: cms-shared
+        - mountPath: /data/local/dotsecure/license/license.dat
+          name: dotcms-license
+        - mountPath: /srv/plugins
+          name: dotcms-plugin
+      restartPolicy: Always
+      volumes:
+      - name: cms-shared
+        persistentVolumeClaim:
+          claimName: cms-shared
+      - name: dotcms-license
+        hostPath:
+          path: /home/admin/kube/dotcms/cms/license
+      - name: dotcms-plugin
+        hostPath:
+          path: /home/admin/kube/dotcms/cms/plugin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotcms-service
+  namespace: dotcms
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: dotcms
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dotcms-ingress
+  namespace: dotcms
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: dotcms.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: dotcms-service
+          servicePort: 8080

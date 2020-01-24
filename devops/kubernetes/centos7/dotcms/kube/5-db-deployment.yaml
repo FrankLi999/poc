@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db
+  name: db
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+        image: dotcms/postgres:9.6-prelim
+        name: db
+        resources: {}
+        volumeMounts:
+        - mountPath: /data/pg
+          name: pgdata
+      restartPolicy: Always
+      volumes:
+      - name: pgdata
+        persistentVolumeClaim:
+          claimName: pgdata
+status: {}

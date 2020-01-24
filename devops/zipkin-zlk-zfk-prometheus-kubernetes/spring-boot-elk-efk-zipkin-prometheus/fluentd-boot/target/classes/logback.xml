@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <property name="FLUENTD_HOST" value="${FLUENTD_HOST:-${DOCKER_HOST:-192.168.99.100}}"/>
+    <property name="FLUENTD_PORT" value="${FLUENTD_PORT:-24224}"/>
+    
+    <appender name="FLUENT" class="hello.DataFluentAppender">
+        <tag>dab</tag>
+        <!-- <label>normal</label> -->
+        <remoteHost>${FLUENTD_HOST}</remoteHost>
+        <port>${FLUENTD_PORT}</port>
+    </appender>
+
+    <logger  name="hello" level="DEBUG" additivity="false">
+		<appender-ref ref="CONSOLE" />
+        <appender-ref ref="FLUENT" />
+	</logger>
+    
+    <logger name="org.springframework" level="INFO"/>
+</configuration>

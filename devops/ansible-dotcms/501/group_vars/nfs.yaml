@@ -1,0 +1,6 @@
+---
+volume_mount_path: /nfs
+nfs_exports:
+  dotcms:
+    path: /nfs/dotcms
+    cidr: "{{ private_cidr }}"

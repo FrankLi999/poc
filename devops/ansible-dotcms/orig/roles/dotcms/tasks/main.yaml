@@ -1,0 +1,52 @@
+---
+- name: group
+  group: name={{ dotcms_group }} state=present
+
+- name: user
+  user:
+    name: "{{ dotcms_user }}"
+    group: "{{ dotcms_group }}"
+    home: "{{ dotcms_path }}"
+    state: present
+    system: yes
+
+- name: installation directory
+  file:
+    name: "{{ dotcms_path }}"
+    state: directory
+    owner: "{{ dotcms_user }}"
+    group: "{{ dotcms_group }}"
+    mode: 0755
+
+- name: install
+  unarchive:
+    src: "{{ dotcms_archive_file }}"
+    dest: "{{ dotcms_path }}"
+    owner: "{{ dotcms_user }}"
+    group: "{{ dotcms_group }}"
+    creates: "{{ dotcms_path }}/bin/startup.sh"
+
+- name: context xml
+  template:
+    src: context.xml
+    dest: "{{ dotcms_path }}/dotserver/tomcat-{{ dotcms_tomcat_version }}/webapps/ROOT/META-INF/context.xml"
+    owner: "{{ dotcms_user }}"
+    group: "{{ dotcms_group }}"
+    mode: 0644
+
+- name: service file
+  template:
+    dest: /lib/systemd/system/dotcms.service
+    src: dotcms.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - dotcms reload systemd
+
+- meta: flush_handlers
+
+- name: service
+  service: name=dotcms state=started enabled=yes
+
+- import_tasks: news.yaml

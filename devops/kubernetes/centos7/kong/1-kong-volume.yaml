@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-kong-postgresql
+  labels:
+    type: local
+spec:
+  storageClassName: kong-postgresql-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/kong/postgresql"

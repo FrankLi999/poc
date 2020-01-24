@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage("Checkout") {
+            steps {
+                git url: 'http://192.168.79.207:8929/root/calculator.git'
+            }
+        }
+        stage("Compile") {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
+        stage("Unit test") {
+            steps {
+                sh "mvn test"
+            }
+        }
+    }
+}

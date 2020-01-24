@@ -1,0 +1,60 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-config
+  labels:
+    type: local
+spec:
+  storageClassName: gitlab-config-pv
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/gitlab/config"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-redis
+  labels:
+    type: local
+spec:
+  storageClassName: gitlab-redis-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/gitlab/redis"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-postgresql
+  labels:
+    type: local
+spec:
+  storageClassName: gitlab-postgresql-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/gitlab/postgresql"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-data
+  labels:
+    type: local
+spec:
+  storageClassName: gitlab-data-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/gitlab/data"
+

@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: elasticsearch-static
+    app: elasticsearch-static
+  name: elasticsearch-static
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: elasticsearch-static
+    spec:
+      containers:
+      - env:
+        - name: ELASTICSEARCH_HEAP_SIZE
+          value: 1024m
+        - name: ELASTICSEARCH_SERVICE_DELAY_MAX
+          value: "2"
+        - name: ELASTICSEARCH_SERVICE_DELAY_MIN
+          value: "1"
+        - name: ELASTICSEARCH_SERVICE_DELAY_STEP
+          value: "1"
+        - name: ELASTICSEARCH_SERVICE_NAMES
+          value: elasticsearch-static,elasticsearch
+        image: dotcms/elasticsearch:6.1.3-prelim
+        name: elasticsearch-static
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: esdata
+      restartPolicy: Always
+      volumes:
+      - name: esdata
+        persistentVolumeClaim:
+          claimName: esdata
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-static
+  namespace: dotcms
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: elasticsearch-static

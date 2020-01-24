@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab-ingress
+  namespace: gitlab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: gitlab.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gitlab-gitlab-ce
+          servicePort: 80

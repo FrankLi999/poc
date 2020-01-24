@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nexus-pvc
+  namespace: nexus
+  labels:
+    app: nexus
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nexus
+  namespace: nexus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - image: sonatype/nexus3
+        imagePullPolicy: IfNotPresent
+        name: nexus
+        ports:
+        - containerPort: 8081
+        - containerPort: 5000
+        volumeMounts:
+          - mountPath: /nexus-data
+            name: nexus-data-volume
+      volumes:
+        - name: nexus-data-volume
+          persistentVolumeClaim:
+            claimName: nexus-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus-service
+  namespace: nexus
+spec:
+  ports:
+  - port: 80
+    targetPort: 8081
+    protocol: TCP
+    name: http
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    name: docker
+  selector:
+    app: nexus
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nexus-ingress
+  namespace: nexus
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: nexus.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nexus-service
+          servicePort: 80
+  - host: docker.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nexus-service
+          servicePort: 5000

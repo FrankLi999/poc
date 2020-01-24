@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: hazelcast
+  name: hazelcast
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: hazelcast
+    spec:
+      containers:
+      - env:
+        - name: HAZELCAST_MANCENTER_URL
+          value: http://hazelcast-mancenter:8080/mancenter
+        - name: MAX_HEAP_SIZE
+          value: 512m
+        - name: MIN_HEAP_SIZE
+          value: 128m
+        image: dotcms/hazelcast:3.9.2-prelim
+        name: hazelcast
+        resources: {}
+      restartPolicy: Always
+status: {}

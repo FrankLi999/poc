@@ -1,0 +1,45 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-confluent-kafka1
+  labels:
+    type: local
+spec:
+  storageClassName: confluent-kafka-pv1
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/confluent/kafka1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-confluent-zookeeper1
+  labels:
+    type: local
+spec:
+  storageClassName: confluent-zookeeper-pv1
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/confluent/zookeeper1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-confluent-zookeeper-logs1
+  labels:
+    type: local
+spec:
+  storageClassName: confluent-zookeeper-logs-pv1
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/confluent/zookeeper-logs1"
+

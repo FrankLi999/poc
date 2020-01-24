@@ -1,0 +1,33 @@
+---
+- name: install
+  package: name=haproxy state=installed
+
+- name: haproxy ssl file
+  copy:
+    content: "{{ haproxy_ssl_cert }}"
+    dest: /etc/ssl/haproxy.pem
+    owner: root
+    group: root
+    mode: 0600
+  when: haproxy_ssl_cert is defined
+
+- name: configure
+  template:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload haproxy
+
+- name: config rsyslog
+  template:
+    src: rsyslog.haproxy.conf
+    dest: /etc/rsyslog.d/haproxy.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rsyslog
+
+- name: service
+  service: name=haproxy state=started enabled=yes

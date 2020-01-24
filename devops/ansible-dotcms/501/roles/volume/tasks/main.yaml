@@ -1,0 +1,35 @@
+---
+- name: check volume_path
+  stat:
+    path: "{{ volume_path }}"
+  register: vp
+- debug: msg="{{ vp }}"
+
+- name: partition
+  parted:
+    device: "{{ volume_path }}"
+    number: 1
+    state: present
+  when: vp.stat.isblk is defined and vp.stat.isblk
+
+- name: filesystem
+  filesystem:
+    fstype: xfs
+    dev: "{{ volume_path }}1"
+  when: vp.stat.isblk is defined and vp.stat.isblk
+
+- name: mount directory
+  file:
+    name: "{{ volume_mount_path }}"
+    state: directory
+    owner: "{{ volume_mount_user }}"
+    group: "{{ volume_mount_group }}"
+    mode: 0755
+
+- name: mount
+  mount:
+    path: "{{ volume_mount_path }}"
+    src: "{{ volume_path }}1"
+    fstype: xfs
+    state: present
+  when: vp.stat.isblk is defined and vp.stat.isblk

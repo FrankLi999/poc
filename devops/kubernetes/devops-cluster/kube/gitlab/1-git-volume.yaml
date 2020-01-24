@@ -1,0 +1,42 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-config
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/fli/volume-gitlab/config"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-logs
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/fli/volume-gitlab/logs"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-gitlab-data
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/fli/volume-gitlab/data"
+

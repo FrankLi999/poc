@@ -1,0 +1,9 @@
+---
+- name: configure tools
+  template:
+    src: profile.sh
+    dest: /etc/profile.d/{{ item.key }}.sh
+    owner: root
+    group: root
+    mode: 0644
+  with_dict: "{{ configured_tools }}"

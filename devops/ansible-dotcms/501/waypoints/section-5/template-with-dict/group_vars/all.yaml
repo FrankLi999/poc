@@ -1,0 +1,12 @@
+---
+configured_tools:
+  java:
+    envar: JAVA_HOME
+    dir: /usr/lib/jvm/java-8-openjdk-amd64/jre
+  maven:
+    envar: M2_HOME
+    dir: /opt/maven
+  gradle:
+    envar: GRADLE_HOME
+    dir: /opt/gradle
+    

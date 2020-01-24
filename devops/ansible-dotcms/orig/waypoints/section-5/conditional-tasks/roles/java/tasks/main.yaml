@@ -1,0 +1,8 @@
+---
+- name: install jre (Debian)
+  package: name=openjdk-8-jre state=installed
+  when: ansible_os_family == 'Debian'
+
+- name: install jre (RHEL)
+  package: name=java-1.8.0-openjdk state=installed
+  when: ansible_os_family == 'RedHat'

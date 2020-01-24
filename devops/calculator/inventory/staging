@@ -1,0 +1,2 @@
+[webservers]
+web1 ansible_host=192.168.79.202 ansible_user=fli ansible_ssh_private_key_file=~fli/services/jenkins_private.key

@@ -1,0 +1,67 @@
+   rabbitmq
+LAST DEPLOYED: Sat Sep 15 22:54:07 2018
+NAMESPACE: rabbitmq
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1beta2/StatefulSet
+NAME      DESIRED  CURRENT  AGE
+rabbitmq  1        1        0s
+
+==> v1/Pod(related)
+NAME        READY  STATUS             RESTARTS  AGE
+rabbitmq-0  0/1    ContainerCreating  0         0s
+
+==> v1/Secret
+NAME      TYPE    DATA  AGE
+rabbitmq  Opaque  2     0s
+
+==> v1/ConfigMap
+NAME             DATA  AGE
+rabbitmq-config  2     0s
+
+==> v1/ServiceAccount
+NAME      SECRETS  AGE
+rabbitmq  1        0s
+
+==> v1/RoleBinding
+NAME                      AGE
+rabbitmq-endpoint-reader  0s
+
+==> v1/Role
+NAME                      AGE
+rabbitmq-endpoint-reader  0s
+
+==> v1/Service
+NAME      TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)                                AGE
+rabbitmq  ClusterIP  10.233.55.210  <none>       4369/TCP,5672/TCP,25672/TCP,15672/TCP  0s
+
+==> v1beta1/Ingress
+NAME      HOSTS                  ADDRESS  PORTS  AGE
+rabbitmq  rabbitmq.bpwizard.com  80       0s
+
+
+NOTES:
+
+** Please be patient while the chart is being deployed **
+
+Credentials:
+
+    Username      : user
+    echo "Password      : $(kubectl get secret --namespace rabbitmq rabbitmq -o jsonpath="{.data.rabbitmq-password}" | base64 --decode)"
+    echo "ErLang Cookie : $(kubectl get secret --namespace rabbitmq rabbitmq -o jsonpath="{.data.rabbitmq-erlang-cookie}" | base64 --decode)"
+
+RabbitMQ can be accessed within the cluster on port 5672 at rabbitmq.rabbitmq.svc.cluster.local
+
+To access for outside the cluster, perform the following steps:
+
+To Access the RabbitMQ AMQP port:
+
+    kubectl port-forward --namespace rabbitmq svc/rabbitmq 5672:5672
+    echo "URL : amqp://127.0.0.1:5672/"
+
+To Access the RabbitMQ Management interface:
+
+    kubectl port-forward --namespace rabbitmq svc/rabbitmq 15672:15672
+    echo "URL : http://127.0.0.1:15672/"
+

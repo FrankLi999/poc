@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: camunda-tomcat-deployment
+  namespace: camunda
+  labels:
+    app: camunda-tomcat-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: camunda-tomcat-deployment
+    spec:
+      containers:
+      - name: camunda-tomcat
+        env:
+        - name: DB_DRIVER
+          value: com.mysql.jdbc.Driver
+        - name: DB_URL
+          value: jdbc:mysql://camunda-mysql:3306/camundac
+        - name: DB_USERNAME
+          value: root
+        - name: DB_PASSWORD
+          value: Passw0rd
+        image: camunda/camunda-bpm-platform:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: camunda-tomcat-service
+    namespace: camunda
+spec:
+  ports:
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080 
+        name: http     
+  selector:
+    app: camunda-tomcat-deployment
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: camunda-tomcat-ingress
+  namespace: camunda
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: camunda-tomcat.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: camunda-tomcat-service
+          servicePort: 8080        
+      

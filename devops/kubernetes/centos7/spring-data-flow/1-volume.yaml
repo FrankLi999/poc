@@ -1,0 +1,44 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-spring-df-mysql
+  labels:
+    type: local
+spec:
+  storageClassName: spring-df-mysql-pv
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/spring-df/mysql"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-spring-df-rabbitmq
+  labels:
+    type: local
+spec:
+  storageClassName: spring-df-rabbitmq-pv
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/spring-df/rabbitmq"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-spring-df-redis
+  labels:
+    type: local
+spec:
+  storageClassName: spring-df-redis-pv
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/spring-df/redis"

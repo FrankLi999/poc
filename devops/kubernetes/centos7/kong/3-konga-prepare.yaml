@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: konga-prepare
+  namespace: kong
+  labels:
+    app: konga-prepare
+spec:
+  containers:
+  - args:
+    - -c
+    - prepare
+    - -a
+    - postgres
+    - -u
+    - postgresql://kong:kong@kong-postgresql:5432/konga
+    image: pantsel/konga:0.12.2
+    name: konga-prepare
+    resources: {}
+  restartPolicy: OnFailure

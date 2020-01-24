@@ -1,0 +1,56 @@
+#
+# LICENSE UPL 1.0
+#
+# Copyright (c) 1982-2018 Oracle and/or its affiliates. All rights reserved.
+# 
+# Since: July, 2018
+# Author: gerald.venzl@oracle.com
+# Description: Creates an Oracle database Vagrant virtual machine.
+# 
+# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+# 
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+# define hostname
+#NAME = "oracle-18c-vagrant"
+NAME = "oracle18c"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ol7-latest"
+  config.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/latest/ol7-latest.box"
+  config.vm.define NAME
+  config.vm.box_check_update = false
+  
+  # change memory size
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 8192
+    v.name = NAME
+	v.cpus = "4"
+  end
+
+  # VM hostname
+  config.vm.hostname = NAME
+
+  # Oracle port forwarding
+  config.vm.network "public_network", ip: "192.168.0.118", bridge: "Microsoft Network Adapter Multiplexor Driver"
+  config.vm.network "forwarded_port", guest: 1521, host: 1521
+  config.vm.network "forwarded_port", guest: 5500, host: 5500
+
+  # Provision everything on the first run
+  config.vm.provision "shell", path: "scripts/install.sh", env:
+    {
+       "ORACLE_BASE"         => "/opt/oracle",
+       "ORACLE_HOME"         => "/opt/oracle/product/18c/dbhome_1",
+       "ORACLE_SID"          => "ORCLCDB",
+       "ORACLE_PDB"          => "ORCLPDB1",
+       "ORACLE_CHARACTERSET" => "AL32UTF8",
+       "ORACLE_EDITION"      => "EE",
+       "ORACLE_PWD"          => "Passw0rd"
+    }
+
+end

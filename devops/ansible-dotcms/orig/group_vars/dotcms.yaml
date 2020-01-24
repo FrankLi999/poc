@@ -1,0 +1,4 @@
+---
+dotcms_archive_file: installers/dotcms_4.2.2.tar.gz
+dotcms_tomcat_version: 8.0.18
+dotcms_database_host: 172.31.0.11

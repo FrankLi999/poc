@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ms-prometheus
+  namespace: ms-monitoring
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ms-prometheus
+    spec:
+      containers:
+        - image: prom/prometheus
+          name: ms-prometheus
+          ports:
+            - containerPort: 9090
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /prometheus
+              name: prometheus
+            - mountPath: /etc/prometheus/prometheus.yml
+              name: prometheus-config
+      volumes:
+        - name: prometheus
+          hostPath:
+            path: /home/fli/prometheus/data
+            type: Directory
+        - name: prometheus-config
+          hostPath:
+            path: /home/fli/kube/monitoring/kube-app-monitoring/prometheus.yml
+            type: File
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-prometheus
+  namespace: ms-monitoring
+  labels:
+    app: ms-prometheus
+spec:
+  ports:
+    - name: "http"
+      port: 9090
+      protocol: TCP
+      targetPort: 9090
+  selector:
+    app: ms-prometheus
+

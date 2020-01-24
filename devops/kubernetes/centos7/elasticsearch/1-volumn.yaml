@@ -1,0 +1,74 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-shared-es-master0
+  labels:
+    type: local
+spec:
+  storageClassName: shared-es-master0-pv
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/shared-es/master0"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-shared-es-master1
+  labels:
+    type: local
+spec:
+  storageClassName: shared-es-master1-pv
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/shared-es/master1"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-shared-es-master2
+  labels:
+    type: local
+spec:
+  storageClassName: shared-es-master2-pv
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/shared-es/master2"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-shared-es-data0
+  labels:
+    type: local
+spec:
+  storageClassName: shared-es-data0-pv
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/shared-es/data0"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-shared-es-data1
+  labels:
+    type: local
+spec:
+  storageClassName: shared-es-data1-pv
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kube-pv/shared-es/data1"

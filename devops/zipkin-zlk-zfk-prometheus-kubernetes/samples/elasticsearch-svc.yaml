@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: Elasticsearch-logging
+    namespace: kube-system
+    labels:
+<strong>      k8s-app: Elasticsearch-logging</strong>
+        kubernetes.io/cluster-service: "true"
+        kubernetes.io/name: "Elasticsearch"
+spec:
+    ports:
+        - port: 9200
+        protocol: TCP
+        targetPort: es-port
+selector:
+    k8s-app: Elasticsearch-logging

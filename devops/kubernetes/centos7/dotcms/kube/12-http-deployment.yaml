@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: http
+  name: http
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: http
+    spec:
+      containers:
+      - env:
+        - name: HAPROXY_CERT_PATH
+          value: /srv/config/haproxy.crt
+        image: dotcms/haproxy:1.8-prelim
+        name: http
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources: {}
+      restartPolicy: Always
+status: {}

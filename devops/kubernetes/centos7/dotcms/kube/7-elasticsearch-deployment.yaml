@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: elasticsearch
+  name: elasticsearch
+  namespace: dotcms
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: elasticsearch
+    spec:
+      containers:
+      - env:
+        - name: ELASTICSEARCH_HEAP_SIZE
+          value: 1024m
+        - name: ELASTICSEARCH_SERVICE_DELAY_MAX
+          value: "30"
+        - name: ELASTICSEARCH_SERVICE_DELAY_MIN
+          value: "3"
+        - name: ELASTICSEARCH_SERVICE_NAMES
+          value: elasticsearch-static,elasticsearch
+        image: dotcms/elasticsearch:6.1.3-prelim
+        name: elasticsearch
+        resources: {}
+      restartPolicy: Always
+status: {}

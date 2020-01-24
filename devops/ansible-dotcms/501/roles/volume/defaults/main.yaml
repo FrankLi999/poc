@@ -1,0 +1,4 @@
+---
+volume_path: /dev/xvdm
+volume_mount_user: root
+volume_mount_group: root

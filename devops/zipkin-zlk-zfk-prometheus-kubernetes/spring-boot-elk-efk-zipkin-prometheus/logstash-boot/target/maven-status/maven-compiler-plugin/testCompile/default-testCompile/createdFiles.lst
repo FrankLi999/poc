@@ -1,0 +1,4 @@
+com\vlotar\demo\service\UserServiceTest.class
+com\vlotar\demo\web\controller\UserControllerTest.class
+com\vlotar\demo\JavaLogAggregationApplicationTests.class
+com\vlotar\demo\service\converter\UserResourceConverterTest.class

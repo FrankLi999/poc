@@ -1,0 +1,4 @@
+---
+dotcms_archive_file: installers/dotcms_5.0.1.tar.gz
+dotcms_tomcat_version: 8.5.32
+dotcms_database_host: '192.168.126.168:5432'

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: '^{{ item.value.ip }}'
+        line: '{{ item.value.ip }}   {{ item.key }}'
+        owner: root
+        group: root
+        mode: 0644
+      with_dict: "{{ servers }}"

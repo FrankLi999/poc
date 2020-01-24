@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: konga
+  namespace: kong
+  labels:
+    app: konga
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: konga
+    spec:
+      containers:
+      - env:
+        - name: DB_ADAPTER
+          value: postgres
+        - name: DB_DATABASE
+          value: konga
+        - name: DB_HOST
+          value: kong-postgresql
+        - name: DB_USER
+          value: kong
+        - name: DB_PASSWORD
+          value: kong
+        - name: NODE_ENV
+          value: production
+        - name: TOKEN_SECRET
+          value: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
+        image: pantsel/konga:0.12.2
+        name: konga
+        ports:
+        - containerPort: 1337
+        resources: {}
+      #restartPolicy: OnFailure
+      #VOLUME /app/kongadata
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: konga-service
+  namespace: kong
+  labels:
+    service: konga
+spec:
+  ports:
+  - name: http
+    port: 1337
+    targetPort: 1337
+  selector:
+    app: konga

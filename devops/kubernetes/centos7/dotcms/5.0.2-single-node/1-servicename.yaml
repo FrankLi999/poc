@@ -1,0 +1,32 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dotcms-mysql
+  namespace: dotcms
+spec:
+  type: ExternalName
+  externalName: shared-mysql.shared-mysql.svc.wcm.local
+  ports:
+  - port: 3306
+---  
+kind: Service
+apiVersion: v1
+metadata:
+  name: dotcms-redis
+  namespace: dotcms
+spec:
+  type: ExternalName
+  externalName: shared-redis.shared-redis.svc.wcm.local
+  ports:
+  - port: 6379
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dotcms-es
+  namespace: dotcms
+spec:
+  type: ExternalName
+  externalName: shared-es.shared-es.svc.wcm.local
+  ports:
+  - port: 9200

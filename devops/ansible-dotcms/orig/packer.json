@@ -1,0 +1,30 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-aa2ea6d0",
+      "instance_type": "t2.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "postgresql-{{timestamp}}",
+      "security_group_ids": [
+        "sg-93af19eb",
+        "sg-f0b8a284"
+      ],
+      "subnet_id": "subnet-6153e817"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/python.sh"
+    },
+    {
+      "type": "ansible",
+      "playbook_file": "playbook.yaml",
+      "groups": ["database"],
+      "extra_arguments": ["--vault-password-file", ".vault-pass.txt"]
+    }
+  ]
+}

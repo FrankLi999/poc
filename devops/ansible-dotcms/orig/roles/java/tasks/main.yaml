@@ -1,0 +1,11 @@
+---
+- name: install jre
+  package: name=openjdk-8-jre state=installed
+
+- name: configure java home
+  template:
+    src: java.sh
+    dest: /etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: 0644

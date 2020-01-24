@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+numservers = ENV['numservers'] || "3"
+numservers = numservers.to_i
+
+servers = Hash.new
+(1..numservers).each do |i|
+  servername = "server%02d" % i
+  octet = i + 10
+  servers[servername] = {
+    ip: "192.168.99.#{octet}"
+  }
+end
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 512
+    vb.cpus = 1
+  end
+
+  config.vm.provision "shell",
+    inline: "sudo apt-get update && sudo apt install -y python"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.compatibility_mode = "2.0"
+    ansible.playbook = "playbook.yaml"
+    ansible.extra_vars = {
+      servers: servers
+    }
+  end
+
+  (1..numservers).each do |i|
+    servername = "server%02d" % i
+    config.vm.define servername do |svr|
+      svr.vm.hostname = servername
+      svr.vm.network "private_network", ip: servers[servername][:ip]
+    end
+  end
+end

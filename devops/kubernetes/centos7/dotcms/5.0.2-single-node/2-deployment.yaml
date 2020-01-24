@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotcms-deployment
+  namespace: dotcms
+  labels:
+    app: dotcms-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dotcms-deployment
+    spec:
+      containers:
+      - name: dotcms 
+        image: bpwizard/dotcms:5.0.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: dotcms-service
+    namespace: dotcms
+spec:
+  ports:
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080 
+        name: http     
+  selector:
+    app: dotcms-deployment
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dotcms-ingress
+  namespace: dotcms
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: dotcms.bpwizard.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: dotcms-service
+          servicePort: 8080        
+      

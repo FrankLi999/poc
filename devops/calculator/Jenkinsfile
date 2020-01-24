@@ -1,0 +1,113 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage("Compile") {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
+        stage("Unit test") {
+            steps {
+                sh "mvn test"
+            }
+        }
+        stage("Code coverage") {
+            steps {
+                sh "mvn jacoco:report"
+                publishHTML (target: [
+                    reportDir: 'target/site/jacoco',
+                    reportFiles: 'index.html',
+                    reportName: "JaCoCo Report"
+                ])
+                sh "mvn verify"
+            }
+        }
+        stage("Static code analysis") {     
+            steps {          
+                sh "mvn checkstyle:checkstyle" 
+                // publishHTML (target: [
+                //     reportDir: 'target/site/jacoco',
+                //     reportFiles: 'index.html',
+                //     reportName: "JaCoCo Report"
+                // ])
+                // sh "mvn checkstyle:check"    
+            }
+        }
+        // stage("Deploy") {
+        //     steps {
+        //         sh "mvn deploy"
+        //     }
+        // }
+        stage("Docker build") {
+            steps {
+                // sh "docker -H 172.17.0.1:2375 build -t nexus.bpwizard.com:8950/bpw/calculator:${BUILD_TIMESTAMP} ."
+                sh "docker -H 172.17.0.1:2375 build -t nexus.bpwizard.com:8950/bpw/calculator:1 ."
+                // sh "docker build -t nexus.bpwizard.com:8950/bpw/calculator:${BUILD_TIMESTAMP} ."
+                // sh "docker build -t nexus.bpwizard.com:8950/bpw/calculator:1 ."
+            }
+        }
+        stage("Docker login") {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'nexus',
+                                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                sh "docker -H 172.17.0.1:2375 login --username $USERNAME --password $PASSWORD nexus.bpwizard.com:8950"
+                //sh "docker login --username $USERNAME --password $PASSWORD nexus.bpwizard.com:8950"
+                }
+            }
+        }
+        stage("Docker push") {
+            steps {
+                // sh "docker -H 172.17.0.1:2375 push nexus.bpwizard.com:8950/bpw/calculator:${BUILD_TIMESTAMP}"
+                sh "docker -H 172.17.0.1:2375 push nexus.bpwizard.com:8950/bpw/calculator:1"
+                // sh "docker push nexus.bpwizard.com:8950/bpw/calculator:${BUILD_TIMESTAMP}"
+                // sh "docker push nexus.bpwizard.com:8950/bpw/calculator:1"
+            }
+        }
+        stage("Deploy to staging") {
+            steps {
+                sh "ansible-playbook playbook.yml -i inventory/staging"
+                sleep 60
+            }
+        }
+        stage("Acceptance test") {
+            steps {
+                sh "./acceptance_test.sh 192.168.79.213"
+            }
+        }
+
+         // Performance test stages
+
+        stage("Release") {
+            steps {
+                sh "ansible-playbook playbook.yml -i inventory/production"
+                sleep 60
+            }
+        }
+
+        stage("Smoke test") {
+            steps {
+                sh "./smoke_test.sh 192.168.79.214"
+            }
+        }
+    }
+    post {
+        // always {
+        //     sh "docker stop calculator"
+        // }
+        success {
+            echo 'I succeeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
+}

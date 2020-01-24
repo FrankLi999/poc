@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-rabbitmq
+  labels:
+    type: local
+spec:
+  storageClassName: rabbitmq-pv
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/admin/volume-rabbitmq"

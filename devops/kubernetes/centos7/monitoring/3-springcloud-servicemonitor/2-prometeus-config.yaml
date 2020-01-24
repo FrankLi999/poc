@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: springcloud
+  namespace: springcloud
+  labels:
+    prometheus: springcloud
+spec:
+  serviceAccountName: prometheus-springcloud
+  serviceMonitorSelector:
+    matchLabels:
+      tier: springcloud
+  #ruleSelector:
+    #matchLabels:
+      #prometheus: springcloud
+  resources:
+    requests:
+      memory: 400Mi
+  #alerting:
+    #alertmanagers:
+    #- namespace: tectonic-system
+      #name: alertmanager-main
+      #port: web

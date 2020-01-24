@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  #creationTimestamp: null
+  labels:
+    io.kompose.service: cms-shared
+  name: cms-shared
+  namespace: dotcms
+spec:
+  storageClassName: dotcms-cms-shared-pv
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+status: {}

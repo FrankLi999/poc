@@ -1,0 +1,13 @@
+{
+    "ANSIBLE_MODULE_ARGS": {
+        "username": "admin@dotcms.com",
+        "password": "admin",
+        "server_url": "http://192.168.126.168:28080",
+        "host_folder": "demo.dotcms.com",
+        "news_url": "test-news-002",
+        "publish_date": "4/9/2018",
+        "byline": "DotCMS News Writer",
+        "title": "News 002 - Created through Ansible",
+        "story": "<b>Updated through Ansible</b>"
+    }
+}

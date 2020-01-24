@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+javapackage = ENV['java_package'] || "openjdk-8-jre"
+javahome = ENV['java_home'] || "/usr/lib/jvm/java-8-openjdk-amd64/jre"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.hostname = "ubuntu"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 512
+    vb.cpus = 1
+  end
+
+  config.vm.provision "shell",
+    inline: "sudo apt-get update && sudo apt install -y python"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.compatibility_mode = "2.0"
+    ansible.playbook = "playbook.yaml"
+    ansible.extra_vars = {
+      java_package: javapackage,
+      java_home: javahome
+    }
+  end
+
+end

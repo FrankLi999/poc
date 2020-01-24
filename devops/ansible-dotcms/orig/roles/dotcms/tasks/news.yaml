@@ -1,0 +1,17 @@
+---
+- name: dependencies
+  pip: name=requests state=present
+
+- name: Report sky status
+  dotcms_news:
+    server_url: "http://{{ ansible_default_ipv4.address }}:28080"
+    username: "admin@dotcms.com"
+    password: "admin"
+    host_folder: "demo.dotcms.com"
+    news_url: "sky-is-falling"
+    publish_date: "01-01-2018"
+    byline: "Chicken Little"
+    title: "The Sky Is Falling"
+    story: "A piece of it hit me on the <b>head!</b>"
+  tags:
+    - news

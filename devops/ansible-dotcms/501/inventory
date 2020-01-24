@@ -1,0 +1,12 @@
+[database]
+database01
+
+[dotcms]
+dotcms01
+dotcms02
+
+[balancer]
+balancer01
+
+[nfs]
+nfs01
