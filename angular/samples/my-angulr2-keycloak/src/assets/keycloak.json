@@ -1,0 +1,9 @@
+{
+    "realm": "demo",
+    "realm-public-key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgRo/KiA2zc4NfcHuxBbx75BsgtesIPUgio6+PVCN+5eKWWilv4xU8eAANUSgdI6zgl30qisP6yfE9D8azG4DWchuaB/l8b5lywkUiLzDJZcmuAl9TdpKaMH7g039DEPMNRSCQRbYn2Yruwr2aT++HsCiePaqq5jZtIAUecN+Dy+1GX4poQxnVFLtLFj2e1+1p5MXYvYlIIp9zyR3IRx6dfkQ5r7DDXGrIFzOZSS+x14UgcwmIMU+1DOdIARlrN+KSDYcelG3q3fK7VvwcC4Z9xOXaKqpu3L9pO8eStpEZY/RBTC3Bsz4eC62E+vFQmE0VRiPpRPFL2GCuhVkY9W+PwIDAQAB",
+    "auth-server-url": "http://localhost:8080/auth",
+    "ssl-required": "external",
+    "resource": "angular2",
+    "public-client": true
+  }
+  

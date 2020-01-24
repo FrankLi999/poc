@@ -1,0 +1,11 @@
+<form [formGroup]="group">
+    <ng-container *ngFor="let controlModel of formModel; trackBy: trackByFn">
+        <dynamic-ui-material-control *ngIf="controlModel.input" [group]="group" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [ngClass]="[controlModel.customClass]" [nestedTemplates]="nestedTemplates" (blur)="onBlur($event)" (change)="onValueChange($event)"
+            (focus)="onFocus($event)">
+        </dynamic-ui-material-control>
+        <dynamic-ui-material-dynamic-component *ngIf="!controlModel.input" [group]="group" [model]="controlModel" [nestedTemplates]="nestedTemplates" (blur)="onEvent($event, 1)" (change)="onEvent($event, 2)" (focus)="onEvent($event, 3)"></dynamic-ui-material-dynamic-component>
+    </ng-container>
+</form>
+<!--
+<pre>{{group.value | json}}</pre>
+-->

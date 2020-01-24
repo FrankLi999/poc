@@ -1,0 +1,28 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label !== null" [attr.for]="model.key" [innerHTML]="model.label"></label>
+
+
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <textarea [attr.tabindex]="model.tabIndex" [cols]="model.cols" [componentId]="componentId && model.key" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name"
+        [placeholder]="model.placeholder" [readonly]="model.readOnly" [required]="model.required" [rows]="model.rows" [spellcheck]="model.spellCheck" [wrap]="model.wrap" (blur)="onFocusChange($event)" (change)="onValueChange($event)" (focus)="onFocusChange($event)">
+    </textarea>
+
+    <div *ngIf="hasHint">
+        <span [innerHTML]="model.hint"></span>
+    </div>
+
+
+    <ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages" [ngClass]="errors">
+
+        <li *ngFor="let message of errorMessages">{{message}}</li>
+
+    </ul>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-content></ng-content>
+
+</div>

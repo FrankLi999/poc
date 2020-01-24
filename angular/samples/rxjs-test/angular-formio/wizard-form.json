@@ -1,0 +1,230 @@
+{
+	"_id": "578f930ef1912f8000459a50",
+	"machineName": "examples:wizard",
+	"modified": "2016-10-18T16:43:55.347Z",
+	"title": "Wizard",
+	"display": "wizard",
+	"name": "wizard",
+	"path": "wizard",
+	"project": "5692b91fd1028f01000407e3",
+	"settings": {
+		"controller": "['$scope', function($scope) { $scope.$watch('submission.data', function(data) { console.log(data); }, true); }]"
+	},
+	"created": "2016-07-20T15:04:46.906Z",
+	"components": [{
+		"conditional": {
+			"eq": "",
+			"when": null,
+			"show": ""
+		},
+		"theme": "default",
+		"key": "page1",
+		"input": false,
+		"components": [{
+			"type": "textfield",
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"validate": {
+				"customPrivate": false,
+				"custom": "",
+				"pattern": "",
+				"maxLength": "",
+				"minLength": "",
+				"required": false
+			},
+			"persistent": true,
+			"unique": false,
+			"protected": false,
+			"defaultValue": "",
+			"multiple": true,
+			"suffix": "",
+			"prefix": "",
+			"placeholder": "",
+			"key": "textfieldonpage1",
+			"label": "Textfield on page 1",
+			"inputMask": "",
+			"inputType": "text",
+			"tableView": true,
+			"input": true
+		},
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"type": "number",
+			"validate": {
+				"custom": "",
+				"multiple": "",
+				"integer": "",
+				"step": "any",
+				"max": "",
+				"min": "",
+				"required": false
+			},
+			"persistent": true,
+			"protected": false,
+			"defaultValue": 0,
+			"suffix": "",
+			"prefix": "",
+			"placeholder": "",
+			"key": "numberField",
+			"label": "Number Field",
+			"inputType": "number",
+			"tableView": true,
+			"input": true
+		}],
+		"title": "First",
+		"type": "panel"
+	},
+	{
+		"theme": "default",
+		"key": "page2",
+		"input": false,
+		"components": [{
+			"type": "textfield",
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"validate": {
+				"customPrivate": false,
+				"custom": "",
+				"pattern": "",
+				"maxLength": "",
+				"minLength": "",
+				"required": false
+			},
+			"persistent": true,
+			"unique": false,
+			"protected": false,
+			"defaultValue": "",
+			"multiple": false,
+			"suffix": "",
+			"prefix": "",
+			"placeholder": "",
+			"key": "textfieldonPage2",
+			"label": "Textfield on Page 2",
+			"inputMask": "",
+			"inputType": "text",
+			"tableView": true,
+			"input": true,
+			"isNew": false
+		},
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"type": "fieldset",
+			"components": [{
+				"type": "textfield",
+				"conditional": {
+					"eq": "",
+					"when": null,
+					"show": ""
+				},
+				"validate": {
+					"customPrivate": false,
+					"custom": "",
+					"pattern": "",
+					"maxLength": "",
+					"minLength": "",
+					"required": false
+				},
+				"persistent": true,
+				"unique": false,
+				"protected": false,
+				"defaultValue": "",
+				"multiple": false,
+				"suffix": "",
+				"prefix": "",
+				"placeholder": "",
+				"key": "textfield",
+				"label": "Textfield",
+				"inputMask": "",
+				"inputType": "text",
+				"tableView": true,
+				"input": true
+			}],
+			"legend": "FieldSet Label",
+			"tableView": true,
+			"input": false
+		}],
+		"isNew": true,
+		"title": "Page 2",
+		"type": "panel"
+	},
+	{
+		"conditional": {
+			"eq": "",
+			"when": null,
+			"show": ""
+		},
+		"theme": "default",
+		"key": "page3",
+		"input": false,
+		"components": [{
+			"type": "textfield",
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"validate": {
+				"customPrivate": false,
+				"custom": "",
+				"pattern": "",
+				"maxLength": "",
+				"minLength": "",
+				"required": false
+			},
+			"persistent": true,
+			"unique": false,
+			"protected": false,
+			"defaultValue": "",
+			"multiple": false,
+			"suffix": "",
+			"prefix": "",
+			"placeholder": "",
+			"key": "textfieldonPage3",
+			"label": "Textfield on Page 3",
+			"inputMask": "",
+			"inputType": "text",
+			"tableView": true,
+			"input": true
+		}],
+		"title": "Last",
+		"type": "panel"
+	},
+	{
+		"type": "button",
+		"theme": "primary",
+		"disableOnInvalid": true,
+		"action": "submit",
+		"block": false,
+		"rightIcon": "",
+		"leftIcon": "",
+		"size": "md",
+		"key": "submit",
+		"tableView": false,
+		"label": "Submit",
+		"input": true
+	}],
+	"owner": "55673dc04f0405dd28205bb7",
+	"submissionAccess": [],
+	"access": [{
+		"type": "read_all",
+		"roles": ["5692b920d1028f01000407e4",
+		"5692b920d1028f01000407e5",
+		"5692b920d1028f01000407e6"]
+	}],
+	"tags": [],
+	"type": "form"
+}

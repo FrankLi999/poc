@@ -1,0 +1,143 @@
+
+==================================================================
+EAP user/pwd:
+admin/P@ssw0rd
+
+============================
+host0 admin user: system/P@ssw0rd, 
+a management user, slave/P@ssw0rd, on all the hosts to authorized 
+communications between the host and the controller. encoded pwd: UEBzc3cwcmQ=
+                                                         UEBzc3cwcmQ=
+														 
+
+./domain.sh -Djboss.domain.base.dir=$EAP_DOMAIN/host0/domain/ --host-config=host-master.xml
+./domain.sh -Djboss.domain.base.dir=$EAP_DOMAIN/host1/domain/ --host-config=host-slave.xml
+./domain.sh -Djboss.domain.base.dir=$EAP_DOMAIN/host2/domain/ --host-config=host-slave.xml
+
+domain -Djboss.domain.base.dir=%EAP_DOMAIN%/host0/domain/ --host-config=host-master.xml
+domain -Djboss.domain.base.dir=%EAP_DOMAIN%/host1/domain/ --host-config=host-slave.xml
+domain -Djboss.domain.base.dir=%EAP_DOMAIN%/host2/domain/ --host-config=host-slave.xml
+
+http://127.0.0.1:9990/console
+login :system, Password : P@ssw0rd
+
+
+./jboss-cli.sh --connect --controller=127.0.0.1:9999
+/server-group=main-server-group:read-resource
+
+create server groups:
+/server-group=dev01:add(profile=ha,socket-binding-group=ha-sockets)
+/server-group=dev02:add(profile=ha,socket-binding-group=ha-sockets)
+/server-group=dev03:add(profile=ha,socket-binding-group=ha-sockets)
+/server-group=dev04:add(profile=ha,socket-binding-group=ha-sockets)
+
+create server instances:
+/host=host1/server-config=node11:add(group=dev01,socket-binding-port-offset=100)
+/host=host1/server-config=node12:add(group=dev02,socket-binding-port-offset=200)
+/host=host1/server-config=node13:add(group=dev03,socket-binding-port-offset=300)
+/host=host1/server-config=node14:add(group=dev04,socket-binding-port-offset=400)
+
+/host=host2/server-config=node21:add(group=dev01,socket-binding-port-offset=500)
+/host=host2/server-config=node22:add(group=dev02,socket-binding-port-offset=600)
+/host=host2/server-config=node23:add(group=dev03,socket-binding-port-offset=700)
+
+
+/server-group=dev01:start-servers
+/host=host2/server-config=node22:start
+
+
+deploy $WORKSPACE/jbossas/beosbank-web/beosbank-web.war --server-groups=dev03
+deploy /home/admin/jboss/deployment/beosbank-web.war --server-groups=dev03
+deploy /home/admin/jboss/deployment/beosbank-web-jpa.war --server-groups=dev02
+mvn jboss-as:deploy
+
+/server-group=dev01/deployment=beosbank-web.war:add
+/server-group=dev01/deployment=beosbank-web.war:deploy
+
+load balancer:
+https://www.upcloud.com/support/haproxy-load-balancer-centos/#installing-haproxy
+vi /etc/haproxy/haproxy.cfg
+
+
+by default, all the server groups have the same JGROUP configuration, so server 
+instances will build and join a single cluster by default.To archive server group 
+isolation, we need to define a specific JGROUP multicast address and/or an MPING 
+port for each server group.
+
+data source:
+
+module/system/layer/base/com/mysql/jdbc/main
+   add driver jar and module.xml
+   
+       <module xmlns="urn:jboss:module:1.3" name="com.mysql.jdbc">
+			<resources>
+				 <resource-root path="mysql-connector-java-5.1.46.jar"/>
+			</resources>
+			<dependencies>
+				<module name="javax.api"/>
+				<module name="javax.transaction.api"/>
+			</dependencies>
+		</module>
+
+
+On default and HA profiles, create mysql driver
+ 
+    /profile=default/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+    /profile=ha/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql.jdbc,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+	
+    create datasource:
+
+		/profile=ha/subsystem=datasources/data-source=MoneyTrasnferDS:add(jndi-name="java:jboss/datasources/MoneyTransferDS",driver-name=mysql,connection-url="jdbc:mysql://mysql:3306/beosbank", user-name="root", password="Passw0rd")
+		
+		With MySQL 5.5.45+, 5.6.26+, and 5.7.6+, the SSL connection must be established 
+		by default if an explicit option isn't set. So, if your MySQL version is in this 
+		range, update your connection string to set the useSSL attribute.
+		
+		/profile=ha/subsystem=datasources/data-source=MoneyTrasnferDS:write-attribute(name=connection-url,value="jdbc:mysql://mysql:3306/beosbank?useSSL=false")
+		
+		test connection:
+		/host=host1/server=node11/subsystem=datasources/data-source=MoneyTrasnferDS:test-connection-in-pool
+		
+		MYSQL: grant remote access for root user:
+		    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+            FLUSH PRIVILEGES;
+
+Authentication:
+
+add security domain:
+/profile=ha/subsystem=security/security-domain=beosbank-web-policy:add
+/profile=ha/subsystem=security/security-domain=beosbank-web-policy/authentication=classic:add(login-modules=[{"code" => "org.jboss.security.auth.spi.DatabaseServerLoginModule", "flag" => "required","module-options" => [ ("dsJndiName"=>"java:jboss/datasources/MoneyTransferDS"),("principalsQuery"=>"SELECT PASSWORD FROM T_ACCOUNT WHERE USERNAME=?"),("rolesQuery"=> "SELECT ROLE, 'Roles' FROM T_ACCOUNT WHERE USERNAME=?")]}])
+/server-group=dev01:reload-servers
+/server-group=dev02:reload-servers
+/server-group=dev03:reload-servers
+/server-group=dev04:reload-servers
+
+/profile=ha/subsystem=security/security-domain=beosbank-web-policy/authentication=classic:add(login-modules=[{\     
+	"code" => "org.jboss.security.auth.spi.DatabaseServerLoginModule",\
+	"flag" => "required",\
+	"module-options" => [ 
+	    ("dsJndiName"=>"java:jboss/datasources/MoneyTransferDS"),\
+		("principalsQuery"=>"SELECT PASSWORD FROM T_ACCOUNT WHERE USERNAME=?"),\ 
+		("rolesQuery"=> "SELECT ROLE, 'Roles' FROM T_ACCOUNT WHERE USERNAME=?")\
+	]}]\
+)
+:reload-servers
+
+add the above lines to a cli file, and call,
+./jboss-cli.sh --file=./createBeosBankSecurityPolicyDefault.cli --connect
+
+test:
+/profile=ha/subsystem=security/security-domain=beosbank-web-policy/authentication=classic:read-resource
+
+deploy /home/admin/jboss/deployment/beosbank-web-security.war --server-groups=dev01
+
+cp /home/admin/jboss/deployment/beosbank-login-module-1.0-SNAPSHOT.jar $EAP_DOMAIN/jboss-eap-7.1.0/modules/system/layers/base/com/beosbank/jbdevg/jbossas/jaas/main
+create module.xml
+
+./jboss-cli.sh --connect --controller=127.0.0.1:9999 --file=$EAP_DOMAIN/deployment/createBeosBankSecurityPolicyCustom.cli
+jboss-cli --connect --controller=127.0.0.1:9999 --file=%EAP_DOMAIN%/deployment/createBeosBankSecurityPolicyCustom.cli
+
+test:
+/profile=ha/subsystem=security/security-domain=beosbank-web-policy-custom/authentication=classic:read-resource
+http://localhost:8180/beosbank-web-security/
+login as jdoe/jboss

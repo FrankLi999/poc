@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.6'
+    }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.2.RELEASE"
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    jcenter()
+}
+
+project.version = '1.0.0'
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.jboss.arquillian:arquillian-bom:1.1.13.Final'
+    }
+}
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE"
+    compile 'org.springframework.boot:spring-boot-starter-data-redis:1.5.2.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.arquillian.cube:arquillian-cube-docker-junit-rule:1.3.0'
+    testCompile 'org.arquillian.ape:arquillian-ape-nosql-redis:2.0.0-alpha.3'
+    testCompile 'org.arquillian.ape:arquillian-ape-junit-rule:2.0.0-alpha.3'
+    testCompile 'com.lordofthejars:nosqlunit-redis:1.0.0-rc.5'
+    testCompile 'redis.clients:jedis:2.9.0'
+    testCompile 'org.assertj:assertj-core:3.7.0'
+}
+
+apply plugin: 'com.bmuschko.docker-remote-api'
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+
+docker {
+    if (System.env.containsKey('DOCKER_HOST') && System.env.containsKey('DOCKER_CERT_PATH')) {
+        url = System.env.DOCKER_HOST.replace("tcp", "https")
+        certPath = new File(System.env.DOCKER_CERT_PATH)
+    }
+}
+
+task buildImage(type: DockerBuildImage) {
+    dependsOn assemble
+    inputDir = project.rootDir
+    tag = "lordofthejars/pingpongboot:${project.version}"
+}

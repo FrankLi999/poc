@@ -1,0 +1,49 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<div [ngClass]="model.cls.grid.container">
+
+		<div *ngIf="model.label" [ngClass]="model.cls.grid.label">
+
+			<label [attr.for]="model.id" [innerHTML]="model.label"
+				[ngClass]="model.cls.element.label"></label>
+
+		</div>
+
+
+		<div [ngClass]="model.cls.grid.control">
+			<fieldset [formioId]="bindId && model.id" [formGroupName]="model.id"
+				[name]="model.name" [ngClass]="model.cls.element.control">
+
+				<legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+				<formio-primeng-control
+					*ngFor="let controlModel of model.group" [group]="control"
+					[hasErrorMessaging]="controlModel.hasErrorMessages"
+					[model]="controlModel" [nestedTemplates]="templates"
+					[ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+					(blur)="onFocusChange($event)" (change)="onValueChange($event)"
+					(focus)="onFocusChange($event)"> </formio-primeng-control>
+			</fieldset>
+		</div>
+		<ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+			<li class="ui-message ui-messages-error ui-corner-all"
+				[class.ui-helper-hidden]="!showErrorMessages"
+				[ngClass]="model.cls.element.errors"><span
+				*ngFor="let message of errorMessages">{{message}}</span></li>
+
+		</ul>
+
+	</div>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

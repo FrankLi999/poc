@@ -1,0 +1,324 @@
+{
+	"_id": "57aa1d2a5b7a477b002717fe",
+	"machineName": "examples:example",
+	"modified": "2017-05-09T15:55:13.060Z",
+	"title": "Example",
+	"display": "form",
+	"name": "example",
+	"path": "example",
+	"project": "5692b91fd1028f01000407e3",
+	"created": "2016-08-09T18:12:58.126Z",
+	"components": [
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"type": "content",
+			"html": "<h1><a href=\"https://form.io\">Form.io</a> Example Form</h1>\n\n<p>This is a dynamically rendered JSON form&nbsp;built with <a href=\"https://form.io\">Form.io</a>. Using a simple&nbsp;drag-and-drop form builder, you can create any form that includes e-signatures, wysiwyg editors, date fields, layout components, data grids, surveys, etc.</p>\n",
+			"input": false
+		},
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"type": "columns",
+			"columns": [
+				{
+					"components": [
+						{
+							"type": "textfield",
+							"conditional": {
+								"eq": "",
+								"when": null,
+								"show": ""
+							},
+							"validate": {
+								"customPrivate": false,
+								"custom": "",
+								"pattern": "",
+								"maxLength": "",
+								"minLength": "",
+								"required": false
+							},
+							"persistent": true,
+							"unique": false,
+							"protected": false,
+							"defaultValue": "",
+							"multiple": false,
+							"suffix": "",
+							"prefix": "",
+							"placeholder": "Enter your first name",
+							"key": "firstName",
+							"label": "First Name",
+							"inputMask": "",
+							"inputType": "text",
+							"tableView": true,
+							"input": true,
+							"hidden": false,
+							"clearOnHide": true,
+							"tags": [],
+							"tabindex": "1"
+						},
+						{
+							"kickbox": {
+								"enabled": false
+							},
+							"conditional": {
+								"eq": "",
+								"when": null,
+								"show": ""
+							},
+							"type": "email",
+							"persistent": true,
+							"unique": false,
+							"protected": false,
+							"defaultValue": "",
+							"suffix": "",
+							"prefix": "",
+							"placeholder": "Enter your email address",
+							"key": "email",
+							"label": "Email",
+							"inputType": "email",
+							"tableView": true,
+							"input": true,
+							"hidden": false,
+							"clearOnHide": true,
+							"tags": [],
+							"tabindex": "3"
+						}
+					]
+				},
+				{
+					"components": [
+						{
+							"type": "textfield",
+							"conditional": {
+								"eq": "",
+								"when": null,
+								"show": ""
+							},
+							"validate": {
+								"customPrivate": false,
+								"custom": "",
+								"pattern": "",
+								"maxLength": "",
+								"minLength": "",
+								"required": false
+							},
+							"persistent": true,
+							"unique": false,
+							"protected": false,
+							"defaultValue": "",
+							"multiple": false,
+							"suffix": "",
+							"prefix": "",
+							"placeholder": "Enter your last name",
+							"key": "lastName",
+							"label": "Last Name",
+							"inputMask": "",
+							"inputType": "text",
+							"tableView": true,
+							"input": true,
+							"hidden": false,
+							"clearOnHide": true,
+							"tags": [],
+							"tabindex": "2"
+						},
+						{
+							"conditional": {
+								"eq": "",
+								"when": null,
+								"show": ""
+							},
+							"type": "phoneNumber",
+							"validate": {
+								"required": false
+							},
+							"defaultValue": "",
+							"persistent": true,
+							"unique": false,
+							"protected": false,
+							"multiple": false,
+							"suffix": "",
+							"prefix": "",
+							"placeholder": "Enter your phone number",
+							"key": "phoneNumber",
+							"label": "Phone Number",
+							"inputMask": "(999) 999-9999",
+							"tableView": true,
+							"input": true,
+							"hidden": false,
+							"clearOnHide": true,
+							"tags": [],
+							"tabindex": "4"
+						}
+					]
+				}
+			],
+			"input": false
+		},
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"type": "survey",
+			"validate": {
+				"customPrivate": false,
+				"custom": "",
+				"required": false
+			},
+			"persistent": true,
+			"protected": false,
+			"defaultValue": "",
+			"values": [
+				{
+					"label": "Excellent",
+					"value": "excellent"
+				},
+				{
+					"label": "Great",
+					"value": "great"
+				},
+				{
+					"label": "Good",
+					"value": "good"
+				},
+				{
+					"label": "Average",
+					"value": "average"
+				},
+				{
+					"label": "Poor",
+					"value": "poor"
+				}
+			],
+			"questions": [
+				{
+					"label": "How would you rate the Form.io platform?",
+					"value": "howWouldYouRateTheFormIoPlatform"
+				},
+				{
+					"label": "How was Customer Support?",
+					"value": "howWasCustomerSupport"
+				},
+				{
+					"label": "Overall Experience?",
+					"value": "overallExperience"
+				}
+			],
+			"key": "survey",
+			"label": "Survey",
+			"tableView": true,
+			"input": true,
+			"hidden": false,
+			"clearOnHide": true,
+			"tags": [],
+			"tabindex": "5"
+		},
+		{
+			"conditional": {
+				"eq": "",
+				"when": null,
+				"show": ""
+			},
+			"hideLabel": true,
+			"type": "signature",
+			"validate": {
+				"required": false
+			},
+			"persistent": true,
+			"protected": false,
+			"maxWidth": "2.5",
+			"minWidth": "0.5",
+			"backgroundColor": "rgb(245,245,235)",
+			"penColor": "black",
+			"height": "150px",
+			"width": "100%",
+			"footer": "Sign above",
+			"placeholder": "",
+			"key": "signature",
+			"label": "Signature",
+			"tableView": true,
+			"input": true,
+			"hidden": false,
+			"clearOnHide": true,
+			"tags": []
+		},
+		{
+			"type": "button",
+			"theme": "primary",
+			"disableOnInvalid": true,
+			"action": "submit",
+			"block": false,
+			"rightIcon": "",
+			"leftIcon": "",
+			"size": "md",
+			"key": "submit",
+			"tableView": false,
+			"label": "Submit",
+			"input": true,
+			"tags": [],
+			"conditional": {
+				"show": "",
+				"when": null,
+				"eq": ""
+			},
+			"tabindex": "6"
+		}
+	],
+	"owner": "554806425867f4ee203ea861",
+	"submissionAccess": [
+		{
+			"type": "create_all",
+			"roles": []
+		},
+		{
+			"type": "read_all",
+			"roles": []
+		},
+		{
+			"type": "update_all",
+			"roles": []
+		},
+		{
+			"type": "delete_all",
+			"roles": []
+		},
+		{
+			"type": "create_own",
+			"roles": [
+				"5692b920d1028f01000407e6"
+			]
+		},
+		{
+			"type": "read_own",
+			"roles": []
+		},
+		{
+			"type": "update_own",
+			"roles": []
+		},
+		{
+			"type": "delete_own",
+			"roles": []
+		}
+	],
+	"access": [
+		{
+			"type": "read_all",
+			"roles": [
+				"5692b920d1028f01000407e4",
+				"5692b920d1028f01000407e5",
+				"5692b920d1028f01000407e6"
+			]
+		}
+	],
+	"tags": [],
+	"type": "form"
+}

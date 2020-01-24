@@ -1,0 +1,19 @@
+spring:
+  cloud:
+      config:
+        uri: http://config-service:8888
+        fail-fast: true
+        retry:
+          initial-interval: 2000
+          max-attempts: 30
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+#    fetch-registry: false
+  instance:
+    non-secure-port: 8080
+    prefer-ip-address: true
+    metadata-map:
+      intanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 10

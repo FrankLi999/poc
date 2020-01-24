@@ -1,0 +1,134 @@
+<div [formGroup]="group" [ngClass]="model.customClass">
+    <label *ngIf="model.label && type !== 2" [attr.for]="model.key" [innerHTML]="model.label"></label>
+
+
+    <ng-template *ngIf="type !== 1 && template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-container [ngSwitch]="type">
+
+        <div *ngSwitchCase="1" [componentId]="componentId && model.key" [formArrayName]="model.key">
+
+            <div *ngFor="let groupModel of model.groups; let idx = index" role="group" [formGroupName]="idx">
+
+                <dynamic-ui-material-form-control *ngFor="let item of groupModel.group" [componentId]="false" [context]="groupModel" [group]="control.at(idx)" [hasErrorMessaging]="item.hasErrorMessages" [model]="item" [nestedTemplates]="templates"
+                    (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"></dynamic-ui-material-form-control>
+
+                <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+
+            </div>
+
+        </div>
+
+
+        <mat-checkbox *ngSwitchCase="2" #matCheckbox [checked]="model.checked" [componentId]="componentId && model.key" [formControlName]="model.key" [indeterminate]="model.indeterminate" [labelPosition]="model.labelPosition" [name]="model.name"
+            (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"><span [innerHTML]="model.label"></span></mat-checkbox>
+
+
+        <ng-container *ngSwitchCase="3">
+
+            <mat-form-field>
+
+                <input matInput [autofocus]="model.autoFocus" [componentId]="componentId && model.key" [formControlName]="model.key" [max]="model.max" [matDatepicker]="matDatepicker" [min]="model.min" [name]="model.name" [placeholder]="model.placeholder"
+                    [readonly]="model.readOnly" [required]="model.required" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)" />
+                <!--
+                <button matSuffix [matDatepickerToggle]="matDatepicker"></button>
+                -->
+                <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
+            </mat-form-field>
+
+            <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true" (selectedChanged)="onValueChange($event)"></mat-datepicker>
+        </ng-container>
+
+
+        <fieldset *ngSwitchCase="4" [componentId]="componentId && model.key" [formGroupName]="model.key" [name]="model.name">
+
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+            <dynamic-ui-material-form-control *ngFor="let controlModel of model.group" [group]="control" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [nestedTemplates]="templates"
+                (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"></dynamic-ui-material-form-control>
+        </fieldset>
+
+
+        <ng-container *ngSwitchCase="5">
+
+            <mat-form-field #matInput>
+
+                <input matInput [attr.accept]="model.accept" [attr.autoComplete]="model.autoComplete" [attr.list]="model.listId" [attr.max]="model.max" [attr.min]="model.min" [attr.multiple]="model.multiple" [attr.step]="model.step" [attr.tabindex]="model.tabIndex" [autofocus]="model.autoFocus"
+                    [componentId]="componentId && model.key" [formControlName]="model.key" [maxlength]="model.maxLength" [matAutocomplete]="matAutocomplete" [minlength]="model.minLength" [name]="model.name" [pattern]="model.pattern"
+                    [placeholder]="model.placeholder" [readonly]="model.readOnly" [required]="model.required" [spellcheck]="model.spellCheck" [type]="model.inputType" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)" />
+
+                <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
+                <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+
+                <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span>
+                <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span>
+
+                <mat-error *ngFor="let message of errorMessages" [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
+                </mat-error>
+
+            </mat-form-field>
+            <!--
+            <mat-autocomplete #matAutocomplete="matAutocomplete">
+
+                <mat-option *ngFor="let option of model.list" [value]="option">{{ option }}</mat-option>
+
+            </mat-autocomplete>
+            -->
+        </ng-container>
+
+
+        <mat-radio-group *ngSwitchCase="6" #matRadioGroup [componentId]="componentId && model.key" [formControlName]="model.key" [name]="model.name" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+
+            <mat-radio-button *ngFor="let option of model.options$ | async" [labelPosition]="'after'" [name]="model.name" [value]="option.value"><span [innerHTML]="option.label"></span></mat-radio-button>
+
+        </mat-radio-group>
+
+
+        <mat-select *ngSwitchCase="7" #matSelect [componentId]="componentId && model.key" [formControlName]="model.key" [multiple]="model.multiple" [placeholder]="model.placeholder" (change)="onValueChange($event)">
+
+            <mat-option *ngFor="let option of model.options$ | async" [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
+
+        </mat-select>
+
+
+        <mat-slider *ngSwitchCase="8" #matSlider [componentId]="componentId && model.key" [formControlName]="model.key" [min]="model.min" [max]="model.max" [step]="model.step" [thumbLabel]="true" tickInterval="1" [vertical]="model.vertical"
+            (change)="onValueChange($event)"></mat-slider>
+
+
+        <mat-slide-toggle *ngSwitchCase="9" #matSlideToggle [checked]="model.checked" [componentId]="componentId && model.key" [formControlName]="model.key" [labelPosition]="model.labelPosition" [name]="model.name" (change)="onValueChange($event)">
+
+            <span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span>
+            <span *ngIf="model.checked" [innerHTML]="model.onLabel"></span>
+
+        </mat-slide-toggle>
+
+
+        <mat-form-field *ngSwitchCase="10" #matTextarea>
+
+            <textarea matInput [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [cols]="model.cols" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name"
+                [placeholder]="model.placeholder" [readonly]="model.readOnly" [required]="model.required" [rows]="model.rows" [spellcheck]="model.spellCheck" [wrap]="model.wrap" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"></textarea>
+
+            <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
+            <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}</mat-hint>
+            <mat-error *ngFor="let message of errorMessages" [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
+            </mat-error>
+
+        </mat-form-field>
+
+    </ng-container>
+
+
+    <mat-list *ngIf="hasErrorMessaging && type !== 5 && type !== 10" [ngClass]="errors">
+
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+
+    </mat-list>
+
+
+    <ng-template *ngIf="type !== 1 && template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

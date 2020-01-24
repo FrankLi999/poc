@@ -1,0 +1,46 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label">
+	</label>
+
+
+	<div [formioId]="bindId && model.id" [formArrayName]="model.id"
+		[ngClass]="[model.cls.element.control, model.cls.grid.control]">
+
+		<div *ngFor="let groupModel of model.groups; let idx = index"
+			role="group" [formGroupName]="idx"
+			[ngClass]="[model.cls.element.group, model.cls.grid.group]">
+
+			<formio-material-control *ngFor="let item of groupModel.group"
+				[bindId]="false" 
+				[context]="groupModel" 
+				[group]="control.at(idx)"
+				[hasErrorMessaging]="item.hasErrorMessages" 
+				[model]="item"
+				[nestedTemplates]="templates"
+				[ngClass]="[item.cls.element.host, item.cls.grid.host]"
+				(blur)="onFocusChange($event)" 
+				(change)="onValueChange($event)"
+				(focus)="onFocusChange($event)">
+			</formio-material-control>
+
+			<ng-container
+				*ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+
+		</div>
+
+	</div>
+
+
+	<mat-list *ngIf="hasErrorMessaging"
+		[ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+		<mat-list-item *ngFor="let message of errorMessages"
+			[style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+		</mat-list-item> 
+	
+	</mat-list>
+
+	<ng-content></ng-content>
+
+</div>

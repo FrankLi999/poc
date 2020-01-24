@@ -1,0 +1,34 @@
+<div [formGroup]="group" [ngClass]="model.customClass" [fxFlex]="model.fxFlex" fxLayout="column">
+    <div>
+        <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+        <div>
+            <div fxFlex *ngIf="model.label">
+                <label [attr.for]="model.key" [innerHTML]="model.label"></label>
+            </div>
+
+
+            <div fxFlex>
+                <input pInputText #pInputText [attr.accept]="model.accept" [attr.autoComplete]="model.autoComplete" [attr.list]="model.listId" [attr.max]="model.max" [attr.min]="model.min" [attr.multiple]="model.multiple" [attr.step]="model.step" [attr.tabindex]="model.tabIndex"
+                    [autofocus]="model.autoFocus" [componentId]="componentId && model.key" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name" [pattern]="model.pattern" [placeholder]="model.placeholder"
+                    [readonly]="model.readOnly" [required]="model.required" [spellcheck]="model.spellCheck" [type]="model.inputType" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)" />
+
+                <datalist *ngIf="model.list" [id]="model.listId">
+
+        <option *ngFor="let option of model.list" [value]="option">
+      </datalist>
+            </div>
+            <ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+                <li class="ui-message ui-messages-error ui-corner-all" [class.ui-helper-hidden]="!showErrorMessages" [ngClass]="errors">
+                    <span *ngFor="let message of errorMessages">{{message}}</span></li>
+
+            </ul>
+
+        </div>
+
+
+        <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+        <ng-content></ng-content>
+
+    </div>

@@ -1,0 +1,43 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<div [ngClass]="model.cls.grid.container">
+
+		<div *ngIf="model.label" [ngClass]="model.cls.grid.label">
+
+			<label [attr.for]="model.id" [innerHTML]="model.label"
+				[ngClass]="model.cls.element.label"></label>
+
+		</div>
+
+
+		<div [ngClass]="model.cls.grid.control">
+
+			<p-autoComplete #pAutoComplete [formioId]="bindId && model.id"
+				[formControlName]="model.id" [multiple]="model.multiple"
+				[placeholder]="model.placeholder" [suggestions]="suggestions"
+				[tabindex]="model.tabIndex" (change)="onValueChange($event)"
+				(completeMethod)="onAutoComplete($event)"> </p-autoComplete>
+		</div>
+		<!-- 
+		<ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+			<li class="ui-message ui-messages-error ui-corner-all"
+				[class.ui-helper-hidden]="!showErrorMessages"
+				[ngClass]="model.cls.element.errors"><span
+				*ngFor="let message of errorMessages">{{message}}</span></li>
+
+		</ul>
+        -->
+	</div>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

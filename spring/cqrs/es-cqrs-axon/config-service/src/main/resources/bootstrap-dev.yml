@@ -1,0 +1,6 @@
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+        org.axonframework: INFO
+        app: INFO

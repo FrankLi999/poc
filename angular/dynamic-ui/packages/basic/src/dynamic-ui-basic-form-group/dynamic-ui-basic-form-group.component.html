@@ -1,0 +1,11 @@
+<div [formGroup]="group" [ngClass]="model.customClass">
+    <div [formGroupName]="model.key" *ngFor="let controlModel of model.components; trackBy: trackByFn">
+        <dynamic-ui-basic-control *ngIf="controlModel.input" [group]="group" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [ngClass]="[controlModel.customClass]" [nestedTemplates]="templates" (blur)="onBlur($event)" (change)="onValueChange($event)"
+            (focus)="onFocus($event)"></dynamic-ui-basic-control>
+        <dynamic-ui-basic-dynamic-component *ngIf="!controlModel.input" [group]="group.controls[model.key]" [model]="controlModel" [nestedTemplates]="templates" (blur)="onEvent($event, 2)" (change)="onEvent($event, 2)" (focus)="onEvent($event, 3)"></dynamic-ui-basic-dynamic-component>
+    </div>
+</div>
+
+<!--
+<pre>{{group.value | json}}</pre>
+-->

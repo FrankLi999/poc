@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        #git:
+          #uri: ${CONFIG_REPO_URI:https://github.com/ryukato/msa-sample-config}
+          #clone-on-start: true
+        native:
+          search-locations:classpath:/config-repo
+#spring.cloud.config.server.native.search-locations=classpath:/config-repo
+#          username: test
+#          password: test
+server:
+  port: ${PORT:8888}
+
+security:
+  user:
+    name: admin
+    password: test
+  basic:
+    enabled: true
+    path: /**
+
+management:
+  security:
+    enabled: true
+    sessions: stateless
+
+

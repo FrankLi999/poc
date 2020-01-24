@@ -1,0 +1,40 @@
+<form [formGroup]="group"> 
+    <ng-container *ngFor="let controlModel of model; trackBy: trackByFn">
+        <formio-basic-control 
+            *ngIf="controlModel.input"
+            [group]="group"
+            [hasErrorMessaging]="controlModel.hasErrorMessages"
+            [model]="controlModel"
+            [ngClass]="[controlModel.customClass]"
+            [nestedTemplates]="nestedTemplates"
+            (blur)="onEvent($event, 0)"
+            (change)="onEvent($event, 1)"
+            (focus)="onEvent($event, 2)">
+        </formio-basic-control>
+        <ng-container *ngIf="!controlModel.input" [ngSwitch]="controlModel.type">            
+            <formio-basic-form-group *ngSwitchCase="'group'"
+                [group]="group"
+                [model]="controlModel"
+                [nestedTemplates]="nestedTemplates"
+                (blur)="onEvent($event, 0)"
+                (change)="onEvent($event, 1)"
+                (focus)="onEvent($event, 2)">    
+            </formio-basic-form-group>
+            <formio-basic-datagrid *ngSwitchCase="'datagrid'"
+                [group]="group"
+                [model]="controlModel"
+                [nestedTemplates]="nestedTemplates"
+                (blur)="onEvent($event, 0)"
+                (change)="onEvent($event, 1)"
+                (focus)="onEvent($event, 2)"> 
+            </formio-basic-datagrid>
+            <div *ngSwitchDefault>
+                --- {{controlModel.type}} ---    
+            </div>
+        </ng-container>
+    </ng-container>
+</form>
+
+<!--
+<pre>{{group.value | json}}</pre>
+-->

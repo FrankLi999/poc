@@ -1,0 +1,19 @@
+<div [formGroup]="group" >
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+    <mat-checkbox #matCheckbox [checked]="model.checked" [componentId]="componentId && model.key" [formControlName]="model.key" [indeterminate]="model.indeterminate" [labelPosition]="model.labelPosition" [name]="model.name"
+        (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+        <span [innerHTML]="model.label"></span>
+    </mat-checkbox>
+
+    <mat-list *ngIf="hasErrorMessaging" [ngClass]="errors">
+
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+    </mat-list>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

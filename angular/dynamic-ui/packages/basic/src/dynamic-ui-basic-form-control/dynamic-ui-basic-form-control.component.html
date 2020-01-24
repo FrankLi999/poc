@@ -1,0 +1,114 @@
+<div [formGroup]="group" [ngClass]="model.customClass">
+    <label *ngIf="type !== 2 && model.label !== null" [attr.for]="model.key" [innerHTML]="model.label"></label>
+
+
+    <ng-template *ngIf="type !== 1 && template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-container [ngSwitch]="type">
+
+        <div *ngSwitchCase="1" [componentId]="componentId && model.key" [formArrayName]="model.key">
+
+            <div *ngFor="let groupModel of model.groups; let idx = index" role="group" [formGroupName]="idx">
+
+                <dynamic-ui-basic-form-control *ngFor="let item of groupModel.group" [componentId]="false" [context]="groupModel" [group]="control.at(idx)" [hasErrorMessaging]="item.hasErrorMessages" [model]="item" [nestedTemplates]="templates" [ngClass]="[item.customClass]"
+                    (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"></dynamic-ui-basic-form-control>
+
+                <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+
+            </div>
+
+        </div>
+
+
+        <label *ngSwitchCase="2">
+
+            <input type="checkbox"
+                   [attr.tabindex]="model.tabIndex"
+                   [checked]="model.checked"
+                   [componentId]="componentId && model.key"
+                   [formControlName]="model.key"
+                   [name]="model.name"
+                   [required]="model.required"
+                   [value]="model.value"
+                   (blur)="onBlur($event)"
+                   (change)="onValueChange($event)"
+                   (focus)="onFocus($event)"/>
+            <span [innerHTML]="model.label"></span></label>
+
+
+        <fieldset *ngSwitchCase="3" [componentId]="componentId && model.key" [formGroupName]="model.key" [name]="model.name">
+
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+            <dynamic-ui-basic-form-control *ngFor="let controlModel of model.group" [group]="control" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [nestedTemplates]="templates" [ngClass]="[controlModel.customClass]" (blur)="onBlur($event)"
+                (change)="onValueChange($event)" (focus)="onFocus($event)"></dynamic-ui-basic-form-control>
+        </fieldset>
+
+
+        <ng-container *ngSwitchCase="4">
+
+            <input [attr.accept]="model.accept" [attr.autoComplete]="model.autoComplete" [attr.list]="model.listId" [attr.max]="model.max" [attr.min]="model.min" [attr.multiple]="model.multiple" [attr.step]="model.step" [attr.tabindex]="model.tabIndex" [autofocus]="model.autoFocus"
+                [componentId]="componentId && model.key" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name" [pattern]="model.pattern" [placeholder]="model.placeholder" [readonly]="model.readOnly"
+                [required]="model.required" [spellcheck]="model.spellCheck" [textMask]="{mask: (model.mask || false), showMask: model.mask && !(model.placeholder)}" [type]="model.inputType" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"
+            />
+
+            <datalist *ngIf="hasList" [id]="model.listId">
+
+                <option *ngFor="let option of model.list" [value]="option">
+
+            </datalist>
+
+        </ng-container>
+
+
+        <fieldset *ngSwitchCase="5" role="radiogroup" [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [name]="model.name" (change)="onValueChange($event)">
+
+            <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+            <label *ngFor="let option of model.options$ | async">
+
+                <input type="radio"
+                       [formControlName]="model.key"
+                       [name]="model.name"
+                       [value]="option.value"
+                       (blur)="onBlur($event)"
+                       (focus)="onFocus($event)"/><span [innerHTML]="option.label"></span></label>
+
+        </fieldset>
+
+
+        <select *ngSwitchCase="6" [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [formControlName]="model.key" [name]="model.name" [required]="model.required" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+
+            <option *ngFor="let option of model.options$ | async"
+                    [attr.name]="model.name"
+                    [disabled]="!!option.disabled"
+                    [ngValue]="option.value">{{option.label}}
+            </option>
+
+        </select>
+
+
+        <textarea *ngSwitchCase="7" [attr.tabindex]="model.tabIndex" [cols]="model.cols" [componentId]="componentId && model.key" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name" [placeholder]="model.placeholder"
+            [readonly]="model.readOnly" [required]="model.required" [rows]="model.rows" [spellcheck]="model.spellCheck" [wrap]="model.wrap" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+          </textarea>
+
+    </ng-container>
+
+
+    <div *ngIf="hasHint"><span [innerHTML]="model.hint"></span></div>
+
+
+    <ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages">
+
+        <li *ngFor="let message of errorMessages">{{message}}</li>
+
+    </ul>
+
+
+    <ng-template *ngIf="type !== 1 && template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-content></ng-content>
+
+</div>

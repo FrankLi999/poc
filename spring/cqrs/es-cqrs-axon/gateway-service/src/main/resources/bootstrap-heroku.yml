@@ -1,0 +1,23 @@
+spring:
+  cloud:
+      config:
+        uri: ${CONFIG_SERVER_URI:https://cqrs-test-config-service.herokuapp.com}
+        label: master
+        username: ${CONFIG_SECURITY_USERNAME:admin}
+        password: ${CONFIG_SECURITY_PASSWORD:admin1!}
+        fail-fast: true
+        retry:
+          initial-interval: 2000
+          max-attempts: 30
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVICE_URL:https://cqrs-test-discovery-service.herokuapp.com/eureka/}
+    fetch-registry: false
+  instance:
+    hostname: ${DOMAIN_NAME:cqrs-test-discovery-service.herokuapp.com}
+    non-secure-port: 80
+    prefer-ip-address: true
+    metadata-map:
+      intanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 10

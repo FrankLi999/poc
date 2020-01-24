@@ -1,0 +1,141 @@
+1. https://stackoverflow.com/questions/47097635/how-to-map-complex-data-property-in-vuejs
+
+    <div id="app">
+        <input v-model="property1" type="text" /><br />
+        <template v-if="getIndex('type1') >= 0">
+            Type 1:<input v-model="property2[getIndex('type1')].propertyValue" type="text" /><br />
+        </template>
+        <template v-if="getIndex('type2') >= 0">
+            Type 2: <input v-model="property2[getIndex('type2')].propertyValue" type="text" /><br />
+        </template>
+    </div>
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            "property1": "property1value",
+            "property2": [
+                {
+                    "propertyType": "type1",
+                    "propertyValue": 10
+                },
+                {
+                    "propertyType": "type2",
+                    "propertyValue": 20
+                }
+            ]
+        },
+        methods: {
+            getIndex: function (propType) {
+                var i = 0;
+                while (i < this.property2.length) {
+                    if (this.property2[i].propertyType == propType) {
+                        return i;
+                    }
+                    i++;
+                }
+                return -1;
+            }
+
+        }
+  });
+
+  <div v-for=(employee, index) in employees>
+    <button @click="deleteEmployee(index)"
+    <imput v-model="employee.name">
+  </div>
+
+2. https://stackoverflow.com/questions/41198697/how-can-i-bind-input-to-object-in-vue-js
+
+    var demo = new Vue({
+        el: "#demo",
+        data: {
+        user: {
+            name: "please enter"
+        }
+        }
+    })
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <div id="demo">
+        <input v-model="user.name">
+        <span>{{user.name}}</span>
+    </div>
+
+    var demo = new Vue({
+        el: '#demo',
+        data: function(){
+            return {
+            user: {
+                name: 'This is working fine'
+            }
+        };
+        }
+    })
+
+3. https://forum.vuejs.org/t/dynamicly-add-form-fields-with-input-boxes/5613
+tabular form
+Dynamicly Add Form Fields with Input Boxes
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Example Dynamic Form</title>
+    <script src="Libraries/vue.js"></script>
+    <script src="Libraries/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="app">
+    <table class="table">
+        <thead>
+            <tr>
+                <td><strong>Title</strong></td>
+                <td><strong>Description</strong></td>
+                <td><strong>File</strong></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in rows">
+                <td><input type="text" v-model="row.title"></td>
+                <td><input type="text" v-model="row.description"></td>
+                <td><input type="file" @change="setFilename($event);"></td>
+                <td><a v-on:click="removeElement(row);" style="cursor: pointer">Remove</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button class="button btn-primary" @click="addRow">Add row</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            rows: [
+                { title: "XEngine for Sale", description: "An application" },
+                { title: "There is no place like 127.0.0.1", description: "Best tool for your security." }
+            ]
+        },
+        methods: {
+            addRow: function () {
+                this.rows.push({ title: "", description: "" });
+            },
+            removeElement: function (row) {
+                var index = this.rows.indexOf(row);
+                this.rows.splice(index, 1);
+            },
+            setFilename: function (event) {
+                this.filename = event.target.name;
+            }
+        }
+    });
+
+

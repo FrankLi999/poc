@@ -1,0 +1,23 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+    <ng-template *ngIf="type !== 1 && template?.align === 'START'"
+                 [ngTemplateOutlet]="template.templateRef"
+                 [ngTemplateOutletContext]="model"></ng-template>
+	<fieldset role="radiogroup" [attr.tabindex]="model.tabIndex"
+		[formioId]="bindId && model.id" [name]="model.name"
+		(change)="onValueChange($event)">
+	
+		<legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+	
+		<div *ngFor="let option of model.options$ | async"
+			[ngClass]="model.cls.grid.container">
+	
+			<div [ngClass]="model.cls.grid.control">
+	
+				<p-radioButton [formControlName]="model.id" [label]="option.label"
+					[name]="model.name" [value]="option.value"></p-radioButton>
+			</div>
+		</div>
+	
+	</fieldset>
+</div>
+	

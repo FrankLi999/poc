@@ -1,0 +1,26 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label" [attr.for]="model.key" [innerHTML]="model.label"></label>
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <mat-form-field> <input matInput [autofocus]="model.autoFocus" [componentId]="componentId && model.key" [formControlName]="model.key" [max]="model.max" [matDatepicker]="matDatepicker" [min]="model.min" [name]="model.name" [placeholder]="model.placeholder"
+            [readonly]="model.readOnly" [required]="model.required" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)" />
+        <!--
+  <button matSuffix [matDatepickerToggle]="matDatepicker"></button>
+  -->
+        <mat-datepicker-toggle matSuffix [for]="matDatepicker"></mat-datepicker-toggle>
+    </mat-form-field>
+
+    <mat-datepicker #matDatepicker [startAt]="model.focusedDate" [touchUi]="true" (selectedChanged)="onValueChange($event)"></mat-datepicker>
+
+    <mat-list *ngIf="hasErrorMessaging" [ngClass]="errors">
+
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+    </mat-list>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

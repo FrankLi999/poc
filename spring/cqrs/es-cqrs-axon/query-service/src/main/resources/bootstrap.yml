@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: query-service
+    index: 1
+  profiles:
+    active: dev,mongo
+
+server:
+  port: ${PORT:9010}

@@ -1,0 +1,74 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:2.4
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=test
+      - RABBITMQ_DEFAULT_PASS=password
+
+  config-service:
+    image: ryukato/config-service
+    container_name: config-service
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_REPO_URI=https://github.com/ryukato/msa-sample-config
+    depends_on:
+      - mongodb
+      - rabbitmq
+
+  discovery-service:
+    image: ryukato/discovery-service
+    container_name: discovery-service
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  gateway-service:
+    image: ryukato/gateway-service
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - config-service
+      - discovery-service
+
+  command-service:
+    image: ryukato/command-service
+    container_name: command-service
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - discovery-service
+      - config-service
+
+  query-service:
+    image: ryukato/query-service
+    container_name: query-service
+    ports:
+      - "9010:9010"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - discovery-service
+      - config-service

@@ -1,0 +1,138 @@
+{
+	"_id": "56b9590c74d7d2010082d513",
+	"machineName": "examples:company",
+	"modified": "2016-02-09T03:12:23.123Z",
+	"title": "Company",
+	"name": "company",
+	"path": "company",
+	"project": "5692b91fd1028f01000407e3",
+	"created": "2016-02-09T03:12:12.797Z",
+	"components": [{
+		"input": true,
+		"tableView": true,
+		"inputType": "text",
+		"inputMask": "",
+		"label": "Name",
+		"key": "name",
+		"placeholder": "Enter the company name",
+		"prefix": "",
+		"suffix": "",
+		"multiple": false,
+		"defaultValue": "",
+		"protected": false,
+		"unique": false,
+		"persistent": true,
+		"validate": {
+			"required": false,
+			"minLength": "",
+			"maxLength": "",
+			"pattern": "",
+			"custom": "",
+			"customPrivate": false
+		},
+		"type": "textfield"
+	},
+	{
+		"input": true,
+		"tableView": true,
+		"inputType": "email",
+		"label": "Email",
+		"key": "email",
+		"placeholder": "Enter the company email",
+		"prefix": "",
+		"suffix": "",
+		"defaultValue": "",
+		"protected": false,
+		"unique": false,
+		"persistent": true,
+		"type": "email"
+	},
+	{
+		"input": true,
+		"tableView": true,
+		"inputMask": "(999) 999-9999",
+		"label": "Phone Number",
+		"key": "phoneNumber",
+		"placeholder": "Enter the company phone number",
+		"prefix": "",
+		"suffix": "",
+		"multiple": false,
+		"protected": false,
+		"unique": false,
+		"persistent": true,
+		"validate": {
+			"required": false
+		},
+		"type": "phoneNumber"
+	},
+	{
+		"input": true,
+		"tableView": true,
+		"label": "Address",
+		"key": "address",
+		"placeholder": "Enter the company address",
+		"multiple": false,
+		"protected": false,
+		"unique": false,
+		"persistent": true,
+		"validate": {
+			"required": false
+		},
+		"type": "address"
+	},
+	{
+		"input": true,
+		"label": "Submit",
+		"tableView": false,
+		"key": "submit",
+		"size": "md",
+		"leftIcon": "",
+		"rightIcon": "",
+		"block": false,
+		"action": "submit",
+		"disableOnInvalid": true,
+		"theme": "primary",
+		"type": "button"
+	}],
+	"owner": "554806425867f4ee203ea861",
+	"submissionAccess": [{
+		"type": "create_all",
+		"roles": []
+	},
+	{
+		"type": "read_all",
+		"roles": ["5692b920d1028f01000407e6"]
+	},
+	{
+		"type": "update_all",
+		"roles": []
+	},
+	{
+		"type": "delete_all",
+		"roles": []
+	},
+	{
+		"type": "create_own",
+		"roles": []
+	},
+	{
+		"type": "read_own",
+		"roles": []
+	},
+	{
+		"type": "update_own",
+		"roles": []
+	},
+	{
+		"type": "delete_own",
+		"roles": []
+	}],
+	"access": [{
+		"type": "read_all",
+		"roles": ["5692b920d1028f01000407e4",
+		"5692b920d1028f01000407e5",
+		"5692b920d1028f01000407e6"]
+	}],
+	"tags": [],
+	"type": "resource"
+}

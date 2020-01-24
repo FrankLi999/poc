@@ -1,0 +1,163 @@
+version: '3'
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    environment:
+     MYSQL_ROOT_PASSWORD: admin
+     MYSQL_DATABASE: catalog
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: 'rabbitmq:management'
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  vault:
+    image: vault
+    container_name: vault
+    cap_add:
+      - IPC_LOCK
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
+    ports:
+      - 8200:8200
+
+  setup-vault:
+    image: vault
+    container_name: setup-vault
+    entrypoint: /bin/sh
+    volumes:
+      - './config:/config'
+    environment:
+      VAULT_ADDR: 'http://vault:8200'
+      CONFIG_DIR: '/config'
+    command: >
+      -c "
+      sleep 2;
+      /config/vault-init.sh;
+      "
+    depends_on:
+      - vault
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
+    environment:
+      - STORAGE_TYPE=mem
+      # Uncomment to disable scribe
+      # - SCRIBE_ENABLED=false
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+
+  config-server:
+    container_name: config-server
+    build: ./config-server
+    ports:
+      - "8888:8888"
+      - "18787:8787"
+    depends_on:
+      - rabbitmq
+
+  service-registry:
+    container_name: service-registry
+    build: ./service-registry
+    ports:
+      - "8761:8761"
+      - "28787:8787"
+    depends_on:
+      - config-server
+
+  hystrix-dashboard:
+    container_name: hystrix-dashboard
+    build: ./hystrix-dashboard
+    ports:
+      - "8788:8788"
+      - "38787:8787"
+
+  oauth2-server:
+    container_name: oauth2-server
+    build: ./oauth2-server
+    ports:
+      - "8901:8901"
+    depends_on:
+      - config-server
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z config-server 8888 && nc -z vault 8200); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
+
+  catalog-service:
+    container_name: catalog-service
+    build: ./catalog-service
+    ports:
+      - "18181:8181"
+      - "19797:8787"
+    depends_on:
+      - config-server
+      - mysqldb
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z config-server 8888 && nc -z vault 8200); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
+  inventory-service:
+    container_name: inventory-service
+    build: ./inventory-service
+    ports:
+      - "18282:8282"
+      - "29797:8787"
+    depends_on:
+      - config-server
+      - mysqldb
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z config-server 8888 && nc -z vault 8200); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
+  order-service:
+    container_name: order-service
+    build: ./order-service
+    ports:
+      - "18383:8383"
+      - "39797:8787"
+    depends_on:
+      - config-server
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z config-server 8888 && nc -z vault 8200); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
+  shoppingcart-ui:
+    container_name: shoppingcart-ui
+    build: ./shoppingcart-ui
+    ports:
+      - "8080:8080"
+      - "49797:8787"
+    depends_on:
+      - config-server
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z config-server 8888 && nc -z vault 8200); do sleep 5; echo 'Waiting for vault and config-server services to start-up...'; done;
+      java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8787,suspend=n -jar -Dspring.profiles.active=docker /app.jar
+      "
+
+

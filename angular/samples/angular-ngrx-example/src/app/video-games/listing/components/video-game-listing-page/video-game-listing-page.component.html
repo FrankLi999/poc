@@ -1,0 +1,13 @@
+<app-loading-container [loadable]="videoGameListingStore.getVideoGameListing() | async">
+  <header>
+    <app-video-game-search (queryChanged)="search($event)"></app-video-game-search>
+    <app-video-game-filters [filters]="videoGameListingStore.getVideoGameFilters() | async"
+                            [platforms]="(platformsStore.getPlatforms() | async).list"
+                            (platformFilterChanged)="filterPlatform($event)"
+                            (favoritesFilterChanged)="filterFavorites()">
+    </app-video-game-filters>
+  </header>
+
+  <app-video-game-listing [videoGames]="videoGameListingStore.getVideoGames() | async">
+  </app-video-game-listing>
+</app-loading-container>

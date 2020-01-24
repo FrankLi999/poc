@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+
+    <Appenders>
+        <File name="FILE" fileName="/temp/logs/logfile.log" append="true">
+            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%style{%date{DEFAULT}}{yellow}
+                        %highlight{%-5level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green} 
+                        %message" />
+		</Console>
+        <!-- 
+        	Dependencies:
+        		Jackson core
+                databind
+                dataformat XML
+			    com.fasterxml.woodstox:woodstox-core:5.0.2
+		-->
+		<RollingFile name="xmlRollingfileAppender"
+          fileName="/temp/logs/logfile.xml"
+          filePattern="/temp/logs/logfile-%d{yyyy-MM-dd}-%i.log.gz">
+            <XMLLayout/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="17 kB"/>
+            </Policies>
+        </RollingFile>
+        <File name="jsonFileAppender" fileName="/temp/logs/json-jersey10.log">
+			<JSONLayout compact="true" eventEol="true" />
+			<BurstFilter level="WARN" rate="2" maxBurst="10" />
+		</File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.myservice" level="debug"/>
+
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

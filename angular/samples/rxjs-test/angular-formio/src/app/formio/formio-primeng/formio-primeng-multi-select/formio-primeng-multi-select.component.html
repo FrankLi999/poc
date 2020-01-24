@@ -1,0 +1,40 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<div [ngClass]="model.cls.grid.container">
+
+		<div *ngIf="model.label" [ngClass]="model.cls.grid.label">
+
+			<label [attr.for]="model.id" [innerHTML]="model.label"
+				[ngClass]="model.cls.element.label"></label>
+
+		</div>
+
+
+		<div [ngClass]="model.cls.grid.control">
+			<p-multiSelect #pMultiSelect [formioId]="bindId && model.id"
+				[filter]="model.filterable" [formControlName]="model.id"
+				[options]="model.options" [tabindex]="model.tabIndex"
+				(onChange)="onValueChange($event)"> </p-multiSelect>
+		</div>
+		<ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+			<li class="ui-message ui-messages-error ui-corner-all"
+				[class.ui-helper-hidden]="!showErrorMessages"
+				[ngClass]="model.cls.element.errors"><span
+				*ngFor="let message of errorMessages">{{message}}</span></li>
+
+		</ul>
+
+	</div>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

@@ -1,0 +1,35 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<input type="checkbox" [attr.tabindex]="model.tabIndex"
+		[checked]="model.checked" [formioId]="bindId && model.id"
+		[formControlName]="model.id" [name]="model.name"
+		[ngClass]="model.cls.element.control" [required]="model.required"
+		[value]="model.value" (blur)="onFocusChange($event)"
+		(change)="onValueChange($event)" (focus)="onFocusChange($event)" />
+		
+		<label><span [ngClass]="model.cls.element.label" [innerHTML]="model.label"></span></label>
+	
+	<div *ngIf="hasHint" [ngClass]="model.cls.element.hint">
+		<span [innerHTML]="model.hint"></span>
+	</div>
+
+
+	<ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages"
+		[ngClass]="model.cls.element.errors">
+
+		<li *ngFor="let message of errorMessages">{{message}}</li>
+
+	</ul>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+
+	<ng-content></ng-content>
+
+</div>

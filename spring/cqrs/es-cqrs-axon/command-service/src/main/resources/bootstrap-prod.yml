@@ -1,0 +1,46 @@
+spring:
+  cloud:
+    config:
+      uri: ${CONFIG_SERVICE_URI:http://localhost:8888}
+      label: master
+      username: ${CONFIG_SECURITY_USERNAME:admin}
+      password: ${CONFIG_SECURITY_PASSWORD:admin1!}
+      fail-fast: true
+      retry:
+        initial-interval: 2000
+        max-attempts: 30
+  rabbitmq:
+    host: ${RABBITMQ_BIGWIG_TX_URL:amqp://UJoPUdr-:Y8t_6LR3Aliawb54JiMzLlz41mS99xne@curious-nelthilta-664.bigwig.lshift.net:11030/AVNKjQ_gDfVP}
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/msa_test}
+      database: ${MONGODB_DATABASE:msa_test}
+
+axon:
+  amqp:
+    exchange: product.events.fanout.exchange
+    transaction-mode: none
+    durable-messages: true
+
+eureka:
+  client:
+    service-url:
+      default-zone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+external:
+  amqp:
+    exchange:
+      fanout:
+        auto-delete: false
+    bind:
+      route-key: "*"
+    queue: product.default.queue
+
+  event-sourcing:
+        events-collection-name: service-events
+        snapshot-collection-name: service-events-snapshots
+  heroku:
+    rabbitmq-env-var: RABBITMQ_BIGWIG_TX_URL

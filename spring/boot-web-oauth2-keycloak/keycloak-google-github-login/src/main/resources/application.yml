@@ -1,0 +1,59 @@
+server:
+  port: 9010
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.boot.autoconfigure: DEBUG
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: xxxxxxx
+            client-secret: xxxxxxxx
+          github:
+            client-id: 1f9824d889fc63e9e97a
+            client-secret: 78c73961f61eb28a22f41ff5b5313324415ee4c4
+          facebook:
+            client-id: your-app-client-id
+            client-secret: your-app-client-secret
+          okta:
+            client-id: 0oaeszrc1wEt3A0iC0h7
+            client-secret: lJYdP4VtR7Das3k_hzUOiat-4_SJGGNy-Y-I9Ow7
+            clientName: Okta
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - openid
+              - profile
+              - email
+          keycloak:
+            client-id: login-app
+            client-secret: e12557ee-30bf-4c7d-968c-4e4ac45b89de
+            clientName: login-app
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          okta:
+            authorization-uri: https://dev-727816.oktapreview.com/oauth2/v1/authorize
+            token-uri: https://dev-727816.oktapreview.com/oauth2/v1/token
+            user-info-uri: https://dev-727816.oktapreview.com/oauth2/v1/userinfo
+            jwk-set-uri: https://dev-727816.oktapreview.com/oauth2/v1/keys
+            user-name-attribute: sub
+          keycloak:
+            authorization-uri: http://localhost:8180/auth/realms/SpringBootKeycloak/protocol/openid-connect/auth
+            token-uri: http://localhost:8180/auth/realms/SpringBootKeycloak/protocol/openid-connect/token
+            user-info-uri: http://localhost:8180/auth/realms/SpringBootKeycloak/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8180/auth/realms/SpringBootKeycloak/protocol/openid-connect/certs
+            user-name-attribute: preferred_username

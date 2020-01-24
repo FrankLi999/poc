@@ -1,0 +1,26 @@
+spring:
+    datasource:
+        hikari:
+            connection-test-query: SELECT 1 FROM DUAL
+            minimum-idle: 1
+            maximum-pool-size: 5
+        driver-class-name: com.mysql.jdbc.Driver
+        #jdbc-url: jdbc:mysql://localhost:3306/myoauth2
+        url: jdbc:mysql://localhost:3306/myoauth2
+        username: root
+        password: Passw0rd
+        #initialization-mode: always
+    jpa:
+      hibernate:
+        ddl-auto: none
+# --- server
+server:
+  port: 8082
+  #servlet:
+      #context-path: /spring-security-oauth-resource
+logging:
+  level:
+    org: INFO
+#endpoints
+  #cors:
+    #allowed-origins:*

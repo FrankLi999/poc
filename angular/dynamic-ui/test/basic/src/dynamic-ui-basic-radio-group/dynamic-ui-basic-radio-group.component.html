@@ -1,0 +1,36 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label !== null" [attr.for]="model.key" [innerHTML]="model.label"></label>
+
+
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <fieldset role="radiogroup" [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [name]="model.name" (change)="onValueChange($event)">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <label *ngFor="let option of model.options$ | async"> <input
+      type="radio" [formControlName]="model.key" [name]="model.name"
+      [value]="option.value"
+      (blur)="onFocusChange($event)" (focus)="onFocusChange($event)" /><span
+      [innerHTML]="option.label"></span></label>
+
+    </fieldset>
+
+    <div *ngIf="hasHint">
+        <span [innerHTML]="model.hint"></span>
+    </div>
+
+
+    <ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages" [ngClass]="errors">
+
+        <li *ngFor="let message of errorMessages">{{message}}</li>
+
+    </ul>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-content></ng-content>
+
+</div>

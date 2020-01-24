@@ -1,0 +1,8 @@
+com\github\ulisesbocchio\demo\controller\HomeController.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication$CustomSAMLBootstrap.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication.class
+com\github\ulisesbocchio\demo\controller\IdPSelectionController.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication$1.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication$MvcConfig.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication$MyServiceProviderConfig.class
+com\github\ulisesbocchio\demo\Auth0SSODemoApplication$1$1.class

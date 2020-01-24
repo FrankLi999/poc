@@ -1,0 +1,50 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label !== null" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+
+
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<textarea
+                  [attr.tabindex]="model.tabIndex"
+                  [cols]="model.cols"
+                  [formioId]="bindId && model.id"
+                  [formControlName]="model.id"
+                  [maxlength]="model.maxLength"
+                  [minlength]="model.minLength"
+                  [name]="model.name"
+                  [ngClass]="model.cls.element.control"
+                  [placeholder]="model.placeholder"
+                  [readonly]="model.readOnly"
+                  [required]="model.required"
+                  [rows]="model.rows"
+                  [spellcheck]="model.spellCheck"
+                  [wrap]="model.wrap"
+                  (blur)="onFocusChange($event)"
+                  (change)="onValueChange($event)"
+                  (focus)="onFocusChange($event)">
+    </textarea>
+
+	<div *ngIf="hasHint" [ngClass]="model.cls.element.hint">
+		<span [innerHTML]="model.hint"></span>
+	</div>
+
+
+	<ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages"
+		[ngClass]="model.cls.element.errors">
+
+		<li *ngFor="let message of errorMessages">{{message}}</li>
+
+	</ul>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+
+	<ng-content></ng-content>
+
+</div>

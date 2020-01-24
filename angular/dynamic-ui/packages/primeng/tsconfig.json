@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.fesm5.json",
+  "files": [
+    "./public_api.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "flatModuleId": "@bpw-ui/primeng",
+    "flatModuleOutFile": "primeng.js",
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  }
+}

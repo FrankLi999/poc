@@ -1,0 +1,18 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label" [attr.for]="model.key" [innerHTML]="model.label">
+  </label>
+    <div [componentId]="componentId && model.key" [formArrayName]="model.key">
+        <div *ngFor="let groupModel of model.groups; let idx = index" role="group" [formGroupName]="idx">
+            <dynamic-ui-material-control *ngFor="let item of groupModel.group" [componentId]="false" [context]="groupModel" [group]="control.at(idx)" [hasErrorMessaging]="item.hasErrorMessages" [model]="item" [nestedTemplates]="templates"
+                (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+            </dynamic-ui-material-control>
+            <ng-container *ngTemplateOutlet="template?.templateRef; context: groupModel"></ng-container>
+        </div>
+    </div>
+    <mat-list *ngIf="hasErrorMessaging" [ngClass]="errors">
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+    </mat-list>
+    <ng-content></ng-content>
+
+</div>

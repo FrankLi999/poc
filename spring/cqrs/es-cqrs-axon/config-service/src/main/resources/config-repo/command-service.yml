@@ -1,0 +1,30 @@
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    exchange: product.events.fanout.exchange
+    queue: product.default.queue
+    databaseName: products
+    eventsCollectionName: events
+    snapshotCollectionName: snapshots
+
+  rabbitmq:
+    hostname: localhost
+    username: test
+    password: password
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/products
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.axonframework: INFO
+    app: INFO

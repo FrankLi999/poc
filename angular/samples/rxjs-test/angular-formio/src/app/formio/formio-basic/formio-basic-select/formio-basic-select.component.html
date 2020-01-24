@@ -1,0 +1,49 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label !== null" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+
+
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<select
+                [attr.tabindex]="model.tabIndex"
+                [formioId]="bindId && model.id"
+                [formControlName]="model.id"
+                [name]="model.name"
+                [ngClass]="model.cls.element.control"
+                [required]="model.required"
+                (blur)="onFocusChange($event)"
+                (change)="onValueChange($event)"
+                (focus)="onFocusChange($event)">
+
+            <option *ngFor="let option of model.options$ | async"
+                    [attr.name]="model.name"
+                    [disabled]="!!option.disabled"
+                    [ngValue]="option.value">{{option.label}}
+            </option>
+
+        </select>
+
+	<div *ngIf="hasHint" [ngClass]="model.cls.element.hint">
+		<span [innerHTML]="model.hint"></span>
+	</div>
+
+
+	<ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages"
+		[ngClass]="model.cls.element.errors">
+
+		<li *ngFor="let message of errorMessages">{{message}}</li>
+
+	</ul>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+
+	<ng-content></ng-content>
+
+</div>

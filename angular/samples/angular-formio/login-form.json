@@ -1,0 +1,65 @@
+{
+	"_id": "58b78b88f5609a0070f3f45c",
+	"modified": "2017-03-02T03:03:36.173Z",
+	"title": "User Login",
+	"name": "userLogin",
+	"path": "user/login",
+	"machineName": "fkdmhegmfwcwdca:userLogin",
+	"project": "58b78b87f5609a0070f3f456",
+	"created": "2017-03-02T03:03:36.166Z",
+	"components": [{
+		"type": "email",
+		"persistent": true,
+		"unique": false,
+		"protected": false,
+		"defaultValue": "",
+		"suffix": "",
+		"prefix": "",
+		"placeholder": "Enter your email address",
+		"key": "email",
+		"lockKey": true,
+		"label": "Email",
+		"inputType": "email",
+		"tableView": true,
+		"input": true
+	},
+	{
+		"type": "password",
+		"persistent": true,
+		"protected": true,
+		"suffix": "",
+		"prefix": "",
+		"placeholder": "Enter your password.",
+		"key": "password",
+		"lockKey": true,
+		"label": "Password",
+		"inputType": "password",
+		"tableView": false,
+		"input": true
+	},
+	{
+		"type": "button",
+		"theme": "primary",
+		"disableOnInvalid": true,
+		"action": "submit",
+		"block": false,
+		"rightIcon": "",
+		"leftIcon": "",
+		"size": "md",
+		"key": "submit",
+		"tableView": false,
+		"label": "Submit",
+		"input": true
+	}],
+	"owner": null,
+	"submissionAccess": [{
+		"type": "create_own",
+		"roles": ["58b78b87f5609a0070f3f459"]
+	}],
+	"access": [{
+		"type": "read_all",
+		"roles": ["58b78b87f5609a0070f3f459"]
+	}],
+	"tags": [],
+	"type": "form"
+}

@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    config:
+      uri: http://config-service:8888
+      fail-fast: true
+      retry:
+        initial-interval: 2000
+        max-attempts: 30
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    virtual-host: /
+    username: test
+    password: password
+
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017
+      database: ${MONGODB_DATABASE:msa_test}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+#    fetch-registry: false
+  instance:
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
+    metadata-map:
+      intanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 10
+
+axon:
+  amqp:
+    exchange: product.events.fanout.exchange
+    transaction-mode: none
+    durable-messages: true
+
+external:
+  amqp:
+    exchange:
+      fanout:
+        auto-delete: false
+    bind:
+      route-key: "*"
+    queue: product.default.queue
+
+  event-sourcing:
+    events-collection-name: service-events
+    snapshot-collection-name: service-events-snapshots

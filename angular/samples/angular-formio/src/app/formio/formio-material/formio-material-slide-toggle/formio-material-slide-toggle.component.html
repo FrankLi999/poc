@@ -1,0 +1,35 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<mat-slide-toggle #matSlideToggle
+		[checked]="model.checked" 
+		[formioId]="bindId && model.id"
+		[formControlName]="model.id" 
+		[labelPosition]="model.labelPosition"
+		[name]="model.name" 
+		[ngClass]="model.cls.element.control"
+		(change)="onValueChange($event)"> 
+		<span *ngIf="!model.checked" [innerHTML]="model.offLabel"></span> 
+		<span *ngIf="model.checked" [innerHTML]="model.onLabel"></span> 
+	</mat-slide-toggle>
+
+
+	<mat-list *ngIf="hasErrorMessaging"
+		[ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+	<mat-list-item *ngFor="let message of errorMessages"
+		[style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+	</mat-list-item> </mat-list>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

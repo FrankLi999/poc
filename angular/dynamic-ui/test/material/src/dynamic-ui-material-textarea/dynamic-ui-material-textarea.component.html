@@ -1,0 +1,19 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label" [attr.for]="model.key" [innerHTML]="model.label"></label>
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <mat-form-field #matTextarea> <textarea matInput [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [cols]="model.cols" [formControlName]="model.key" [maxlength]="model.maxLength" [minlength]="model.minLength" [name]="model.name"
+            [placeholder]="model.placeholder" [readonly]="model.readOnly" [required]="model.required" [rows]="model.rows" [spellcheck]="model.spellCheck" [wrap]="model.wrap" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)"></textarea>
+        <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint>
+        <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} / {{model.maxLength}}
+        </mat-hint>
+        <mat-error *ngFor="let message of errorMessages" [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}
+        </mat-error>
+    </mat-form-field>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

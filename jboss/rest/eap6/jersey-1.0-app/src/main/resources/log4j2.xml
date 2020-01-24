@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+		
+		<RollingFile name="rollingFileAppender" filePattern="'/temp/logs/rolling-jersey10-'%d{yyyy-MM-dd}.log"
+			fileName="/temp/logs/rolling-jersey10.log">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} - %c{1.} %5p - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<File name="fileAppender" fileName="/temp/logs/jersey10.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} - %c{1.} %5p - %m%n" />
+			<BurstFilter level="WARN" rate="2" maxBurst="10" />
+		</File>
+		<Async name="AsyncAppender" bufferSize="80">
+			<AppenderRef ref="fileAppender" />
+		</Async>
+	</Appenders>
+	<Loggers>
+	    <!-- 
+		<Logger name="org.springframework" level="INFO" additivity="false">
+			<AppenderRef ref="fileAppender" />
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="rollingFileAppender" />
+		</Logger>
+		<Logger name="com.myservice" level="INFO" additivity="false">
+			<AppenderRef ref="fileAppender" />
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="rollingFileAppender" />
+		</Logger>
+	    -->
+		<Root level="INFO">
+	         <AppenderRef ref="STDOUT"/>
+	         <AppenderRef ref="fileAppender" />
+	    	 <AppenderRef ref="rollingFileAppender" />
+		 </Root>
+     </Loggers>
+</Configuration>

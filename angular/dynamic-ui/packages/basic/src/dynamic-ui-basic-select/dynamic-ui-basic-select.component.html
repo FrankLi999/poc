@@ -1,0 +1,35 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label !== null" [attr.for]="model.key" [innerHTML]="model.label"></label>
+
+
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <select [attr.tabindex]="model.tabIndex" [componentId]="componentId && model.key" [formControlName]="model.key" [name]="model.name" [required]="model.required" (blur)="onBlur($event)" (change)="onValueChange($event)"
+        (focus)="onFocus($event)">
+
+            <option *ngFor="let option of model.options$ | async"
+                    [attr.name]="model.name"
+                    [disabled]="!!option.disabled"
+                    [ngValue]="option.value">{{option.label}}
+            </option>
+
+        </select>
+
+    <div *ngIf="hasHint">
+        <span [innerHTML]="model.hint"></span>
+    </div>
+
+
+    <ul *ngIf="hasErrorMessaging" [hidden]="!showErrorMessages" [ngClass]="errors">
+
+        <li *ngFor="let message of errorMessages">{{message}}</li>
+
+    </ul>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <ng-content></ng-content>
+
+</div>

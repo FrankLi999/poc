@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./sample",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es6",
+      "es2015",
+      "dom"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "paths": {
+      "@bpw-ui/*": [
+        "dist/@bpw-ui/*"
+      ]
+    },
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node",
+      "protractor"
+    ]
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "packages",
+	   "e2e",
+    "sample/aot",
+    "sample/dist",
+    "test",
+    "src/**/*.aot.ts"
+  ]
+}

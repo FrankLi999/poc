@@ -1,0 +1,141 @@
+{
+	"_id": "58b78b88f5609a0070f3f45d",
+	"modified": "2017-03-02T03:05:37.468Z",
+	"title": "User Register",
+	"name": "userRegister",
+	"path": "user/register",
+	"machineName": "fkdmhegmfwcwdca:userRegister",
+	"project": "58b78b87f5609a0070f3f456",
+	"display": "form",
+	"created": "2017-03-02T03:03:36.242Z",
+	"components": [{
+		"isNew": false,
+		"source": "58b78b87f5609a0070f3f45a",
+		"lockKey": true,
+		"tags": [],
+		"type": "textfield",
+		"conditional": {
+			"eq": "",
+			"when": null,
+			"show": ""
+		},
+		"validate": {
+			"customPrivate": false,
+			"custom": "",
+			"pattern": "",
+			"maxLength": "",
+			"minLength": "",
+			"required": false
+		},
+		"clearOnHide": true,
+		"persistent": true,
+		"unique": false,
+		"protected": false,
+		"defaultValue": "",
+		"multiple": false,
+		"suffix": "",
+		"prefix": "",
+		"placeholder": "Enter your first name",
+		"key": "firstName",
+		"label": "First Name",
+		"inputMask": "",
+		"inputType": "text",
+		"tableView": true,
+		"input": true
+	},
+	{
+		"isNew": false,
+		"source": "58b78b87f5609a0070f3f45a",
+		"lockKey": true,
+		"tags": [],
+		"type": "textfield",
+		"conditional": {
+			"eq": "",
+			"when": null,
+			"show": ""
+		},
+		"validate": {
+			"customPrivate": false,
+			"custom": "",
+			"pattern": "",
+			"maxLength": "",
+			"minLength": "",
+			"required": false
+		},
+		"clearOnHide": true,
+		"persistent": true,
+		"unique": false,
+		"protected": false,
+		"defaultValue": "",
+		"multiple": false,
+		"suffix": "",
+		"prefix": "",
+		"placeholder": "Enter your last name",
+		"key": "lastName",
+		"label": "Last Name",
+		"inputMask": "",
+		"inputType": "text",
+		"tableView": true,
+		"input": true
+	},
+	{
+		"kickbox": {
+			"enabled": false
+		},
+		"clearOnHide": true,
+		"input": true,
+		"tableView": true,
+		"inputType": "email",
+		"label": "Email",
+		"lockKey": true,
+		"key": "email",
+		"placeholder": "Enter your email address",
+		"prefix": "",
+		"suffix": "",
+		"defaultValue": "",
+		"protected": false,
+		"unique": false,
+		"persistent": true,
+		"type": "email"
+	},
+	{
+		"clearOnHide": true,
+		"input": true,
+		"tableView": false,
+		"inputType": "password",
+		"label": "Password",
+		"lockKey": true,
+		"key": "password",
+		"placeholder": "Enter your password.",
+		"prefix": "",
+		"suffix": "",
+		"protected": true,
+		"persistent": true,
+		"type": "password"
+	},
+	{
+		"tableView": false,
+		"type": "button",
+		"input": true,
+		"label": "Submit",
+		"key": "submit",
+		"size": "md",
+		"leftIcon": "",
+		"rightIcon": "",
+		"block": false,
+		"action": "submit",
+		"disableOnInvalid": true,
+		"theme": "primary"
+	}],
+	"owner": null,
+	"submissionAccess": [{
+		"type": "create_own",
+		"roles": ["58b78b87f5609a0070f3f459"]
+	}],
+	"access": [{
+		"type": "read_all",
+		"roles": ["58b78b87f5609a0070f3f459"]
+	}],
+	"tags": [],
+	"type": "form"
+}

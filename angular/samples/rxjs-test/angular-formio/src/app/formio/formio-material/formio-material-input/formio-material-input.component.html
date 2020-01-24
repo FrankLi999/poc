@@ -1,0 +1,42 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<mat-form-field #matInput> 
+	  <input matInput
+		[attr.accept]="model.accept" [attr.autoComplete]="model.autoComplete"
+		[attr.list]="model.listId" [attr.max]="model.max"
+		[attr.min]="model.min" [attr.multiple]="model.multiple"
+		[attr.step]="model.step" [attr.tabindex]="model.tabIndex"
+		[autofocus]="model.autoFocus" [formioId]="bindId && model.id"
+		[formControlName]="model.id" [maxlength]="model.maxLength"
+		[matAutocomplete]="mmatAutocomplete" [minlength]="model.minLength"
+		[name]="model.name" [ngClass]="model.cls.element.control"
+		[pattern]="model.pattern" [placeholder]="model.placeholder"
+		[readonly]="model.readOnly" [required]="model.required"
+		[spellcheck]="model.spellCheck" [type]="model.inputType"
+		(blur)="onFocusChange($event)" (change)="onValueChange($event)"
+		(focus)="onFocusChange($event)" /> 
+	  <mat-hint *ngIf="model.hint" align="start" [innerHTML]="model.hint"></mat-hint> 
+	  <mat-hint *ngIf="showCharacterHint" align="end">{{characterCount}} /	{{model.maxLength}}</mat-hint> 
+	  <span *ngIf="model.prefix" matPrefix [innerHTML]="model.prefix"></span> 
+	  <span *ngIf="model.suffix" matSuffix [innerHTML]="model.suffix"></span> 
+	  <mat-error *ngFor="let message of errorMessages" [style.display]="(hasErrorMessaging && showErrorMessages) ? 'block' : 'none'">{{message}}</mat-error> 
+	</mat-form-field>
+
+	<mat-autocomplete #matAutocomplete="matAutocomplete"> 
+	  <mat-option *ngFor="let option of model.list" [value]="option">{{option }}
+	  </mat-option>
+	</mat-autocomplete>
+	
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>
+

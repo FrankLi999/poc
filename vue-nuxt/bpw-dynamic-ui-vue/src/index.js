@@ -1,0 +1,25 @@
+import * as components from './components'
+import { vueUse } from './utils/plugins'
+
+const VuePlugin = {
+  install: function (Vue) {
+    if (Vue._dynamic_ui_vue_installed) {
+      return
+    }
+
+    Vue._dynamic_ui_vue_installed = true
+    // Register component plugins
+    for (let plugin in components) {
+      Vue.use(components[plugin])
+    }
+
+    // Register directive plugins
+    // for (let plugin in directives) {
+    // Vue.use(directives[plugin])
+    // }
+  }
+}
+
+vueUse(VuePlugin)
+
+export default VuePlugin

@@ -1,0 +1,37 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var dynamic_ui_primeng_radio_group_component_1 = require("./dynamic-ui-primeng-radio-group/dynamic-ui-primeng-radio-group.component");
+var dynamic_ui_primeng_autocomplete_component_1 = require("./dynamic-ui-primeng-autocomplete/dynamic-ui-primeng.autocomplete.component");
+var dynamic_ui_primeng_calendar_component_1 = require("./dynamic-ui-primeng-calendar/dynamic-ui-primeng-calendar.component");
+var dynamic_ui_primeng_checkbox_component_1 = require("./dynamic-ui-primeng-checkbox/dynamic-ui-primeng-checkbox.component");
+var dynamic_ui_primeng_chips_component_1 = require("./dynamic-ui-primeng-chips/dynamic-ui-primeng-chips.component");
+var dynamic_ui_primeng_dropdown_component_1 = require("./dynamic-ui-primeng-dropdown/dynamic-ui-primeng-dropdown.component");
+var dynamic_ui_primeng_editor_component_1 = require("./dynamic-ui-primeng-editor/dynamic-ui-primeng-editor.component");
+var dynamic_ui_primeng_input_component_1 = require("./dynamic-ui-primeng-input/dynamic-ui-primeng-input.component");
+var dynamic_ui_primeng_input_switch_component_1 = require("./dynamic-ui-primeng-input-switch/dynamic-ui-primeng-input-switch.component");
+var dynamic_ui_primeng_multi_select_component_1 = require("./dynamic-ui-primeng-multi-select/dynamic-ui-primeng-multi-select.component");
+var dynamic_ui_primeng_rating_component_1 = require("./dynamic-ui-primeng-rating/dynamic-ui-primeng-rating.component");
+var dynamic_ui_primeng_slider_component_1 = require("./dynamic-ui-primeng-slider/dynamic-ui-primeng-slider.component");
+var dynamic_ui_primeng_textarea_component_1 = require("./dynamic-ui-primeng-textarea/dynamic-ui-primeng-textarea.component");
+var dynamic_ui_primeng_datagrid_component_1 = require("./dynamic-ui-primeng-datagrid/dynamic-ui-primeng-datagrid.component");
+var dynamic_ui_primeng_columns_component_1 = require("./dynamic-ui-primeng-columns/dynamic-ui-primeng-columns.component");
+var dynamic_ui_primeng_form_group_component_1 = require("./dynamic-ui-primeng-form-group/dynamic-ui-primeng-form-group.component");
+exports.PrimengComponentTypes = {};
+exports.PrimengComponentTypes[1 /* Array */] = dynamic_ui_primeng_datagrid_component_1.DynamicUIPrimengDatagridComponent; // DynamicUIPrimengControlArrayComponent;
+exports.PrimengComponentTypes[2 /* AutoComplete */] = dynamic_ui_primeng_autocomplete_component_1.DynamicUIPrimengAutocompleteComponent;
+exports.PrimengComponentTypes[3 /* Calendar */] = dynamic_ui_primeng_calendar_component_1.DynamicUIPrimengCalendarComponent;
+exports.PrimengComponentTypes[4 /* Checkbox */] = dynamic_ui_primeng_checkbox_component_1.DynamicUIPrimengCheckboxComponent;
+exports.PrimengComponentTypes[5 /* Chips */] = dynamic_ui_primeng_chips_component_1.DynamicUIPrimengChipsComponent;
+exports.PrimengComponentTypes[6 /* Dropdown */] = dynamic_ui_primeng_dropdown_component_1.DynamicUIPrimengDropdownComponent;
+exports.PrimengComponentTypes[7 /* Editor */] = dynamic_ui_primeng_editor_component_1.DynamicUIPrimengEditorComponent;
+exports.PrimengComponentTypes[8 /* Group */] = dynamic_ui_primeng_form_group_component_1.DynamicUIPrimengFormGroupComponent; // DynamicUIPrimengFieldsetComponent;
+exports.PrimengComponentTypes[9 /* Input */] = dynamic_ui_primeng_input_component_1.DynamicUIPrimengInputComponent;
+exports.PrimengComponentTypes[10 /* InputSwitch */] = dynamic_ui_primeng_input_switch_component_1.DynamicUIPrimengInputSwitchComponent;
+exports.PrimengComponentTypes[11 /* MultiSelect */] = dynamic_ui_primeng_multi_select_component_1.DynamicUIPrimengMultiSelectComponent;
+exports.PrimengComponentTypes[12 /* RadioGroup */] = dynamic_ui_primeng_radio_group_component_1.DynamicUIPrimengRadioGroupComponent;
+exports.PrimengComponentTypes[13 /* Rating */] = dynamic_ui_primeng_rating_component_1.DynamicUIPrimengRatingComponent;
+exports.PrimengComponentTypes[14 /* Slider */] = dynamic_ui_primeng_slider_component_1.DynamicUIPrimengSliderComponent;
+exports.PrimengComponentTypes[15 /* TextArea */] = dynamic_ui_primeng_textarea_component_1.DynamicUIPrimengTextareaComponent;
+exports.PrimengComponentTypes[16 /* Columns */] = dynamic_ui_primeng_columns_component_1.DynamicUIPrimengColumnsComponent;
+
+//# sourceMappingURL=dynamic-ui-primeng.model.js.map

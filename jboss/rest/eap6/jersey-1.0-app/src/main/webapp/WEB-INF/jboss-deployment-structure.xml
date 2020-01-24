@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+  <deployment>
+    <exclude-subsystems>
+      <subsystem name="jaxrs"/>
+    </exclude-subsystems>
+    <exclusions>
+      <module name="javaee.api"/>
+      <module name='org.slf4j' />
+      <module name='org.slf4j.impl' />
+    </exclusions>
+    <dependencies>
+      <module name="javaee.api">
+        <imports>
+          <exclude-set>
+            <path name="javax/ws/rs"/>
+            <path name="javax/ws/rs/core"/>
+            <path name="javax/ws/rs/ext"/>
+          </exclude-set>
+        </imports>
+      </module>
+      <!-- This one always goes last. -->
+      <module name="javax.api" export="true"/>
+    </dependencies>
+  </deployment>
+</jboss-deployment-structure>

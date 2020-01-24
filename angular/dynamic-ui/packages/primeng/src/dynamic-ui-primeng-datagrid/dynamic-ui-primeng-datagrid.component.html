@@ -1,0 +1,19 @@
+<ng-container [formGroup]="group">
+    <ng-container [formArrayName]="model.key">
+        <div [fxLayout]="model.fxLayout" fxLayoutGap="5px" fxFlexFill [componentId]="componentId && model.key" *ngFor="let groupArray of group.controls[model.key].controls; let idx = index" [formGroupName]="idx">
+            <div fxFlex *ngFor="let controlModel of model.components">
+                <dynamic-ui-primeng-control *ngIf="controlModel.input" [group]="groupArray" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [nestedTemplates]="templates" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+                </dynamic-ui-primeng-control>
+            </div>
+            <div fxFlex="10%">
+                <div fxFlex fxLayout="column" fxFlexFill>
+                    <label fxFlex>&nbsp;</label>
+                    <i (click)="removeColumn(idx)" fxFlex class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+            <a (click)="newRow()" class="waves-effect waves-light btn"><i class="material-icons">add</i>Add Another</a>
+        </div>
+    </ng-container>
+</ng-container>

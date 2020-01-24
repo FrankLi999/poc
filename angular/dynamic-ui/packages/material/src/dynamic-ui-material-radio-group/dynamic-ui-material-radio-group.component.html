@@ -1,0 +1,22 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label" [attr.for]="model.key" [innerHTML]="model.label"></label>
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <mat-radio-group #matRadioGroup [componentId]="componentId && model.key" [formControlName]="model.key" [name]="model.name" (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+
+        <mat-radio-button *ngFor="let option of model.options$ | async" [labelPosition]="'after'" [name]="model.name" [value]="option.value">
+            <span [innerHTML]="option.label"></span></mat-radio-button>
+    </mat-radio-group>
+
+    <mat-list *ngIf="hasErrorMessaging" [ngClass]="errors">
+
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+    </mat-list>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

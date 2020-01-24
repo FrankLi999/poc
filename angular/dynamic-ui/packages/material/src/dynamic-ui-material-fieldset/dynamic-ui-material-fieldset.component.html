@@ -1,0 +1,25 @@
+<div [formGroup]="group">
+    <label *ngIf="model.label" [attr.for]="model.key" [innerHTML]="model.label"></label>
+    <ng-template *ngIf="template?.align === 'START'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+
+    <fieldset [componentId]="componentId && model.key" [formGroupName]="model.key" [name]="model.name">
+
+        <legend *ngIf="model.legend" [innerHTML]="model.legend"></legend>
+
+        <dynamic-ui-material-control *ngFor="let controlModel of model.group" [group]="control" [hasErrorMessaging]="controlModel.hasErrorMessages" [model]="controlModel" [nestedTemplates]="templates"
+            (blur)="onBlur($event)" (change)="onValueChange($event)" (focus)="onFocus($event)">
+        </dynamic-ui-material-control>
+    </fieldset>
+    <mat-list *ngIf="hasErrorMessaging" [ngClass]="errors">
+
+        <mat-list-item *ngFor="let message of errorMessages" [style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+        </mat-list-item>
+    </mat-list>
+
+
+    <ng-template *ngIf="template?.align === 'END'" [ngTemplateOutlet]="template.templateRef" [ngTemplateOutletContext]="model"></ng-template>
+
+    <ng-content></ng-content>
+
+</div>

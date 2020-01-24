@@ -1,0 +1,42 @@
+{
+  "name": "@bpw-ui/basic",
+  "version": "1.4.34",
+  "description": "A rapid form development library for Angular 2.x and higher",
+  "main": "./bundles/basic.umd.js",
+  "module": "./bpw-ui/basic.es.js",
+  "typings": "./basic.d.ts",
+  "keywords": [
+    "angular",
+    "angular 2",
+    "core",
+    "dynamic forms",
+    "forms",
+    "ng dynamic forms",
+    "reactive forms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udos86/ng-dynamic-forms.git"
+  },
+  "author": {
+    "name": "Udo Schöfer",
+    "email": "ng2-dynamic-forms@udos86.de",
+    "url": "https://github.com/udos86/ng-dynamic-forms"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udos86/ng-dynamic-forms/issues"
+  },
+  "homepage": "https://github.com/udos86/ng-dynamic-forms#readme",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "angular2-text-mask": "^8.0.1",
+    "@angular/flex-layout": "^2.0.0-beta.9",
+    "angular2-fontawesome": "^0.9.3",
+    "core-js": "^2.4.1",
+    "@bpw-ui/base": "^1.4.34",
+    "rxjs": "^5.2.0"    
+  }
+}

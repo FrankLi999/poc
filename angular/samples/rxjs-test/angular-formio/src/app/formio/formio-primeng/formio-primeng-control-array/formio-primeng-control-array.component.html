@@ -1,0 +1,49 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<div [ngClass]="model.cls.grid.container">
+
+		<div *ngIf="model.label" [ngClass]="model.cls.grid.label">
+
+			<label [attr.for]="model.id" [innerHTML]="model.label"
+				[ngClass]="model.cls.element.label"></label>
+
+		</div>
+
+
+		<div [ngClass]="model.cls.grid.control">
+
+			<div [formioId]="bindId && model.id" [formArrayName]="model.id"
+				[ngClass]="model.cls.element.control">
+
+				<div *ngFor="let groupModel of model.groups; let idx = index"
+					role="group" [formGroupName]="idx"
+					[ngClass]="[model.cls.element.group, model.cls.grid.group]">
+
+					<formio-primeng-control *ngFor="let item of groupModel.group"
+						[bindId]="false" [context]="groupModel" [group]="control.at(idx)"
+						[hasErrorMessaging]="item.hasErrorMessages" [model]="item"
+						[nestedTemplates]="templates"
+						[ngClass]="[item.cls.element.host, item.cls.grid.host]"
+						(blur)="onFocusChange($event)" (change)="onValueChange($event)"
+						(focus)="onFocusChange($event)"> </formio-primeng-control>
+
+					<ng-container
+						*ngTemplateOutlet="template?.templateRef; context: groupModel">
+					</ng-container>
+				</div>
+
+			</div>
+		</div>
+
+		<ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+			<li class="ui-message ui-messages-error ui-corner-all"
+				[class.ui-helper-hidden]="!showErrorMessages"
+				[ngClass]="model.cls.element.errors"><span
+				*ngFor="let message of errorMessages">{{message}}</span></li>
+
+		</ul>
+
+	</div>
+	<ng-content></ng-content>
+
+</div>

@@ -1,0 +1,35 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<mat-slider #matSlider
+                   [formioId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [min]="model.min"
+                   [max]="model.max"
+                   [ngClass]="model.cls.element.control"
+                   [step]="model.step"
+                   [thumbLabel]="true"
+                   tickInterval="1"
+                   [vertical]="model.vertical"
+                   (change)="onValueChange($event)"></mat-slider>
+
+
+	<mat-list *ngIf="hasErrorMessaging"
+		[ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+	<mat-list-item *ngFor="let message of errorMessages"
+		[style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+	</mat-list-item> </mat-list>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

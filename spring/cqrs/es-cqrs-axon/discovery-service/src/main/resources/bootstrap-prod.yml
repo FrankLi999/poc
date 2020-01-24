@@ -1,0 +1,17 @@
+#eureka standalone mode
+eureka:
+  instance:
+    hostname: localhost
+#    leaseRenewalIntervalInSeconds: 1 # better stick with the default in production.
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Notice that the serviceUrl is pointing the same host as the local instance
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+    level:
+        root: WARN
+        org.springframework: WARN
+        org.axonframework: WARN
+        app: WARN

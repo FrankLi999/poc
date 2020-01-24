@@ -1,0 +1,55 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+<div [ngClass]="model.cls.element.container">
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<div [ngClass]="model.cls.grid.container">
+
+		<div *ngIf="model.label" [ngClass]="model.cls.grid.label">
+
+			<label [attr.for]="model.id" [innerHTML]="model.label"
+				[ngClass]="model.cls.element.label"></label>
+
+		</div>
+
+
+		<div [ngClass]="model.cls.grid.control">
+			<input pInputText #pInputText [attr.accept]="model.accept"
+				[attr.autoComplete]="model.autoComplete" [attr.list]="model.listId"
+				[attr.max]="model.max" [attr.min]="model.min"
+				[attr.multiple]="model.multiple" [attr.step]="model.step"
+				[attr.tabindex]="model.tabIndex" [autofocus]="model.autoFocus"
+				[formioId]="bindId && model.id" [formControlName]="model.id"
+				[maxlength]="model.maxLength" [minlength]="model.minLength"
+				[name]="model.name" [ngClass]="model.cls.element.control"
+				[pattern]="model.pattern" [placeholder]="model.placeholder"
+				[readonly]="model.readOnly" [required]="model.required"
+				[spellcheck]="model.spellCheck" [type]="model.inputType"
+				(blur)="onFocusChange($event)" (change)="onValueChange($event)"
+				(focus)="onFocusChange($event)" />
+
+			<datalist *ngIf="model.list" [id]="model.listId">
+
+				<option *ngFor="let option of model.list" [value]="option">
+			</datalist>
+		</div>
+		<ul *ngIf="hasErrorMessaging" [ngClass]="model.cls.grid.errors">
+
+			<li class="ui-message ui-messages-error ui-corner-all"
+				[class.ui-helper-hidden]="!showErrorMessages"
+				[ngClass]="model.cls.element.errors"><span
+				*ngFor="let message of errorMessages">{{message}}</span></li>
+
+		</ul>
+
+	</div>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>

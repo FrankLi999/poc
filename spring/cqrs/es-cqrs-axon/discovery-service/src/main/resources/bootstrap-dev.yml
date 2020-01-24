@@ -1,0 +1,18 @@
+#eureka standalone mode
+eureka:
+  instance:
+    hostname: localhost
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  # Notice that the serviceUrl is pointing the same host as the local instance
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+        org.axonframework: INFO
+        app: INFO

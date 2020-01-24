@@ -1,0 +1,16 @@
+<div class="content-margin" style="width: 50%;">
+    
+        <form class="text-center" [formGroup]="formGroup">
+    
+            <formio-material-control *ngFor="let controlModel of formModel"
+                                           [group]="formGroup"
+                                           [model]="controlModel"
+                                           [hasErrorMessaging]="controlModel.hasErrorMessages"
+                                           [showCharacterHint]="controlModel.type === 'INPUT'"
+                                           (change)="onChange($event)"></formio-material-control>
+    
+        </form>
+    
+        <pre>{{formGroup.value | json}}</pre>
+    
+    </div>

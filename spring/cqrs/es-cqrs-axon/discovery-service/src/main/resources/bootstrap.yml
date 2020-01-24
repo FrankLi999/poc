@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: docker
+  application:
+    name: discovery-service
+server:
+  port: ${PORT:8761}
+

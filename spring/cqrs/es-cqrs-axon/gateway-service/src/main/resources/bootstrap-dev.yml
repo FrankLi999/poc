@@ -1,0 +1,27 @@
+spring:
+  cloud:
+      config:
+        uri: http://localhost:8888
+        label: master
+        username: ${CONFIG_SECURITY_USERNAME:admin}
+        password: ${CONFIG_SECURITY_PASSWORD:admin1!}
+        fail-fast: false
+#        retry:
+#          initial-interval: 2000
+#          max-attempts: 30
+
+eureka:
+  instance:
+    metadata-map:
+      instanceId: ${spring.applicaiton.name}:${spring.application.instance_id:${random.value}}
+#    leaseRenewalIntervalInSeconds: 1 # better stick with the default in production.
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+        org.axonframework: INFO
+        app: INFO

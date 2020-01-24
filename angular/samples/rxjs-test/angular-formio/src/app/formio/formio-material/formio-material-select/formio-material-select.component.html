@@ -1,0 +1,37 @@
+<div [formGroup]="group" [ngClass]="model.cls.element.container">
+	<label *ngIf="model.label" [attr.for]="model.id"
+		[innerHTML]="model.label" [ngClass]="model.cls.element.label"></label>
+	<ng-template *ngIf="template?.align === 'START'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+		
+	<mat-select #matSelect
+                   [formioId]="bindId && model.id"
+                   [formControlName]="model.id"
+                   [multiple]="model.multiple"
+                   [ngClass]="model.cls.element.control"
+                   [placeholder]="model.placeholder"
+                   (change)="onValueChange($event)">
+
+            <mat-option *ngFor="let option of model.options$ | async"
+                       [value]="option.value"><span [innerHTML]="option.label"></span></mat-option>
+
+        </mat-select>
+	    
+    
+    <mat-list *ngIf="hasErrorMessaging"
+		[ngClass]="[model.cls.element.errors, model.cls.grid.errors]">
+
+	<mat-list-item *ngFor="let message of errorMessages"
+		[style.display]="showErrorMessages ? 'block' : 'none'">{{message}}
+	</mat-list-item> </mat-list>
+
+
+	<ng-template *ngIf="template?.align === 'END'"
+		[ngTemplateOutlet]="template.templateRef"
+		[ngTemplateOutletContext]="model"></ng-template>
+
+	<ng-content></ng-content>
+
+</div>
+

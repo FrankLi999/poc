@@ -1,0 +1,10 @@
+<select #platformFilter
+        name="platformFilter"
+        (change)="platformFilterChanged.emit(platformFilter.value)">
+  <option value="">All Platforms</option>
+  <option *ngFor="let platform of platforms"
+          value="{{platform}}">{{platform}}</option>
+</select>
+
+<app-favorite-toggle [active]="filters.favorites"
+                     (onToggle)="favoritesFilterChanged.emit()"></app-favorite-toggle>

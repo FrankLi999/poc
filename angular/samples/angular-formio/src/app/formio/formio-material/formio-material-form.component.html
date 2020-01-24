@@ -1,0 +1,14 @@
+<form class="text-center" [formGroup]="group">
+    <formio-material-control *ngFor="let controlModel of model; trackBy: trackByFn"
+        [group]="group"
+        [hasErrorMessaging]="controlModel.hasErrorMessages"
+        [model]="controlModel"
+        [ngClass]="[controlModel.cls.element.host, controlModel.cls.grid.host]"
+        [showCharacterHint]="controlModel.type === 'INPUT'"
+        [nestedTemplates]="templates"
+        (blur)="onEvent($event, 0)"
+        (change)="onEvent($event, 1)"
+        (focus)="onEvent($event, 2)">
+    </formio-material-control>
+</form>
+<pre>{{group.value | json}}</pre>

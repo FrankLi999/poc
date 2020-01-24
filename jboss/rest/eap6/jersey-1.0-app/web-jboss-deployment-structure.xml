@@ -1,0 +1,35 @@
+<jboss-deployment-structure
+	xmlns="urn:jboss:deployment-structure:1.2">
+	<deployment>
+		<exclude-subsystems>
+			<subsystem name="jaxrs" />
+			<subsystem name="logging"/>
+		</exclude-subsystems>
+		<exclusions>
+			<!-- 
+			<module name="javaee.api" />
+			-->
+			<module name="javax.xml.bind.api" />
+			<module name="com.sun.xml.bind" />
+			<module name="org.apache.log4j" />
+			<module name="org.slf4j" />
+			<module name="javax.ws.rs.api" />
+			<module name="javax.validation.api" />
+			<module name='org.slf4j' />
+      		<module name='org.slf4j.impl' />
+		</exclusions>
+		<!-- 
+		<dependencies>
+			<module name="javaee.api">
+				<imports>
+					<exclude-set>
+						<path name="javax/ws/rs" />
+						<path name="javax/ws/rs/core" />
+						<path name="javax/ws/rs/ext" />
+					</exclude-set>
+				</imports>
+			</module>
+		</dependencies>
+		-->
+	</deployment>
+</jboss-deployment-structure>

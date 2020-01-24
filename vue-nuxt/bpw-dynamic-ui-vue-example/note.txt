@@ -1,0 +1,7 @@
+1. i18n - vue-i18next, i18next
+2. validation - vuelidate extenstion with message support.
+3. error handling - sentry
+4. logging - log4j, vuejs-logger
+5. unit test - jest
+6. e2e - http://nightwatchjs.org/
+7. server side validstion errors

@@ -1,0 +1,17 @@
+<div [fxLayout]="model.fxLayout" fxFlexFill fxLayoutGap="5px"> 
+    <div [fxFlex]="controlModels.fxFlex" 
+            [fxLayout]="controlModels.fxLayout" fxFlexFill fxLayoutGap="5px" 
+            *ngFor="let controlModels of model.columns">
+        <div fxFlex *ngFor="let controlModel of controlModels.components">
+            <dynamic-ui-primeng-control *ngIf="controlModel.input"
+                [group]="group"
+                [hasErrorMessaging]="controlModel.hasErrorMessages"
+                [model]="controlModel"
+                [nestedTemplates]="templates"
+                (blur)="onEvent($event, 0)"
+                (change)="onEvent($event, 1)"
+                (focus)="onEvent($event, 2)">
+            </dynamic-ui-primeng-control>            
+        </div>
+    </div>    
+</div>
