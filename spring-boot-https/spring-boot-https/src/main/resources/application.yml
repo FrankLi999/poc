@@ -1,0 +1,27 @@
+# Accept HTTPS requests only
+#security:
+  # require-ssl: true
+  
+server:
+  port: 8643
+  ssl:
+    # The format used for the keystore. It could be set to JKS in case it is a JKS file
+    key-store-type: PKCS12
+    # The path to the keystore containing the certificate
+    key-store: "classpath:keystore/myboot-keytool.p12"
+    # The password used to generate the certificate
+    key-store-password: password
+    # The alias mapped to the certificate
+    key-alias: myboot
+    # key-store-provider: SUN
+    # enabled: true
+    
+    # Configure the Server to Require a Client Certificate for mutual auth
+    # Trust store that holds SSL certificates.
+    #trust-store: "classpath:keystore/openssl/server/javaTrustStore.p12"
+    # Password used to access the trust store.
+    #trust-store-password: password
+    # Type of the trust store.
+    #server.ssl.trust-store-type: PKCS12
+    # Whether client authentication is wanted ("want") or needed ("need").
+    #client-auth: need

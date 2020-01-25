@@ -1,0 +1,24 @@
+server:
+  port: 18080
+service1:
+  ssl: 
+    #trust store location
+    trust-store: "classpath:keystore/myboot-keytool.p12"
+    #trust store password
+    trust-store-password: password
+    protocol: TLS
+    read-timeout: 10000
+    connect-timeout: 10000
+
+service2:
+  ssl: 
+    #trust store location
+    trust-store: "classpath:keystore/trustStore.p12"
+    key-store: "classpath:keystore/keyStore.p12"
+    #trust store password
+    trust-store-password: changeit
+    key-password: changeit
+    store-password: changeit
+    protocol: TLS
+    read-timeout: 10000
+    connect-timeout: 10000
