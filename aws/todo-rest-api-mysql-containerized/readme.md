@@ -19,10 +19,11 @@ Run com.in28minutes.rest.webservices.restfulwebservices.RestfulWebServicesApplic
 https://hub.docker.com/r/in28min/todo-rest-api-mysql
 
 ### Run MySQL  
-
+docker network create wcm-bpm
 ```
 docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=todos-user --env MYSQL_PASSWORD=dummytodos --env MYSQL_DATABASE=todos --name mysql --publish 3306:3306 mysql:5.7
 ```
+docker run --network wcm-bpm --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=todos-user --env MYSQL_PASSWORD=dummytodos --env MYSQL_DATABASE=todos --name mysql --publish 3306:3306 mysql:5.7
 
 ### Run REST API Container
 
@@ -30,6 +31,7 @@ docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=tod
 mvn clean package
 docker run --name todos-api --publish 5000:5000 --link mysql:mysql in28min/todo-rest-api-mysql:1.0.0.RELEASE
 ```
+docker run --name todos-api --publish 5000:5000 --network wcm-bpm in28min/todo-rest-api-mysql:1.0.0.RELEASE
 
 ### Test
 
@@ -41,7 +43,6 @@ Run http://localhost:5000/users/in28minutes/todos
 ```
 docker login
 
-docker push in28min/todo-rest-api-mysql:0.0.1-SNAPSHOT
 docker push xli9999/todo-rest-api-mysql:1.0.0.RELEASE
 ```
 
