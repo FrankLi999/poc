@@ -1,26 +1,31 @@
-# directories
-.settings/
-.target/
-.idea/
-.worksheet/
-bin/
-build/
-dist/
-logs/
-node_modules/
-out/
+HELP.md
 target/
-tmp/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
-# files
-*.iml
-*/.DS_Store
-\#*
-.cache
+### STS ###
+.apt_generated
 .classpath
-.DS_Store
-.history
-.idea
-.idea_modules
+.factorypath
 .project
-RUNNING_PID
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/

@@ -1,41 +1,31 @@
-# Eclipse
-.project
-.classpath
-.settings/
-.factorypath
-dependency-reduced-pom.xml
-pom.xml.versionsBackup
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
-# IntelliJ
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
 *.ipr
-*.iws
-.idea
-bin/
 
-# Gradle
-.gradle/
-.ivy/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 build/
 
-# Maven
-target/
-
-# TestNG
-test-output/
-
-# JBoss AS
-transaction.log
-
-# Infinitest configuration
-infinitest.filters
-
-# Logs
-*.log
-*.log~
-
-# Libreoffice leftovers (XLS)
-.~lock*
-index.html
-
-atlassian-ide-plugin.xml
+### VS Code ###
+.vscode/

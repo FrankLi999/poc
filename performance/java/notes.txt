@@ -1,0 +1,406 @@
+#Reference
+
+Troubleshooting Java Performance: Detecting Anti-Patterns with Open Source Tools
+https://learning.oreilly.com/library/view/troubleshooting-java-performance/9781484229798/
+
+Java 9 High Performance
+https://learning.oreilly.com/library/view/java-9-high/9781787120785/
+https://learning.oreilly.com/library/view/java-high-performance-apps/9781789130515/
+
+##. Main Performance Anti-Patterns
+
+	Main Anti-Pattern #1: Unnecessary Initialization
+	Main Anti-Pattern #2: Strategy/Algorithm Inefficiency
+	Main Anti-Pattern #3: Overprocessing
+		One common example is where more data is processed than a single end 
+		user could possibly make use of in a single screen-full or webpage of 
+		information. In other words, expecting 50 pages of data in a single HTML 
+		table to load in 100ms is not going to happen. 
+	Main Anti-Pattern #4: Large Processing Challenge
+		This anti-pattern describes I/O and other hardware limitations to big performance 
+		challenges, like lookups on a few billion rows of data or repeatedly pushing several 
+		megabytes over a really slow network. 
+		
+##. P.A.T.H. Checklist:
+	Persistence
+	Alien
+	Thread
+	Heap
+	
+	1.	Start by collecting data using the P.A.t.h. Checklist. 
+		Of all the P.A.t.h. data, choose the measurement/result that looks the most 
+		problematic, whose fix would make the most positive impact on performance.
+	 
+	2.	Ask whether this “most problematic” measurement looks like main anti-pattern 1.
+		Does it deal with static data, or at least no dynamic data?
+		Is the static data reprocessed for every system request?
+		Is a small amount of I/O involved each time the static data is reprocessed?
+		…and so on
+	 
+	3.	If the data seems to fit main anti-pattern 1, then congratulations, you have 
+		built a nice hypothesis for the problem. To test the hypothesis, apply a fix 
+		to your system and retest and reassess performance. This is how to 
+		“build a case” for a performance defect.
+	 
+	4.	If the “most problematic” measurement data does not seem to fit 1, then move 
+		on to main anti-pattern 2.
+	 
+	5.	Continue to evaluate all four main anti-patterns. It’s highly unlikely that none 
+		of them will fit.
+	
+	
+##. Constantly tunning env in a small env to reduce the time presure on the final 
+   "large tuning" on production enviornment. most performance defects are 
+   “Write-Once-Run-Anywhere” (WORA) defects 
+
+   you can spend less time tuning in a larger performance environment by first 
+   tuning in a modest-sized, smaller environment.
+   
+   this “rapid tuning” approach helps keep tuning from consuming your budget 
+   and helps avoid a last-minute performance rush-job. 
+   
+   
+   > Design load tests that will run in a very small computing environment 
+	(like your desktop), effectively turning it into an economical performance 
+	tuning lab.
+	
+	o To start out, there is a ton of risk we can happily eliminate by avoiding 
+		the network in our tuning environments, thus furthering our Code First strategy.
+   
+	o Stubbing Out Back-end Systems
+	
+	  for back-end system has an HTTP/S entry point:
+		Wiremock: wiremock.org
+		Hoverfly: https://hoverfly.io/
+		Mock Server: http://www.mock-server.com/
+		Betamax: http://betamax.software/
+	  Similar stub servers of the same maturity are not yet available for other 
+	  protocols, such as RMI, JMS, IRC, SMS, WebSockets and plain-old-sockets?
+	      For these protocols: write your own stub, looking nodejs mock, or even commented out the corresponding code for testing
+
+		   open source networking APIs:
+				Netty: https://netty.io/
+				Grizzly: https://grizzly.java.net/
+				Mina: https://mina.apache.org/
+			how to build a custom TCP socket server using Netty in less than 
+			250 lines of Java:
+				http://shengwangi.blogspot.com/2016/03/netty-tutorial-hello-world-example.html
+	
+	o Local Load Generation	
+		With the Code First approach in mind, the heart of the two-machine developer 
+		tuning environment is your code — a single JVM for the web tier that makes
+		calls to a single JVM for the application tier.
+		
+		the other parts we are concerned with:
+			 the stub servers that replacing the mainframe and the cloud services
+			 some monitoring will be sprinkled in
+			 load generator
+		A load generator is a network traffic generator to stress a network-enabled 
+		software application, like a SOA or the server-side portion of a web-application, 
+		to see if the responses are fast enough and to make sure it doesn’t crash.
+			
+		JMeter, use a record-and-playback approach to get the traffic just right.
+		
+		On an otherwise idle system, manually traverse your application using a 
+		web browser while a special tool (which comes with a load generator) 
+		records the network requests made by your browser.
+		The output of that recording is a tool-specific script that can replay, 
+		verbatim, that single user’s traffic, thus stressing out the SUT a little 
+		bit. Then, to model a dynamic workload and move away from the verbatim 
+		recording, you enhance the script to log on a (data-driven) variety of 
+		users and operate on a (data-driven) variety of “things” in the SUT—whatever 
+		things the SUT deals in—shopping for kayaks, a dating service for manatees, 
+		delivering news stories, whatever. Hardware permitting, load generators 
+		can spin up as many threads as you like to simulate a larger number of users.
+		
+		$JMETER_HOME/bin/jmeter -n -t myLoadPlan.jmx -l test001.jtl -e -o dirTest001
+		
+		As long as RAM and CPU consumption for the JMeter process stay relatively 
+		low, perhaps below 20% for both, then I have had no problems running JMeter 
+		on the same machine as the SUT. 
+		
+		Monitoring graph resource consumption by PID:
+			The tool is called PerfMon and it comes from jmeter-plugins.org at 
+			https://jmetr-plugins.org/wiki/PerfMon/ 
+			https://jmeter-plugins.org/wiki/SettingsPanel/
+			
+			run them in a Linux/Docker container:
+				https://nmonvisualizer.github.io/nmonvisualizer/
+				https://github.com/google/cadvisor
+				
+		CORRELATION VARIABLES such as CUST_ID, CSRF tokens 
+		When using JMeter, correlation variables are not required for JSESSIONID support. 
+		Instead, just make sure your JMeter script has one Cookie Manager.
+	o Comparison Metrics
+		resources: CPU, Memory, perfMon, TypePerf, ActivityMonitor, top/htop/topas/nnon/sar, and so on
+		component to blame: Server-side data like thread dumps, Profiler data, verbose GC data, 
+			SQL throughput/response time, and so on
+		Which code change performs better: Response time and throughput metrics from the load generator
+			http://www.brendangregg.com/usemethod.html
+			
+			
+		Setting Direction for Tuning:
+			only decide to keep a performance tuning change once the load generator tests shows it 
+			will benefit the end user or reduce resource consumption.
+   > How to graph CPU/RAM consumption of individual processes over time
+
+   > Replace back-end systems with a stub server that returns prerecorded 
+   responses.   
+## Java Tools   
+	local monitoring: java agaent, http://localhost:4000
+	glowroot ( https://glowroot.org/ ) Monitoring
+
+	JavaMelody, 
+	JDBC Performance Logger
+		https://github.com/sylvainlaurent/JDBC-Performance-Logger
+		
+	Wireshark
+	tcpdump, windump, and wireshark are great network observability tools, but they have 
+		no easy way to aggregate or summarize response time data on a very busy system.
+	
+	https://github.com/chewiebug/GCViewer : Heap Trending
+	https://gceasy.io/: upload the gc log file
+	https://github.com/mgm3746/garbagecat
+	heapSpank
+	ECLIPSE MAT: http://www.eclipse.org/mat/ 
+		for memory leak detection
+	
+	jcmd: capture pid of the jvm
+		jcmd <myJavaPid> GC.heap_dump /path/to/myDump8.dat
+	jstack: create thread dump 
+	jstat: capture GC metrics for the RED-YELLOW-GREEN approach.
+		jstat -gc <myPid> 1s
+	jmap: memory leak
+		JAVA_HOME/bin/jmap -histo <myPid>
+	jinfo
+	jdb
+	jvisualvm
+	jconsole
+	The RMI server jstatd
+## Persistence	
+	diagnose application performance problems caused by:
+	> Individual JDBC SQL queries
+	> Multiple JDBC SQL queries, regardless of how fast the individual queries run
+	
+	http://ostermueller.blogspot.com/2014/11/the-worst-server-side-performance.html
+	
+	I've been working in software performance for the last 8 years, and by far 
+	the worst performance problem has been "too many database calls."  But don't 
+	take my word for it.  Here are some outside opinions from people who should know.
+	
+		"Try to pull back multiple rows at once. In particular,
+		never do repeated queries on the same table to get multiple rows."  (link). 
+
+	He used the "never" word, but more than 10 years later, it is still common 
+	place for code to hit the same table multiple times when the end user makes 
+	a single click.
+	
+	
+	Fast forward to 2010.  DynaTrace is a .NET and Java monitoring tool 
+	that has seen lots of production action.  Andi Grabner of DynaTrace put 
+	
+		"too many database calls" at number one on the list of worst 
+		performance problems.
+
+	https://dzone.com/articles/top-10-causes-java-ee
+	Just a few years later in 2012, this problem shows up as #4 on DZone's 
+	list of biggest performance headaches:
+		"Too many external system calls are performed in a synchronous 
+		and sequential manner."
+		
+		tools: Glowroot, JavaMelody, JDBC Performance Logger
+		   <dependency>
+				<groupId>com.github.sylvainlaurent.jdbcperflogger</groupId>
+				<artifactId>jdbc-perf-logger-agent</artifactId>
+				<version>...</version>
+			</dependency>
+			or
+
+			<dependency>
+				<groupId>com.github.sylvainlaurent.jdbcperflogger</groupId>
+				<artifactId>jdbc-perf-logger-driver</artifactId>
+				<version>...</version>
+			</dependency>
+		   -javaagent:path/to/jdbc-perf-logger-agent-x.y.z.jar
+		   -javaagent:path/to/glowroot
+		Test 01: Performance Issues with One SQL
+			Test Results, captured from Glowroot:
+			Test 01a: 3,500 requests per minute; 50ms response time.
+			Test 01b: 14 requests per minute; 13,500ms response time
+			
+			
+		Performance Issues with Multiple SQL Statements:
+			THE FIRST ISSUE: SELECT N+1
+				Detecting SELECT N+1: glowroot, check the execution count of the sql
+			Chunky Outperforms Chatty
+			
+## Alien system
+	    use thread dump to detect slow network transmissions and which Java code invokes them.
+		compression dramatically speeds up transmissions over ‘slow’ network connections
+		 use Wireshark to inspect the payload of a transmission to see whether it is “clear text”, 
+		 which is one indicator that compression will help.
+		 
+		 When HTTPS responses are about 200K, compressing that response speeds up the request 
+		 by 1500ms (2273ms in red is almost 1500ms faster than 3721 in blue).
+		 
+## Thread		 
+		o Using Thread Dumps to Detect Network Requests
+		
+		> jcmd
+		find the process id of the jvm
+		> jstack {pid-15893} > myThreadDump.txt
+		
+		o Quantifying Response Time with glowroot
+		
+		o	You can run the following command on either the machine sending or the one receiving the data. 
+		 tcpdump -X -i any -s 0 "port 8675 and greater 100"
+		 
+		 
+		 Examples of How Popular Containers Name Their Threads
+				Container             Example of thread name
+				WebSphere             WebContainer : 5
+				Spring Boot / Tomcat  http-nio-8080-exec-7
+				Spring Boot / Jetty   qtp266500815-40
+				Wildfly Servlet 11.0  default task-127
+				
+		Manual Thread Dump Profiling (MTDP)
+			1.	Take four or so thread dumps as load is applied with a few seconds between each dump.
+            2.	If something that you could fix shows up in the dumps for two or more threads that are under load, it is worth fixing.
+##	Heap
+		
+		quickly assess GC Health in any JV
+		
+		high-level approach to troubleshooting performance issues with the heap
+		
+		Fix the most common GC inefficiencies by first understanding which heap 
+			space is causing your problem, the old space or the new space.
+		
+		Quick GC Health Check:	
+			The phrase “sustained GC overhead” roughly means sustained for 5 minutes or more.
+			
+			RED: If sustained GC overhead is greater than 8%, then high priority should be given to improving GC performance.
+			YELLOW: If sustained GC overhead is greater than 2% (but less than 8%), then start researching improvements, but there is no rush to implement a GC change. Moving from GREEN to YELLOW will often be an early warning sign of a memory leak.
+			GREEN: when sustained GC overhead less than 2% GC performance is considered healthy, and no GC tuning is required. However, systems that require faster response times (perhaps less than 25ms) will still see benefit if GC is tuned more, perhaps down to 0.5%.
+			
+			similar grading scale, like this:
+				RED: More than five 3-second pauses an hour
+				YELLOW: Between two and five 3-second pauses an hour
+				GREEN: one or fewer 3-second pauses an hour
+				
+			 G1 garbage collector algorithm was designed to minimize these spikes.
+			 
+			traditional approach:
+				-Xloggc:gc.log
+				-verbose:gc
+				
+				and check gc.log
+				
+				-XX:+PrintGCDetails
+				-XX:+PrintGCDateStamps
+				-XX:+PrintGCTimeStamps
+				-XX:+PrintTenuringDistribution
+				-XX:+PrintClassHistogram
+				-XX:+PrintGCApplicationStoppedTime
+				-XX:+PrintPromotionFailure
+				-verbose:sizes
+				
+				-XX:+UseGCLogFileRotation
+				-XX:NumberOfGCLogFiles=5
+				-XX:GCLogFileSize=10m
+				
+				
+				the Visual GC and gcViewer plug-ins for JVisualVM that comes 
+				with the JDK. JConsole provides metrics, too. 
+				
+			Here are four main facilities for capturing GC performance data:
+				Verbose GC
+				JAVA_HOME/bin/jvisualvm and JAVA_HOME/bin/jconsole
+				JAVA_HOME/bin/jstat
+				Third-party tools like Application Performance Management (APM) tools, Dynatrace, AppDynamics, and so on
+			
+
+			PLUG-IT-IN-NOW GC METRICS WITH JSTAT			
+			jstat -gc <myPid> 1s
+			
+				-Xmx1g -XX:NewSize=512m -XX:MaxNewSize=512m -XX:+UseConcMarkSweepGC -XX:ConcGCThreads=4
+				dYGCT  dFGCT  : young and new gen
+				-----  -----
+				0.047  0.000
+				0.052  0.000
+				
+				Glowroot’s JVM Gauge feature
+				
+				https://github.com/chewiebug/GCViewer .
+			Heap Dump Analysis
+				jcmd <myJavaPid> GC.heap_dump /path/to/myDump8.dat
+				
+				Don’t forget to use these among the JVM start-up arguments for your 
+				application that will automatically capture a heap dump when an out-of-memory error occurs:
+				-XX:+HeapDumpOnOutOfMemoryError and -XX:HeapDumpPath=/some/path/ in/production
+				
+			Heap Troubleshooting, Step-by-Step
+				-Xmx must not exceed available RAM.
+				o Avoid NewRatio
+				o Love the one you’re with: stick with your favorite GC algorithm (except serial). 
+				o If you’re on IBM J9, then only use gencon (default) or the new Balanced, which is 
+				  a ‘regional’ algorithm, similar to G1.
+				  
+				  
+			Basic GC troubleshooting steps follow:
+				1.	Start out with a not-huge heap, something between 512MB (perhaps for 
+					micro-services) and 4GB.
+				 
+				2.	While under load, assess GC generational overhead. Use jstat and gctime.sh 
+					or gctime.cmd.
+				 
+				3.	If one or both of the generations have sustained red and/or yellow overhead, 
+					configure an additional chunk of RAM (perhaps 256MB?) for that generation; 
+					then restart and retest. Repeat until GC overhead percentage results are in 
+					the desired range.
+				 
+				4.	If infrequent but long old gen pauses (slower than 5 seconds) are 
+					unacceptable, consider moving to one of the following:
+					>	Hotspot / G1, because old gen collections are broken up into smaller collections 
+						yielding smaller pauses. Here is the detailed G1 tuning doc:
+						http://www.oracle.com/technetwork/articles/java/g1gc-1984535.html
+					> 	For IBM J9, use the Balanced collector, whose “regional” approach is 
+						very similar to G1.
+			Advanced GC troubleshooting steps follow:
+				1.	If old gen continues to have yellow or red or out-of-memory errors, 
+					check for memory leaks.
+					>.	Use jmap -histo and/or heapSpank to assess whether there are one or 
+						more classes whose byte counts or instance counts are continually on the rise.
+					>.	Use PMAT or GCViewer to check verbose GC. Check the graphs in these tools 
+						for upward trends in old gen memory consumption. Consider the amount of 
+						time the graphs show that it takes to fill the heap. If the heap fills in a 
+						matter of seconds or minutes, I consider that a fast leak and look for 
+						individual requests that allocate massive amounts of data. A massive 
+						JDBC result set is once example. If instead, it takes hours or days to 
+						fill the heap, look for a small number of objects that collect in a 
+						java.util collection that is held in memory by a singleton.
+ 
+					>.	If heapSpank doesn’t provide enough data to find cause of the 
+						leak, capture heap dump, try one of the following:
+						o.	MAT leak suspects.
+ 
+						o.	Histogram.
+ 
+						o.	Use MAT to find GC Roots.
+ 
+  
+				2.	Metaspace leaks. Look for “MC”, “MU”, “CCSC”, and “CCSU” from the output of 
+					“jstat -gc <myPid> 1000”.
+ 
+				3.	Sometimes, a single huge allocation of memory can fill the heap and crash your JVM. 
+					To learn how to troubleshoot this situation, invoke the following URL from any 
+					browser during any jpt test:
+						https://localhost:8675/crashJvmWithMonsterResultSet
+						This executes a JDBC query that returns a massive result set.
+						The brower will hang and the JVM will produce “java.lang.OutOfMemoryError: Java heap space” 
+						errors. Create a heap dump using “jcmd <myPid> GC.heap_dump myDump.bin”. 
+						Use MAT to detect the leak.
+ 
+				4. Look for failure messages in the verbose GC logs. Normally, I use PMAT or GCViewer 
+					to ‘look’ at my logs. But when I’m working on a real tough GC problem that 
+					defies explanation, I get out my text editor and look through the logs for errors 
+					like “[ParNew (promotion failed)”. Be sure to do an internet search for similar errors.

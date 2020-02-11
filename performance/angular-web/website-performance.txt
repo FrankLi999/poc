@@ -1,0 +1,3 @@
+## Reference
+https://learning.oreilly.com/library/view/front-end-performance/9781492069706/
+https://learning.oreilly.com/library/view/performance-tools/9781492069744/
