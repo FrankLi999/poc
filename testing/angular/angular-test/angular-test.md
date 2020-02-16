@@ -122,9 +122,55 @@ Create a stub, which is a barebones class that defines its properties and method
 ### routing
 
 Testing router navigation with RouterTestingModule. This module intercepts navigation attempts and allows you to check their parameters.
-v
+
+# RxJS - marble test
+
+During the tests, the sense of time (when values are emitted) is handle by the RxJS TestScheduler
+
+> - (dash): simulate the passage of time, one dash correspond to a frame which can be perceived as 10ms in our tests, —--- is 40 ms
+>   a-z (a to z): represent an emission, -a--b---c stands for “emit a at 20ms, b at 50ms, c at 90ms”
+>   | (pipe): emit a completed (end of the stream), ---a-| stands for emit ‘a’ at 40ms then complete (60ms)
+>   \# (pound sign): indicate an error (end of the stream), —--a--# emit a at 40ms then an error at 70ms
+>   ( ) (parenthesis): multiple values together in the same unit of time, —--(ab|) stands for emit a b at 40ms then complete (40ms)
+>   ^ (caret): indicate a subscription point, —^-- subscription starting at ^
+>   ! (exclamation point): indicate the end of a subscription point, —^--! subscription starting at ^ and ending at !
+
+'-' or '------': Equivalent to Observable.never(), or an observable that never emits or completes
+
+|: Equivalent to Observable.empty()
+
+#: Equivalent to Observable.throw()
+
+https://stackblitz.com/edit/jasmine-marbles-testing?embed=1&file=src/operators.spec.ts&hideExplorer=1
+npm install --save-dev jasmine-marbles
+cold: Subscription starts when test begins:
+cold(--a--b--|, { a: 'Hello', b: 'World' })
+hot: Behaves like subscription starts at point of caret:
+hot(--^--a--b--|, { a: 'Hello', b: 'World' })
+flush:
+expectObservable: used to assert that an Observable meets a marble diagram.
+expectSubscription(): used to assert that an Observable has the expected subscriptions.
+Without third party lib, via Rx’s TestScheduler and RunHelpers.
+Runhelper interface:
 
 ## End to end test - Protractor, timeouts,
+
+### Protractor - Run chrome in headless mode with
+
+https://github.com/angular/protractor/blob/master/docs/browser-setup.md
+To start Chrome in headless mode, start Chrome with the --headless flag.
+
+As of Chrome 58 you also need to set --disable-gpu, though this may change in future versions.
+Also, changing the window size during a test will not work in headless mode, but you can set it on
+the commandline like this --window-size=800,600.
+
+capabilities: {
+browserName: 'chrome',
+
+chromeOptions: {
+args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
+}
+}
 
 ### Protractor
 

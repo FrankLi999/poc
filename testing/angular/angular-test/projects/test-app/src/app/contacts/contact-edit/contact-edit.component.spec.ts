@@ -103,16 +103,16 @@ describe("ContactEditComponent tests", () => {
     }));
   });
 
-  describe("loadContact() test", () => {
-    it("should load contact", fakeAsync(() => {
-      component.isLoading = false;
-      component.loadContact();
-      fixture.detectChanges();
-      const nameInput = rootElement.query(By.css(".contact-name"));
-      tick(100);
-      expect(nameInput.nativeElement.value).toBe("janet");
-    }));
-  });
+  // describe("loadContact() test", () => {
+  //   it("should load contact", fakeAsync(() => {
+  //     component.isLoading = false;
+  //     component.loadContact();
+  //     fixture.detectChanges();
+  //     const nameInput = rootElement.query(By.css(".contact-name"));
+  //     tick(100);
+  //     expect(nameInput.nativeElement.value).toBe("janet");
+  //   }));
+  // });
 
   describe("updateContact() tests", () => {
     it("should update the contact", fakeAsync(() => {

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BrowserStorage } from './browser-storage.service';
+import { Injectable } from "@angular/core";
+import { BrowserStorage } from "./browser-storage.service";
 
 export interface IContactPreference {
   key: string;
