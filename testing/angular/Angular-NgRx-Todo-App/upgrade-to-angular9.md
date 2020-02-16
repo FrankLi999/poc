@@ -41,4 +41,5 @@ You can optionally pass the --create-commits (or -C) flag to ng update commands 
        replace outdates dependencies
 17. ng update @angular/core @angular/cli
     now it is typescript 3.7
+    npm install --save-dev @angular-devkit/schematics
 17. ng update @angular/material
