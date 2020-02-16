@@ -19,11 +19,10 @@ describe('AppComponent', () => {
       .compileComponents();
   }));
 
-  // let translateServiceMock: jasmine.SpyObj<TranslateService>;
-  let translateServiceMock: TranslateService;
+  let translateServiceMock: jasmine.SpyObj<TranslateService>;
   it('should create the app', async(() => {
-    translateServiceMock = TestBed.inject(TranslateService);
-    spyOn(translateServiceMock, 'getBrowserLang').and.returnValue('en');
+    translateServiceMock = TestBed.inject(TranslateService) as jasmine.SpyObj<TranslateService>;
+    translateServiceMock.getBrowserLang.and.returnValue('en');
     const fixture = TestBed.createComponent(AppComponent);
 
     const app = fixture.debugElement.componentInstance;

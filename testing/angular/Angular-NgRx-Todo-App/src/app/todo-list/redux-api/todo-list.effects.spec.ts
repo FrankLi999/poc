@@ -11,8 +11,7 @@ describe('TodoListEffects', () => {
   let actions: Observable<any>;
 
   let effects: TodoListEffects;
-  // let todoListService: jasmine.SpyObj<TodoListService>;
-  let todoListService: TodoListService;
+  let todoListService: jasmine.SpyObj<TodoListService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,7 +28,7 @@ describe('TodoListEffects', () => {
     });
 
     effects = TestBed.inject(TodoListEffects);
-    todoListService = TestBed.inject(TodoListService);
+    todoListService = TestBed.inject(TodoListService) as jasmine.SpyObj<TodoListService>;
   });
 
   describe('loadTodoList', () => {
@@ -40,7 +39,7 @@ describe('TodoListEffects', () => {
 
       actions = hot('-a', { a: action });
       const response = cold('-a|', { a: todoList });
-      spyOn(todoListService, 'getTodos').and.returnValue(response);
+      todoListService.getTodos.and.returnValue(response);
 
       const expected = cold('--b', { b: outcome });
       expect(effects.loadTodoList$).toBeObservable(expected);
@@ -53,7 +52,7 @@ describe('TodoListEffects', () => {
 
       actions = hot('-a', { a: action });
       const response = cold('-#|', {}, error);
-      spyOn(todoListService, 'getTodos').and.returnValue(response);
+      todoListService.getTodos.and.returnValue(response);
 
       const expected = cold('--(b|)', { b: outcome });
       expect(effects.loadTodoList$).toBeObservable(expected);
