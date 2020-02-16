@@ -36,6 +36,7 @@ https://angular.io/guide/web-worker
 14. Make sure you are using Node 10.13 or later.
 15. ng update @angular/core@8 @angular/cli@8 in your workspace directory to update to the latest 8.x version of @angular/core and @angular/cli and commit these changes.
 You can optionally pass the --create-commits (or -C) flag to ng update commands to create a git commit per individual migration.
-16. ng update @angular/core @angular/cli
+16. npm install --save tslib
+17. ng update @angular/core @angular/cli
     now it is typescript 3.7
 17. ng update @angular/material

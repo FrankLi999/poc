@@ -46,6 +46,7 @@
     "cors": "^2.8.4",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.5.4",
+    "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
