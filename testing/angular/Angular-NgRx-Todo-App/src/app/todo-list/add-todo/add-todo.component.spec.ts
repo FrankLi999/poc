@@ -21,9 +21,10 @@ describe('AddTodoComponent', () => {
     }).compileComponents();
   }));
 
-  let todoListServiceMock: jasmine.SpyObj<TodoListService>;
+  //let todoListServiceMock: jasmine.SpyObj<TodoListService>;
+  let todoListServiceMock: TodoListService;
   beforeEach(() => {
-    todoListServiceMock = TestBed.get(TodoListService);
+    todoListServiceMock = TestBed.inject(TodoListService);
 
     fixture = TestBed.createComponent(AddTodoComponent);
     component = fixture.componentInstance;
@@ -41,7 +42,7 @@ describe('AddTodoComponent', () => {
       { id: 'task2', title: 'Go to the gym', description: 'Remember to work out' }
     ];
     (todoListServiceMock as any).todoList = todoList;
-    todoListServiceMock.updateTodo.and.returnValue(of([]));
+    spyOn(todoListServiceMock, 'updateTodo').and.returnValue(of([]));
 
     // Act
     component.currentTODO = todoList[0];
@@ -61,7 +62,7 @@ describe('AddTodoComponent', () => {
       { id: 'task2', title: 'Go to the gym', description: 'Remember to work out' }
     ];
     (todoListServiceMock as any).todoList = todoList;
-    todoListServiceMock.addTodo.and.returnValue(of([]));
+    spyOn(todoListServiceMock, 'addTodo').and.returnValue(of([]));
 
     // Act
     component.currentTODO = newTodo;

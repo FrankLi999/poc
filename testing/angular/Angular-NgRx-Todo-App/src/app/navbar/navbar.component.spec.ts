@@ -34,7 +34,7 @@ describe('NavbarComponent', () => {
       ],
       imports: [
         BrowserModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot(),
         FormsModule,
         CoreModule,

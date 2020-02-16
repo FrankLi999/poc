@@ -43,3 +43,10 @@ You can optionally pass the --create-commits (or -C) flag to ng update commands 
     now it is typescript 3.7
     npm install --save-dev @angular-devkit/schematics
 17. ng update @angular/material
+18. If you use ngForm element selector to create Angular Forms, you should instead use ng-form
+19. If you are a library author and you had a method returning ModuleWithProviders
+https://angular.io/guide/deprecations#modulewithproviders-type-without-a-generic
+20. If you depend on many Angular libraries you may consider speeding up your build by invoking the ngcc (Angular Compatibility Compiler) in an npm postinstall script
+https://angular.io/guide/ivy#speeding-up-ngcc-compilation
+21.If you have specified any entryComponents in your NgModules or had any uses of ANALYZE_FOR_ENTRY_COMPONENTS, you can remove them. They are no longer required with the Ivy compiler and runtime.
+22. If you use TestBed.get, you should instead use TestBed.inject. This new method has the same behavior, but is type safe.

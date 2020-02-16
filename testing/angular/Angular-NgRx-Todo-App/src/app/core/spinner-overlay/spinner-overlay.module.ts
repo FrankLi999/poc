@@ -7,7 +7,7 @@ import { SpinnerModule } from '@shared-lib/spinner/spinner.module';
 @NgModule({
   imports: [CommonModule, SpinnerModule],
   declarations: [SpinnerOverlayComponent],
-  entryComponents: [SpinnerOverlayComponent],
+  // entryComponents: [SpinnerOverlayComponent],
   providers: [SpinnerOverlayService],
   exports: []
 })
