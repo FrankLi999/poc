@@ -11,7 +11,7 @@ Resources:
     Properties:
       Handler: my.service.StreamLambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: target/my-service-1.0-SNAPSHOT-lambda-package.zip
+      CodeUri: target/my-serverless-boot2-1.0-SNAPSHOT-lambda-package.zip
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 30
