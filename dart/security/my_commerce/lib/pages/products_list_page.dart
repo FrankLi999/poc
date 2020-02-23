@@ -67,7 +67,7 @@ class ProductsListPageBody extends StatelessWidget {
                 if (index == model.getProductsCount()) {
                   if (model.hasMoreProducts) {
                     pageIndex++;
-                    model.parseProductsFromResponse(95, pageIndex);
+                    model.parseProductsFromResponse(20, pageIndex);
                     return Padding(
                       padding: const EdgeInsets.only(top: 16.0),
                       child: Center(child: CircularProgressIndicator()),
