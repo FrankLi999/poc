@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "exactMatch": "false",
+    "classes": "sadsad",
+    "icon": "sadsad",
+    "title": "sadsadsad",
+    "translate": "sadsad",
+    "showOnMenu": "false",
+    "function": "sadsad",
+    "navigationType": "sadsad",
+    "contentAreaLayout": "sadsad",
+    "externalUrl": "false",
+    "cacheTTL": "15",
+    "navigationId": "sadsa",
+    "searchData": {
+      "description": "sadsadsad",
+      "keywords": ["asdads", "asdsad"]
+    },
+    "url": "sadsad",
+    "securePage": "false",
+    "siteConfig": "sadsad",
+    "name": "asdsad",
+    "sorderOrder": "0",
+    "friendlyURL": "sadsad",
+    "openInNewTab": "false"
+  },
+  "elements": {
+    "body": "sadsadasd"
+  },
+  "repository": "bpwizard",
+  "nodePath": "/bpwizard/library/camunda/rootSiteArea/home",
+  "workspace": "default"
+}

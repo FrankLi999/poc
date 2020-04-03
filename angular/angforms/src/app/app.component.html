@@ -1,0 +1,37 @@
+<div class="container">
+  <h3>Angular Form Layout</h3>
+  <form (ngSubmit)="submitForm()">
+    <input [formControl]="id" id="'id'" placeholder="Enter an id" />
+    <label *ngIf="id.invalid" [ngClass]="'error'" class="form-control">
+      Id is required.
+    </label>
+
+    <div *ngFor="let name of names.controls; let arraryIndex = index">
+      <input
+        [formControl]="getName(arraryIndex)"
+        id="'name'_{{ arraryIndex }}"
+        placeholder="Enter a Name"
+        class="form-control"
+      />
+      <label *ngIf="getName(arraryIndex).invalid" [ngClass]="'error'">
+        Name is required.
+      </label>
+      <button
+        type="button"
+        (click)="addNameField()"
+        class="btn btn-success"
+        [ngClass]="'pad'"
+      >
+        Add More Names
+      </button>
+      <button (click)="deleteNameField(arraryIndex)" class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "lodash/*": ["node_modules/@types/lodash-es/*"],
+      "bpw-wcm-service": ["projects/bpw-wcm-service/src/public-api"],
+      "bpw-wcm-service/*": ["projects/bpw-wcm-service/src/lib/*"],
+      "bpw-wcm-preview": ["projects/bpw-wcm-preview/src/public-api"],
+      "bpw-wcm-preview/*": ["projects/bpw-wcm-preview/src/lib/*"],
+      "bpw-wcm-authoring": ["projects/bpw-wcm-authoring/src/public-api"],
+      "bpw-wcm-authoring/*": ["projects/bpw-wcm-authoring/src/lib/*"],
+      "bpw-wcm-elements": ["projects/bpw-wcm-elements/src/public-api"],
+      "bpw-wcm-elements/*": ["projects/bpw-wcm-elements/src/lib/*"],
+      "bpw-rest-client": ["projects/bpw-rest-client/src/public-api"],
+      "bpw-rest-client/*": ["projects/bpw-rest-client/src/lib/*"],
+      "bpw-common": ["projects/bpw-common/src/public-api"],
+      "bpw-common/*": ["projects/bpw-common/src/lib/*"],
+      "@bpw/ajsf-core": ["dist/@bpw/ajsf-core"],
+      "@bpw/ajsf-cor/*": ["dist/@bpw/ajsf-core/*"],
+      "@bpw/ajsf-material": ["dist/@bpw/ajsf-material"],
+      "@bpw/ajsf-material/*": ["dist/@bpw/ajsf-material/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

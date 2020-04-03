@@ -1,0 +1,124 @@
+{
+  "children": {
+    "propertyGroup": {
+      "children": {
+        "property-column": {
+          "jcr:primaryType": "bpw:formColumn",
+          "bpw:fxFlex": 0,
+          "bpw:id": "property-column",
+          "bpw:fieldNames": [
+            "properties.name",
+            "properties.title",
+            "properties.description",
+            "properties.categories",
+            "properties.workflow"
+          ]
+        }
+      },
+      "jcr:primaryType": "bpw:formRow"
+    },
+    "elementGroups": {
+      "children": {
+        "group1": {
+          "children": {
+            "row0": {
+              "children": {
+                "fieldgroup20": {
+                  "jcr:primaryType": "bpw:formColumn",
+                  "bpw:fxFlex": 0,
+                  "bpw:id": "fieldgroup20",
+                  "bpw:fieldNames": ["elements.yyyyy"]
+                }
+              },
+              "jcr:primaryType": "bpw:formRow"
+            }
+          },
+          "jcr:primaryType": "bpw:formRows"
+        }
+      },
+      "jcr:primaryType": "bpw:formGroupFoler"
+    },
+    "elements": {
+      "children": {
+        "yyyyy": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:controlName": "binary",
+          "bpw:dataType": "text",
+          "bpw:mandatory": false,
+          "bpw:userSearchable": false,
+          "bpw:systemIndexed": false,
+          "bpw:showInList": false,
+          "bpw:unique": false
+        }
+      },
+      "jcr:primaryType": "bpw:elementFolder"
+    },
+    "properties": {
+      "children": {
+        "workflow": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:title": "Workflow",
+          "bpw:controlName": "text",
+          "bpw:dataType": "Text",
+          "bpw:valditionRegEx": "[^(<[.\n]+>)]*",
+          "bpw:mandatory": true,
+          "bpw:userSearchable": true,
+          "bpw:systemIndexed": true,
+          "bpw:showInList": true,
+          "bpw:unique": false
+        },
+        "name": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:title": "Name",
+          "bpw:controlName": "text",
+          "bpw:dataType": "Text",
+          "bpw:valditionRegEx": "[^(<[.\n]+>)]*",
+          "bpw:mandatory": true,
+          "bpw:userSearchable": true,
+          "bpw:systemIndexed": true,
+          "bpw:showInList": true,
+          "bpw:unique": false
+        },
+        "description": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:title": "Description",
+          "bpw:controlName": "text",
+          "bpw:dataType": "Text",
+          "bpw:mandatory": false,
+          "bpw:userSearchable": false,
+          "bpw:systemIndexed": true,
+          "bpw:showInList": false,
+          "bpw:unique": false
+        },
+        "categories": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:title": "Category",
+          "bpw:controlName": "category",
+          "bpw:dataType": "text",
+          "bpw:mandatory": false,
+          "bpw:userSearchable": true,
+          "bpw:systemIndexed": false,
+          "bpw:showInList": false,
+          "bpw:unique": false
+        },
+        "title": {
+          "jcr:primaryType": "bpw:formControl",
+          "bpw:title": "Title",
+          "bpw:controlName": "text",
+          "bpw:dataType": "Text",
+          "bpw:valditionRegEx": "[^(<[.\n]+>)]*",
+          "bpw:mandatory": true,
+          "bpw:userSearchable": true,
+          "bpw:systemIndexed": true,
+          "bpw:showInList": true,
+          "bpw:unique": false
+        }
+      },
+      "jcr:primaryType": "bpw:propertyFolder"
+    }
+  },
+  "jcr:primaryType": "bpw:authoringTemplate",
+  "bpw:baseResourceType": "Content",
+  "bpw:title": "bbbb",
+  "bpw:description": "xsdf"
+}

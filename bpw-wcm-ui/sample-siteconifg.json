@@ -1,0 +1,6013 @@
+{
+  "wcmRepositories": [
+    {
+      "name": "bpwizard",
+      "workspaces": [
+        {
+          "name": "default",
+          "libraries": [
+            {
+              "name": "apigateway"
+            },
+            {
+              "name": "camunda"
+            },
+            {
+              "name": "design"
+            }
+          ]
+        },
+        {
+          "name": "expired",
+          "libraries": [
+            {
+              "name": "apigateway"
+            },
+            {
+              "name": "camunda"
+            },
+            {
+              "name": "design"
+            }
+          ]
+        },
+        {
+          "name": "draft",
+          "libraries": [
+            {
+              "name": "apigateway"
+            },
+            {
+              "name": "camunda"
+            },
+            {
+              "name": "design"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": {
+    "bpw:library": [
+      {
+        "jcrType": "bpw:library",
+        "resourceName": "library",
+        "operation": "Create",
+        "defaultTitle": "New Library",
+        "defaultIcon": "create_new_folder"
+      }
+    ],
+    "bpw:contentAreaLayoutFolder": [
+      {
+        "jcrType": "bpw:contentAreaLayoutFolder",
+        "resourceName": "contentAreaLayout",
+        "operation": "Create",
+        "defaultTitle": "New Content Area Layout",
+        "defaultIcon": "create"
+      }
+    ],
+    "bpw:authoringTemplateFolder": [
+      {
+        "jcrType": "bpw:authoringTemplateFolder",
+        "resourceName": "authoringTemplate",
+        "operation": "Create",
+        "defaultTitle": "New Authoring Template",
+        "defaultIcon": "create"
+      }
+    ],
+    "bpw:renderTemplateFolder": [
+      {
+        "jcrType": "bpw:renderTemplateFolder",
+        "resourceName": "renderTemplate",
+        "operation": "Create",
+        "defaultTitle": "New Render Template",
+        "defaultIcon": "create"
+      }
+    ],
+    "bpw:themesFolder": [
+      {
+        "jcrType": "bpw:themesFolder",
+        "resourceName": "theme",
+        "operation": "Create",
+        "defaultTitle": "New Theme",
+        "defaultIcon": "create"
+      }
+    ],
+    "bpw:themeType": [
+      {
+        "jcrType": "bpw:themeType",
+        "resourceName": "theme",
+        "operation": "Edit",
+        "defaultTitle": "Edit Theme",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:themeType",
+        "resourceName": "folder",
+        "operation": "Create",
+        "defaultTitle": "New Folder",
+        "defaultIcon": "create_new_folder"
+      },
+      {
+        "jcrType": "bpw:themeType",
+        "resourceName": "theme",
+        "operation": "Delete",
+        "defaultTitle": "Remove Theme",
+        "defaultIcon": "delete"
+      },
+      {
+        "jcrType": "bpw:themeType",
+        "resourceName": "file",
+        "operation": "Upload",
+        "defaultTitle": "Upload",
+        "defaultIcon": "cloud_upload"
+      }
+    ],
+    "bpw:siteArea": [
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "content",
+        "operation": "Create",
+        "defaultTitle": "New Content Item",
+        "defaultIcon": "create"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Create",
+        "defaultTitle": "New Site Area",
+        "defaultIcon": "create"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Edit",
+        "defaultTitle": "Edit SiteArea",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Lock",
+        "defaultTitle": "Lock Site Area",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Preview",
+        "defaultTitle": "Preview SiteArea",
+        "defaultIcon": "pageview"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Purge",
+        "defaultTitle": "Purge Site Area",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Save",
+        "defaultTitle": "Save Site Area",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:siteArea",
+        "resourceName": "siteArea",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock Site Area",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "bpw:authoringTemplate": [
+      {
+        "jcrType": "bpw:authoringTemplate",
+        "resourceName": "authoringTemplate",
+        "operation": "Edit",
+        "defaultTitle": "Edit Authoring Template",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:authoringTemplate",
+        "resourceName": "authoringTemplate",
+        "operation": "Lock",
+        "defaultTitle": "Lock Authoring Template",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:authoringTemplate",
+        "resourceName": "authoringTemplate",
+        "operation": "Purge",
+        "defaultTitle": "Purge Authoring Template",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:authoringTemplate",
+        "resourceName": "authoringTemplate",
+        "operation": "Save",
+        "defaultTitle": "Save Authoring Template",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:authoringTemplate",
+        "resourceName": "authoringTemplate",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock in Authoring Template",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "nt:file": [
+      {
+        "jcrType": "nt:file",
+        "resourceName": "file",
+        "operation": "Remove",
+        "defaultTitle": "Remove File",
+        "defaultIcon": "remove"
+      }
+    ],
+    "bpw:content": [
+      {
+        "jcrType": "bpw:content",
+        "resourceName": "content",
+        "operation": "Edit",
+        "defaultTitle": "Edit Content Item",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:content",
+        "resourceName": "content",
+        "operation": "Lock",
+        "defaultTitle": "Lock Content Item",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:content",
+        "resourceName": "content",
+        "operation": "Purge",
+        "defaultTitle": "Purge Content Item",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:content",
+        "resourceName": "content",
+        "operation": "Save",
+        "defaultTitle": "Save Content Item",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:content",
+        "resourceName": "content",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock Content Item",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "bpw:contentAreaLayout": [
+      {
+        "jcrType": "bpw:contentAreaLayout",
+        "resourceName": "contentAreaLayout",
+        "operation": "Edit",
+        "defaultTitle": "Edit Content Area Layout",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:contentAreaLayout",
+        "resourceName": "contentAreaLayout",
+        "operation": "Lock",
+        "defaultTitle": "Lock Content Area Layout",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:contentAreaLayout",
+        "resourceName": "contentAreaLayout",
+        "operation": "Purge",
+        "defaultTitle": "Purge Content Area Layout",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:contentAreaLayout",
+        "resourceName": "contentAreaLayout",
+        "operation": "Save",
+        "defaultTitle": "Save Content Area Layout",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:contentAreaLayout",
+        "resourceName": "contentAreaLayout",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock Content Area Layout",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "bpw:file": [
+      {
+        "jcrType": "bpw:file",
+        "resourceName": "file",
+        "operation": "Edit",
+        "defaultTitle": "Edit File",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:file",
+        "resourceName": "file",
+        "operation": "Remove",
+        "defaultTitle": "Remove File",
+        "defaultIcon": "remove"
+      }
+    ],
+    "bpw:siteConfigFolder": [
+      {
+        "jcrType": "bpw:siteConfigFolder",
+        "resourceName": "siteConfig",
+        "operation": "Create",
+        "defaultTitle": "New Site Configuration",
+        "defaultIcon": "create"
+      }
+    ],
+    "nt:folder": [
+      {
+        "jcrType": "nt:folder",
+        "resourceName": "folder",
+        "operation": "Create",
+        "defaultTitle": "New Folder",
+        "defaultIcon": "create_new_folder"
+      },
+      {
+        "jcrType": "nt:folder",
+        "resourceName": "folder",
+        "operation": "Remove",
+        "defaultTitle": "Remove Folder",
+        "defaultIcon": "remove"
+      },
+      {
+        "jcrType": "nt:folder",
+        "resourceName": "file",
+        "operation": "Upload",
+        "defaultTitle": "Upload",
+        "defaultIcon": "cloud_upload"
+      }
+    ],
+    "bpw:siteConfig": [
+      {
+        "jcrType": "bpw:siteConfig",
+        "resourceName": "siteConfig",
+        "operation": "Edit",
+        "defaultTitle": "Edit Site Configuration",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:siteConfig",
+        "resourceName": "siteConfig",
+        "operation": "Lock",
+        "defaultTitle": "Lock Site Configuration",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:siteConfig",
+        "resourceName": "siteConfig",
+        "operation": "Purge",
+        "defaultTitle": "Purge Site Configuration",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:siteConfig",
+        "resourceName": "siteConfig",
+        "operation": "Save",
+        "defaultTitle": "Save Site Configuration",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:siteConfig",
+        "resourceName": "siteConfig",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock Site Configuration",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "bpw:renderTemplate": [
+      {
+        "jcrType": "bpw:renderTemplate",
+        "resourceName": "renderTemplate",
+        "operation": "Edit",
+        "defaultTitle": "Edit Render Template",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:renderTemplate",
+        "resourceName": "renderTemplate",
+        "operation": "Lock",
+        "defaultTitle": "Lock Render Template",
+        "defaultIcon": "lock"
+      },
+      {
+        "jcrType": "bpw:renderTemplate",
+        "resourceName": "renderTemplate",
+        "operation": "Purge",
+        "defaultTitle": "Remove Render Template",
+        "defaultIcon": "delete_forever"
+      },
+      {
+        "jcrType": "bpw:renderTemplate",
+        "resourceName": "renderTemplate",
+        "operation": "Save",
+        "defaultTitle": "Save Render Template",
+        "defaultIcon": "save"
+      },
+      {
+        "jcrType": "bpw:renderTemplate",
+        "resourceName": "renderTemplate",
+        "operation": "Unlock",
+        "defaultTitle": "Unlock in Render Template",
+        "defaultIcon": "lock_open"
+      }
+    ],
+    "bpw:folder": [
+      {
+        "jcrType": "bpw:folder",
+        "resourceName": "folder",
+        "operation": "Edit",
+        "defaultTitle": "Edit Folder",
+        "defaultIcon": "edit"
+      },
+      {
+        "jcrType": "bpw:folder",
+        "resourceName": "folder",
+        "operation": "Create",
+        "defaultTitle": "New Folder",
+        "defaultIcon": "create_new_folder"
+      },
+      {
+        "jcrType": "bpw:folder",
+        "resourceName": "folder",
+        "operation": "Remove",
+        "defaultTitle": "Remove Folder",
+        "defaultIcon": "remove"
+      },
+      {
+        "jcrType": "bpw:folder",
+        "resourceName": "file",
+        "operation": "Upload",
+        "defaultTitle": "Upload",
+        "defaultIcon": "cloud_upload"
+      }
+    ]
+  },
+  "jcrThemes": [
+    {
+      "title": "API Gateway",
+      "name": "apigateway",
+      "library": "design",
+      "repositoryName": "bpwizard",
+      "workspace": "default"
+    },
+    {
+      "title": "Camunda",
+      "name": "camunda",
+      "library": "design",
+      "repositoryName": "bpwizard",
+      "workspace": "default"
+    }
+  ],
+  "jsonForms": {
+    "bpwizard/default/system/vanityURLType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "vanityURLType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "vanityURLType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "forwardTo": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "forwardTo",
+                "url"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.url",
+                    "title": "URL"
+                  },
+                  {
+                    "key": "elements.forwardTo",
+                    "title": "Forward To"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/folderType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "folderType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "folderType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "note"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.note",
+                    "title": "Note"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/contentType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "contentType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "contentType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "siteArea": {
+                  "type": "string"
+                },
+                "workflow": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "categories": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "siteArea",
+                "workflow",
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "body"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  },
+                  {
+                    "key": "properties.siteArea",
+                    "title": "Site Area"
+                  },
+                  {
+                    "key": "properties.categories",
+                    "title": "Category"
+                  },
+                  {
+                    "key": "properties.workflow",
+                    "title": "Workflow"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.body",
+                    "title": "Body"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/componentType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "componentType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "componentType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "componentTemplate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "componentTemplate"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.componentTemplate",
+                    "title": "Component Template"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/design/MyContent": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "resourceType": "MyContent",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "MyContent",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "workflow": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "categories": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "workflow",
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "body"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  },
+                  {
+                    "key": "properties.description",
+                    "title": "Description"
+                  },
+                  {
+                    "key": "properties.categories",
+                    "title": "Category"
+                  },
+                  {
+                    "key": "properties.workflow",
+                    "title": "Workflow"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.body",
+                    "title": "Body"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/formType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "formType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "formType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "siteArea": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "siteArea"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.description",
+                    "title": "Description"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.siteArea",
+                    "title": "Site Area"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/themeType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "themeType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "themeType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "note"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.note",
+                    "title": "Note"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/siteAreaType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "siteAreaType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "siteAreaType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "exactMatch": {
+                  "type": "string",
+                  "default": "false"
+                },
+                "classes": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "allowedArtifactTypes": {
+                  "type": "string"
+                },
+                "translate": {
+                  "type": "string"
+                },
+                "showOnMenu": {
+                  "type": "string",
+                  "default": "false"
+                },
+                "defaultContent": {
+                  "type": "string"
+                },
+                "function": {
+                  "type": "string"
+                },
+                "navigationType": {
+                  "type": "string"
+                },
+                "contentAreaLayout": {
+                  "type": "string"
+                },
+                "externalUrl": {
+                  "type": "string",
+                  "default": "false"
+                },
+                "cacheTTL": {
+                  "type": "string",
+                  "default": "15"
+                },
+                "navigationId": {
+                  "type": "string"
+                },
+                "allowedFileExtension": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "securePage": {
+                  "type": "string",
+                  "default": "false"
+                },
+                "siteConfig": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "sorderOrder": {
+                  "type": "string",
+                  "default": "0"
+                },
+                "friendlyURL": {
+                  "type": "string"
+                },
+                "openInNewTab": {
+                  "type": "string",
+                  "default": "false"
+                }
+              },
+              "required": [
+                "classes",
+                "icon",
+                "title",
+                "translate",
+                "function",
+                "navigationType",
+                "contentAreaLayout",
+                "navigationId",
+                "url",
+                "siteConfig",
+                "name",
+                "friendlyURL"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "body"
+              ]
+            },
+            "metadata": {
+              "$ref": "#/definitions/keyValues"
+            },
+            "searchData": {
+              "$ref": "#/definitions/pageSearchData"
+            },
+            "badge": {
+              "$ref": "#/definitions/navigationBadge"
+            }
+          },
+          "definitions": {
+            "keyValues": {
+              "type": "object",
+              "properties": {
+                "keyValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "pageSearchData": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "navigationBadge": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "translate": {
+                  "type": "string"
+                },
+                "bg": {
+                  "type": "string"
+                },
+                "fg": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  },
+                  {
+                    "key": "properties.description",
+                    "title": "Description"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tabs",
+            "tabs": [
+              {
+                "title": "Badge",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "title": "Badge BG",
+                            "key": "badge.bg"
+                          },
+                          {
+                            "title": "Badge FG",
+                            "key": "badge.fg"
+                          },
+                          {
+                            "title": "Badge Title",
+                            "key": "badge.title"
+                          },
+                          {
+                            "title": "Badge Translate",
+                            "key": "badge.translate"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Content",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.url",
+                            "title": "URL"
+                          },
+                          {
+                            "key": "properties.cacheTTL",
+                            "title": "Cache TTL"
+                          },
+                          {
+                            "key": "properties.securePage",
+                            "title": "Secure Page"
+                          },
+                          {
+                            "key": "properties.sorderOrder",
+                            "title": "Sort Order"
+                          },
+                          {
+                            "key": "properties.defaultContent",
+                            "title": "Default Content"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "elements.body",
+                            "title": "Body"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Meta Data",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "type": "array",
+                            "title": "metadata",
+                            "items": [
+                              {
+                                "title": "Name",
+                                "key": "metadata.keyValues[].name"
+                              },
+                              {
+                                "title": "Value",
+                                "key": "metadata.keyValues[].value"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Navigation",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.navigationId",
+                            "title": "Navigation ID"
+                          },
+                          {
+                            "key": "properties.navigationType",
+                            "title": "Navigation Type"
+                          },
+                          {
+                            "key": "properties.function",
+                            "title": "Function"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.translate",
+                            "title": "Translate"
+                          },
+                          {
+                            "key": "properties.icon",
+                            "title": "Icon"
+                          },
+                          {
+                            "key": "properties.classes",
+                            "title": "Classes"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.exactMatch",
+                            "title": "Exact Match"
+                          },
+                          {
+                            "key": "properties.externalUrl",
+                            "title": "External Url"
+                          },
+                          {
+                            "key": "properties.openInNewTab",
+                            "title": "Open In New Tab"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Properties",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.contentAreaLayout",
+                            "title": "Content Area Layout"
+                          },
+                          {
+                            "key": "properties.siteConfig",
+                            "title": "Site Config"
+                          },
+                          {
+                            "key": "properties.friendlyURL",
+                            "title": "Friendly URL"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "properties.showOnMenu",
+                            "title": "Show On Menu"
+                          },
+                          {
+                            "key": "properties.allowedArtifactTypes",
+                            "title": "Allowed ArtifactTypes"
+                          },
+                          {
+                            "key": "properties.allowedFileExtension",
+                            "title": "Allowed FileExtension"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Search Data",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "title": "Description",
+                            "key": "searchData.description"
+                          },
+                          {
+                            "title": "Keywords",
+                            "key": "searchData.keywords",
+                            "type": "array",
+                            "items": [
+                              "searchData.keywords[]"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/fileType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "fileType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "fileType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "siteArea": {
+                  "type": "string"
+                },
+                "sorderOrder": {
+                  "type": "string",
+                  "default": "0"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "showOnMenu": {
+                  "type": "string",
+                  "default": "false"
+                }
+              },
+              "required": [
+                "siteArea",
+                "content"
+              ]
+            },
+            "metadata": {
+              "$ref": "#/definitions/keyValues"
+            }
+          },
+          "definitions": {
+            "keyValues": {
+              "type": "object",
+              "properties": {
+                "keyValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  },
+                  {
+                    "key": "properties.description",
+                    "title": "Description"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tabs",
+            "tabs": [
+              {
+                "title": "Content",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "elements.siteArea",
+                            "title": "Site Area"
+                          },
+                          {
+                            "key": "elements.content",
+                            "title": "Content"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Metadata",
+                "items": [
+                  {
+                    "type": "flex",
+                    "flex-flow": "row wrap",
+                    "items": [
+                      {
+                        "type": "div",
+                        "displayFlex": true,
+                        "flex-direction": "column",
+                        "fxFlex": 0,
+                        "items": [
+                          {
+                            "key": "elements.metadata",
+                            "title": "Metadata"
+                          },
+                          {
+                            "key": "elements.showOnMenu",
+                            "title": "Show On Menu"
+                          },
+                          {
+                            "key": "elements.sorderOrder",
+                            "title": "Sort Order"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/keyValueType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "keyValueType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "keyValueType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "key": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "key"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.key",
+                    "title": "Key"
+                  },
+                  {
+                    "key": "elements.value",
+                    "title": "Value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/siteConfigType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "siteConfigType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "siteConfigType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "rootSiteArea": {
+                  "type": "string"
+                },
+                "colorTheme": {
+                  "type": "string"
+                },
+                "customScrollbars": {
+                  "type": "string",
+                  "default": "false"
+                }
+              },
+              "required": [
+                "rootSiteArea",
+                "colorTheme"
+              ]
+            },
+            "layout": {
+              "$ref": "#/definitions/pageLayout"
+            }
+          },
+          "definitions": {
+            "pageLayout": {
+              "type": "object",
+              "properties": {
+                "style": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "string"
+                },
+                "navbar": {
+                  "type": "object",
+                  "properties": {
+                    "primaryBackground": {
+                      "type": "string"
+                    },
+                    "secondaryBackground": {
+                      "type": "string"
+                    },
+                    "hidden": {
+                      "type": "string"
+                    },
+                    "folded": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    },
+                    "variant": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "toolbar": {
+                  "type": "object",
+                  "properties": {
+                    "customBackgroundColor": {
+                      "type": "string"
+                    },
+                    "background": {
+                      "type": "string"
+                    },
+                    "hidden": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "footer": {
+                  "type": "object",
+                  "properties": {
+                    "customBackgroundColor": {
+                      "type": "string"
+                    },
+                    "background": {
+                      "type": "string"
+                    },
+                    "hidden": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "sidePanel": {
+                  "type": "object",
+                  "properties": {
+                    "hidden": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Footer Custom Background Color",
+                    "key": "elements.layout.footer.customBackgroundColor"
+                  },
+                  {
+                    "title": "Footer Background",
+                    "key": "elements.layout.footer.background"
+                  }
+                ]
+              },
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Hide Footer",
+                    "key": "elements.layout.footer.hidden"
+                  },
+                  {
+                    "title": "Footer Position",
+                    "key": "elements.layout.footer.position"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.rootSiteArea",
+                    "title": "Root Site Area"
+                  },
+                  {
+                    "key": "elements.colorTheme",
+                    "title": "Color Theme"
+                  },
+                  {
+                    "key": "elements.customScrollbars",
+                    "title": "Custom Scrollbars"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Toolbar Custom Background Color",
+                    "key": "elements.layout.toolbar.customBackgroundColor"
+                  },
+                  {
+                    "title": "Toolbar Background",
+                    "key": "elements.layout.toolbar.background"
+                  }
+                ]
+              },
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Hide Toolbar",
+                    "key": "elements.layout.toolbar.hidden"
+                  },
+                  {
+                    "title": "Toolbar Position",
+                    "key": "elements.layout.toolbar.position"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Layout Style",
+                    "key": "elements.layout.style"
+                  }
+                ]
+              },
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Layout Width",
+                    "key": "elements.layout.width"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Hide Side Panel",
+                    "key": "elements.layout.sidePanel.hidden"
+                  }
+                ]
+              },
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Side Panel Position",
+                    "key": "elements.layout.sidePanel.position"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Navbar Primary Background",
+                    "key": "elements.layout.navbar.primaryBackground"
+                  },
+                  {
+                    "title": "Navbar Secondary Background",
+                    "key": "elements.layout.navbar.secondaryBackground"
+                  },
+                  {
+                    "title": "Hide Navbar",
+                    "key": "elements.layout.navbar.hidden"
+                  }
+                ]
+              },
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "title": "Navbar Folded",
+                    "key": "elements.layout.navbar.folded"
+                  },
+                  {
+                    "title": "Navbar Position",
+                    "key": "elements.layout.navbar.position"
+                  },
+                  {
+                    "title": "Navbar Variant",
+                    "key": "elements.layout.navbar.variant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/design/MySidePaneContent": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "resourceType": "MySidePaneContent",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "MySidePaneContent",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "workflow": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "categories": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "workflow",
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "sidebody": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sidebody"
+              ]
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  },
+                  {
+                    "key": "properties.description",
+                    "title": "Description"
+                  },
+                  {
+                    "key": "properties.categories",
+                    "title": "Category"
+                  },
+                  {
+                    "key": "properties.workflow",
+                    "title": "Workflow"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.sidebody",
+                    "title": "Body"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bpwizard/default/system/personaType": {
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "resourceType": "personaType",
+      "formSchema": {
+        "schema": {
+          "type": "object",
+          "name": "personaType",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "title"
+              ]
+            },
+            "elements": {
+              "type": "object",
+              "properties": {
+                "photo": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "definitions": {}
+        },
+        "layout": [
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "properties.name",
+                    "title": "Name"
+                  },
+                  {
+                    "key": "properties.title",
+                    "title": "Title"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "flex",
+            "flex-flow": "row wrap",
+            "items": [
+              {
+                "type": "div",
+                "displayFlex": true,
+                "flex-direction": "column",
+                "fxFlex": 0,
+                "items": [
+                  {
+                    "key": "elements.photo",
+                    "title": "Photo"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "renderTemplates": {
+    "bpwizard/default/design/MySidePaneRenderTemplate": {
+      "title": "MySidePaneRenderTemplate",
+      "description": "My Side Panel Render Template",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "name": "MySidePaneRenderTemplate",
+      "code": "<render-element element='sidebody'></render-element>",
+      "preloop": "<div>preloop</div>",
+      "postloop": "<div>postloop</div>",
+      "maxEntries": 10,
+      "note": "MySidePaneRenderTemplate note",
+      "resourceName": "bpwizard/default/design/MySidePaneContent",
+      "query": false
+    },
+    "bpwizard/default/design/MyRenderTemplate": {
+      "title": "MyRenderTemplate",
+      "description": "My Render Template",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "name": "MyRenderTemplate",
+      "code": "<render-element element='body'></render-element>",
+      "preloop": "<div>preloop</div>",
+      "postloop": "<div>postloop</div>",
+      "maxEntries": 10,
+      "note": "MyRenderTemplate note",
+      "resourceName": "bpwizard/default/design/MyContent",
+      "query": false
+    },
+    "bpwizard/default/design/MyContentRenderLayout": {
+      "title": "MyContentRenderLayout",
+      "description": "MyContent Render Layout",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "name": "MyContentRenderLayout",
+      "preloop": "<div>preloop</div>",
+      "postloop": "<div>postloop</div>",
+      "maxEntries": 10,
+      "note": "MyContentRenderLayout note",
+      "resourceName": "bpwizard/default/design/MyContent",
+      "rows": [
+        {
+          "columns": [
+            {
+              "id": "fieldgroup1",
+              "width": 0,
+              "elements": [
+                {
+                  "name": "name"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "id": "fieldgroup1",
+              "width": 0,
+              "elements": [
+                {
+                  "name": "title"
+                }
+              ]
+            },
+            {
+              "id": "fieldgroup2",
+              "width": 0,
+              "elements": [
+                {
+                  "name": "description"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "id": "fieldgroup1",
+              "width": 0,
+              "elements": [
+                {
+                  "name": "body"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": false
+    }
+  },
+  "contentAreaLayouts": {
+    "bpwizard/default/design/MyLayout": {
+      "name": "MyLayout",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "contentWidth": 0,
+      "sidePane": {
+        "left": true,
+        "width": 20,
+        "viewers": [
+          {
+            "renderTemplate": "bpwizard/default/design/MySidePaneRenderTemplate",
+            "contentPath": [
+              "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MySidePaneContent"
+            ],
+            "title": "MySidePaneRenderTemplate"
+          }
+        ]
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "width": 100,
+              "viewers": [
+                {
+                  "renderTemplate": "bpwizard/default/design/MyRenderTemplate",
+                  "contentPath": [
+                    "bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                  ],
+                  "title": "MyRenderTemplate"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "width": 100,
+              "viewers": [
+                {
+                  "renderTemplate": "bpwizard/default/design/MyContentRenderLayout",
+                  "contentPath": [
+                    "bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                  ],
+                  "title": "MyRenderTemplate"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "authoringTemplates": {
+    "bpwizard/default/system/vanityURLType": {
+      "name": "vanityURLType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.url",
+                    "elements.forwardTo"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "forwardTo": {
+          "name": "forwardTo",
+          "title": "Forward To",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "url": {
+          "name": "url",
+          "title": "URL",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/folderType": {
+      "name": "folderType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.note"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "note": {
+          "name": "note",
+          "title": "Note",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/contentType": {
+      "name": "contentType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title",
+              "properties.siteArea",
+              "properties.categories",
+              "properties.workflow"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.body"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "contentItemWorkflow": "bpmn:wcm_content_flow",
+      "elements": {
+        "body": {
+          "name": "body",
+          "title": "Body",
+          "controlName": "richText",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "siteArea": {
+          "name": "siteArea",
+          "title": "Site Area",
+          "controlName": "siteArea",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "workflow": {
+          "name": "workflow",
+          "title": "Workflow",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "categories": {
+          "name": "categories",
+          "title": "Category",
+          "controlName": "category",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/componentType": {
+      "name": "componentType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.componentTemplate"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "componentTemplate": {
+          "name": "componentTemplate",
+          "title": "Component Template",
+          "controlName": "textArea",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/design/MyContent": {
+      "name": "MyContent",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "baseResourceType": "contentType",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title",
+              "properties.description",
+              "properties.categories",
+              "properties.workflow"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.body"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "contentItemWorkflow": "bpmn:wcm_content_flow",
+      "elements": {
+        "body": {
+          "name": "body",
+          "title": "Body",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      },
+      "properties": {
+        "workflow": {
+          "name": "workflow",
+          "title": "Workflow",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "description": {
+          "name": "description",
+          "title": "Description",
+          "controlName": "text",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "categories": {
+          "name": "categories",
+          "title": "Category",
+          "controlName": "category",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/formType": {
+      "name": "formType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.description"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.siteArea"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "siteArea": {
+          "name": "siteArea",
+          "title": "Site Area",
+          "controlName": "iteArea",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "description": {
+          "name": "description",
+          "title": "Description",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/themeType": {
+      "name": "themeType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.note"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "note": {
+          "name": "note",
+          "title": "Note",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/siteAreaType": {
+      "name": "siteAreaType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title",
+              "properties.description"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "tabs": [
+            {
+              "tabName": "badgeTab",
+              "tabTitle": "Badge",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "badge"
+                      ],
+                      "fieldLayouts": [
+                        {
+                          "name": "badge",
+                          "key": "badge",
+                          "multiple": false,
+                          "fieldLayouts": [
+                            {
+                              "name": "badge.bg",
+                              "key": "badge.bg",
+                              "title": "Badge BG",
+                              "multiple": false
+                            },
+                            {
+                              "name": "badge.fg",
+                              "key": "badge.fg",
+                              "title": "Badge FG",
+                              "multiple": false
+                            },
+                            {
+                              "name": "badge.title",
+                              "key": "badge.title",
+                              "title": "Badge Title",
+                              "multiple": false
+                            },
+                            {
+                              "name": "badge.translate",
+                              "key": "badge.translate",
+                              "title": "Badge Translate",
+                              "multiple": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "contentTab",
+              "tabTitle": "Content",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.url",
+                        "properties.cacheTTL",
+                        "properties.securePage",
+                        "properties.sorderOrder",
+                        "properties.defaultContent"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                },
+                {
+                  "rowName": "secondRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "elements.body"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "metadataTab",
+              "tabTitle": "Meta Data",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "metadata"
+                      ],
+                      "fieldLayouts": [
+                        {
+                          "name": "metadata",
+                          "key": "metadata",
+                          "multiple": true,
+                          "fieldLayouts": [
+                            {
+                              "name": "metadata.keyValues[].name",
+                              "key": "metadata.keyValues[].name",
+                              "title": "Name",
+                              "multiple": false
+                            },
+                            {
+                              "name": "metadata.keyValues[].value",
+                              "key": "metadata.keyValues[].value",
+                              "title": "Value",
+                              "multiple": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "navigationTab",
+              "tabTitle": "Navigation",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.navigationId",
+                        "properties.navigationType",
+                        "properties.function"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                },
+                {
+                  "rowName": "secondRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.translate",
+                        "properties.icon",
+                        "properties.classes"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                },
+                {
+                  "rowName": "thirdRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.exactMatch",
+                        "properties.externalUrl",
+                        "properties.openInNewTab"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "propertiesTab",
+              "tabTitle": "Properties",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.contentAreaLayout",
+                        "properties.siteConfig",
+                        "properties.friendlyURL"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                },
+                {
+                  "rowName": "secondRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "properties.showOnMenu",
+                        "properties.allowedArtifactTypes",
+                        "properties.allowedFileExtension"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "searchDataTab",
+              "tabTitle": "Search Data",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "searchData"
+                      ],
+                      "fieldLayouts": [
+                        {
+                          "name": "searchData",
+                          "key": "searchData",
+                          "multiple": false,
+                          "fieldLayouts": [
+                            {
+                              "name": "searchData.description",
+                              "key": "searchData.description",
+                              "title": "Description",
+                              "multiple": false
+                            },
+                            {
+                              "name": "searchData.keywords",
+                              "key": "searchData.keywords",
+                              "title": "Keywords",
+                              "multiple": true,
+                              "items": "searchData.keywords[]"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "body": {
+          "name": "body",
+          "title": "Body",
+          "controlName": "richText",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "metadata": {
+          "name": "metadata",
+          "title": "Metadata",
+          "controlName": "keyValue",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "exactMatch": {
+          "name": "exactMatch",
+          "title": "Exact Match",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "classes": {
+          "name": "classes",
+          "title": "Classes",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "icon": {
+          "name": "icon",
+          "title": "Icon",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "description": {
+          "name": "description",
+          "title": "Description",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "allowedArtifactTypes": {
+          "name": "allowedArtifactTypes",
+          "title": "Allowed ArtifactTypes",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "translate": {
+          "name": "translate",
+          "title": "Translate",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "showOnMenu": {
+          "name": "showOnMenu",
+          "title": "Show On Menu",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "defaultContent": {
+          "name": "defaultContent",
+          "title": "Default Content",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "function": {
+          "name": "function",
+          "title": "Function",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "navigationType": {
+          "name": "navigationType",
+          "title": "Navigation Type",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "contentAreaLayout": {
+          "name": "contentAreaLayout",
+          "title": "Content Area Layout",
+          "controlName": "select",
+          "options": [
+            "jcr://contentAreaLayout"
+          ],
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "externalUrl": {
+          "name": "externalUrl",
+          "title": "External Url",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "cacheTTL": {
+          "name": "cacheTTL",
+          "title": "Cache TTL",
+          "controlName": "text",
+          "defaultValue": "15",
+          "dataType": "Whole Number",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "navigationId": {
+          "name": "navigationId",
+          "title": "Navigation ID",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "allowedFileExtension": {
+          "name": "allowedFileExtension",
+          "title": "Allowed FileExtension",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "searchData": {
+          "name": "searchData",
+          "title": "SEO Description",
+          "controlName": "customField",
+          "dataType": "bpw:pageSearchData",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "url": {
+          "name": "url",
+          "title": "URL",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "securePage": {
+          "name": "securePage",
+          "title": "Secure Page",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "badge": {
+          "name": "badge",
+          "title": "Badge",
+          "controlName": "customField",
+          "dataType": "bpw:navigationBadge",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "siteConfig": {
+          "name": "siteConfig",
+          "title": "Site Config",
+          "controlName": "select",
+          "options": [
+            "jcr://siteConfig"
+          ],
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "sorderOrder": {
+          "name": "sorderOrder",
+          "title": "Sort Order",
+          "controlName": "text",
+          "defaultValue": "0",
+          "dataType": "Whole Number",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "friendlyURL": {
+          "name": "friendlyURL",
+          "title": "Friendly URL",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "openInNewTab": {
+          "name": "openInNewTab",
+          "title": "Open In New Tab",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/fileType": {
+      "name": "fileType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title",
+              "properties.description"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "tabs": [
+            {
+              "tabName": "contentTab",
+              "tabTitle": "Content",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "elements.siteArea",
+                        "elements.content"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tabName": "metadataTab",
+              "tabTitle": "Metadata",
+              "formGroups": [
+                {
+                  "rowName": "firstRow",
+                  "columns": [
+                    {
+                      "fxFlex": 0,
+                      "formControls": [
+                        "elements.metadata",
+                        "elements.showOnMenu",
+                        "elements.sorderOrder"
+                      ],
+                      "fieldLayouts": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "siteArea": {
+          "name": "siteArea",
+          "title": "Site Area",
+          "controlName": "siteArea",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "metadata": {
+          "name": "metadata",
+          "title": "Metadata",
+          "controlName": "keyValue",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "sorderOrder": {
+          "name": "sorderOrder",
+          "title": "Sort Order",
+          "controlName": "text",
+          "defaultValue": "0",
+          "dataType": "Whole Number",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "content": {
+          "name": "content",
+          "title": "Content",
+          "controlName": "binary",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "showOnMenu": {
+          "name": "showOnMenu",
+          "title": "Show On Menu",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "description": {
+          "name": "description",
+          "title": "Description",
+          "controlName": "text",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/keyValueType": {
+      "name": "keyValueType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.key",
+                    "elements.value"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "value": {
+          "name": "value",
+          "title": "Value",
+          "controlName": "textArea",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "key": {
+          "name": "key",
+          "title": "Key",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": true
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/siteConfigType": {
+      "name": "siteConfigType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rowName": "fifthRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_footer_customBackgroundColor",
+                "elements.layout_footer_background"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_footer_background",
+                  "key": "layout.footer.background",
+                  "title": "Footer Background",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_footer_customBackgroundColor",
+                  "key": "layout.footer.customBackgroundColor",
+                  "title": "Footer Custom Background Color",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            },
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_footer_hidden",
+                "elements.layout_footer_position"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_footer_hidden",
+                  "key": "layout.footer.hidden",
+                  "title": "Hide Footer",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_footer_position",
+                  "key": "layout.footer.position",
+                  "title": "Footer Position",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rowName": "firstRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.rootSiteArea",
+                "elements.colorTheme",
+                "elements.customScrollbars"
+              ],
+              "fieldLayouts": []
+            }
+          ]
+        },
+        {
+          "rowName": "fourthRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_toolbar_customBackgroundColor",
+                "elements.layout_toolbar_background"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_toolbar_background",
+                  "key": "layout.toolbar.background",
+                  "title": "Toolbar Background",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_toolbar_customBackgroundColor",
+                  "key": "layout.toolbar.customBackgroundColor",
+                  "title": "Toolbar Custom Background Color",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            },
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_toolbar_hidden",
+                "elements.layout_toolbar_position"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_toolbar_hidden",
+                  "key": "layout.toolbar.hidden",
+                  "title": "Hide Toolbar",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_toolbar_position",
+                  "key": "layout.toolbar.position",
+                  "title": "Toolbar Position",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rowName": "secondRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_style"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_style",
+                  "key": "layout.style",
+                  "title": "Layout Style",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            },
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_width"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_width",
+                  "key": "layout.width",
+                  "title": "Layout Width",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rowName": "sixthRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_sidePanel_hidden"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_sidePanel_hidden",
+                  "key": "layout.sidePanel.hidden",
+                  "title": "Hide Side Panel",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            },
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_sidePanel_position"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_sidePanel_position",
+                  "key": "layout.sidePanel.position",
+                  "title": "Side Panel Position",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "rowName": "thirdRow",
+          "columns": [
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_navbar_primaryBackground",
+                "elements.layout_navbar_secondaryBackground",
+                "elements.layout_navbar_hidden"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_navbar_hidden",
+                  "key": "layout.navbar.hidden",
+                  "title": "Hide Navbar",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_navbar_primaryBackground",
+                  "key": "layout.navbar.primaryBackground",
+                  "title": "Navbar Primary Background",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_navbar_secondaryBackground",
+                  "key": "layout.navbar.secondaryBackground",
+                  "title": "Navbar Secondary Background",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            },
+            {
+              "fxFlex": 0,
+              "formControls": [
+                "elements.layout_navbar_folded",
+                "elements.layout_navbar_position",
+                "elements.layout_navbar_variant"
+              ],
+              "fieldLayouts": [
+                {
+                  "name": "layout_navbar_folded",
+                  "key": "layout.navbar.folded",
+                  "title": "Navbar Folded",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_navbar_position",
+                  "key": "layout.navbar.position",
+                  "title": "Navbar Position",
+                  "multiple": false,
+                  "fieldLayouts": []
+                },
+                {
+                  "name": "layout_navbar_variant",
+                  "key": "layout.navbar.variant",
+                  "title": "Navbar Variant",
+                  "multiple": false,
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "layout": {
+          "name": "layout",
+          "title": "Page Layout",
+          "fieldPath": "layout",
+          "controlName": "customField",
+          "dataType": "bpw:pageLayout",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "rootSiteArea": {
+          "name": "rootSiteArea",
+          "title": "Root Site Area",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "colorTheme": {
+          "name": "colorTheme",
+          "title": "Color Theme",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "customScrollbars": {
+          "name": "customScrollbars",
+          "title": "Custom Scrollbars",
+          "controlName": "checkbox",
+          "values": [
+            "|true"
+          ],
+          "defaultValue": "false",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/design/MySidePaneContent": {
+      "name": "MySidePaneContent",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "design",
+      "baseResourceType": "contentType",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title",
+              "properties.description",
+              "properties.categories",
+              "properties.workflow"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.sidebody"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "contentItemWorkflow": "bpmn:wcm_content_flow",
+      "elements": {
+        "sidebody": {
+          "name": "sidebody",
+          "title": "Body",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      },
+      "properties": {
+        "workflow": {
+          "name": "workflow",
+          "title": "Workflow",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "description": {
+          "name": "description",
+          "title": "Description",
+          "controlName": "text",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": true,
+          "showInList": false,
+          "unique": false
+        },
+        "categories": {
+          "name": "categories",
+          "title": "Category",
+          "controlName": "category",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": true,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "valditionRegEx": "[^(<[.\n]+>)]*",
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    },
+    "bpwizard/default/system/personaType": {
+      "name": "personaType",
+      "repository": "bpwizard",
+      "workspace": "default",
+      "library": "system",
+      "propertyRow": {
+        "rowName": "propertyGroup",
+        "columns": [
+          {
+            "fxFlex": 0,
+            "formControls": [
+              "properties.name",
+              "properties.title"
+            ],
+            "fieldLayouts": []
+          }
+        ]
+      },
+      "elementGroups": [
+        {
+          "rows": [
+            {
+              "rowName": "firstRow",
+              "columns": [
+                {
+                  "fxFlex": 0,
+                  "formControls": [
+                    "elements.photo"
+                  ],
+                  "fieldLayouts": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "photo": {
+          "name": "photo",
+          "title": "Photo",
+          "controlName": "binary",
+          "dataType": "text",
+          "multiple": false,
+          "mandatory": false,
+          "userSearchable": false,
+          "systemIndexed": false,
+          "showInList": false,
+          "unique": false
+        }
+      },
+      "properties": {
+        "name": {
+          "name": "name",
+          "title": "Name",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        },
+        "title": {
+          "name": "title",
+          "title": "Title",
+          "controlName": "text",
+          "dataType": "Text",
+          "multiple": false,
+          "mandatory": true,
+          "userSearchable": true,
+          "systemIndexed": true,
+          "showInList": true,
+          "unique": false
+        }
+      }
+    }
+  },
+  "siteConfig": {
+    "repository": "bpwizard",
+    "workspace": "default",
+    "library": "camunda",
+    "rootSiteArea": "rootSiteArea",
+    "name": "bpm",
+    "colorTheme": "theme-default",
+    "customScrollbars": false,
+    "layout": {
+      "style": "horizontal-layout-1",
+      "width": "fullwidth",
+      "navbar": {
+        "primaryBackground": "fuse-navy-700",
+        "secondaryBackground": "fuse-navy-900",
+        "hidden": false,
+        "folded": false,
+        "position": "top",
+        "variant": "vertical-style-1"
+      },
+      "toolbar": {
+        "customBackgroundColor": false,
+        "background": "fuse-white-500",
+        "hidden": false,
+        "position": "below"
+      },
+      "footer": {
+        "customBackgroundColor": false,
+        "background": "fuse-navy-900",
+        "hidden": false,
+        "position": "above-static"
+      },
+      "sidePanel": {
+        "hidden": false,
+        "position": "right"
+      }
+    }
+  },
+  "navigations": [
+    {
+      "id": "bpm_dashboard",
+      "title": "Dashboard",
+      "type": "item",
+      "translate": "NAV.BPM.DASHBOARD.TITLE",
+      "icon": "archive",
+      "hidden": false,
+      "url": "/bpm/dashboard",
+      "exactMatch": false,
+      "externalUrl": false,
+      "openInNewTab": false,
+      "children": []
+    },
+    {
+      "id": "bpm_home",
+      "title": "Home",
+      "type": "item",
+      "translate": "NAV.BPM.HOME.TITLE",
+      "icon": "archive",
+      "hidden": false,
+      "url": "/bpm/home",
+      "exactMatch": false,
+      "externalUrl": false,
+      "openInNewTab": false,
+      "children": []
+    },
+    {
+      "id": "bpm_modelert",
+      "title": "Modeler",
+      "type": "item",
+      "translate": "NAV.BPM.MODELER.TITLE",
+      "icon": "archive",
+      "hidden": false,
+      "url": "/bpm/modeler",
+      "exactMatch": false,
+      "externalUrl": false,
+      "openInNewTab": false,
+      "children": []
+    },
+    {
+      "id": "bpm_monitor",
+      "title": "Monitor",
+      "type": "item",
+      "translate": "NAV.BPM.MONITOR.TITLE",
+      "icon": "archive",
+      "hidden": false,
+      "url": "/bpm/monitor",
+      "exactMatch": false,
+      "externalUrl": false,
+      "openInNewTab": false,
+      "children": []
+    },
+    {
+      "id": "bpm_tasklist",
+      "title": "Task List",
+      "type": "group",
+      "translate": "NAV.BPM.TASKLIST.TITLE",
+      "icon": "archive",
+      "hidden": false,
+      "url": "/bpm/tasklist",
+      "exactMatch": false,
+      "externalUrl": false,
+      "openInNewTab": false,
+      "children": [
+        {
+          "id": "process-instance",
+          "title": "Process Instance",
+          "type": "group",
+          "translate": "NAV.BPM.TASKLIST.TITLE",
+          "icon": "archive",
+          "hidden": false,
+          "url": "/bpm/tasklist/processinstance",
+          "exactMatch": false,
+          "externalUrl": false,
+          "openInNewTab": false,
+          "children": [
+            {
+              "id": "process-operation",
+              "title": "Process Operation",
+              "type": "item",
+              "translate": "NAV.BPM.TASKLIST.TITLE",
+              "icon": "archive",
+              "hidden": false,
+              "url": "/bpm/tasklist/processinstance/operation",
+              "exactMatch": false,
+              "externalUrl": false,
+              "openInNewTab": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "task-instance",
+          "title": "Task Instance",
+          "type": "item",
+          "translate": "NAV.BPM.TASKLIST.TITLE",
+          "icon": "archive",
+          "hidden": false,
+          "url": "/bpm/tasklist/taskinstance",
+          "exactMatch": false,
+          "externalUrl": false,
+          "openInNewTab": false,
+          "children": []
+        }
+      ]
+    }
+  ],
+  "siteAreas": {
+    "~bpm~home": {
+      "siteAreaLayout": {
+        "contentWidth": 80,
+        "sidePane": {
+          "left": true,
+          "width": 20,
+          "viewers": [
+            {
+              "renderTemplate": "bpwizard/default/design/MySidePaneRenderTemplate",
+              "contentPath": [
+                "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MySidePaneContent1"
+              ],
+              "title": "MySidePaneRenderTemplate"
+            }
+          ]
+        },
+        "rows": [
+          {
+            "columns": [
+              {
+                "width": 100,
+                "viewers": [
+                  {
+                    "renderTemplate": "bpwizard/default/design/MyRenderTemplate",
+                    "contentPath": [
+                      "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                    ],
+                    "title": "MyRenderTemplate"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "columns": [
+              {
+                "width": 100,
+                "viewers": [
+                  {
+                    "renderTemplate": "bpwizard/default/design/MyContentRenderLayout",
+                    "contentPath": [
+                      "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                    ],
+                    "title": "MyRenderTemplate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "bpm_home",
+        "icon": "archive",
+        "name": "home",
+        "navigationType": "item",
+        "title": "Home",
+        "url": "/bpm/home",
+        "translate": "NAV.BPM.HOME.TITLE"
+      }
+    },
+    "~bpm~tasklist~taskinstance": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "task-instance",
+        "icon": "archive",
+        "name": "taskinstance",
+        "navigationType": "item",
+        "title": "Task Instance",
+        "url": "/bpm/tasklist/taskinstance",
+        "translate": "NAV.BPM.TASKLIST.TITLE"
+      }
+    },
+    "~bpm~tasklist~processinstance~operation": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "process-operation",
+        "icon": "archive",
+        "name": "processinstance",
+        "navigationType": "item",
+        "title": "Process Operation",
+        "url": "/bpm/tasklist/processinstance/operation",
+        "translate": "NAV.BPM.TASKLIST.TITLE"
+      }
+    },
+    "~bpm~tasklist~processinstance": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "process-instance",
+        "icon": "archive",
+        "name": "processinstance",
+        "navigationType": "group",
+        "title": "Process Instance",
+        "url": "/bpm/tasklist/processinstance",
+        "translate": "NAV.BPM.TASKLIST.TITLE"
+      }
+    },
+    "~bpm~monitor": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "bpm_monitor",
+        "icon": "archive",
+        "name": "monitor",
+        "navigationType": "item",
+        "title": "Monitor",
+        "url": "/bpm/monitor",
+        "translate": "NAV.BPM.MONITOR.TITLE"
+      }
+    },
+    "~bpm~tasklist": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "bpm_tasklist",
+        "icon": "archive",
+        "name": "tasklist",
+        "navigationType": "group",
+        "title": "Task List",
+        "url": "/bpm/tasklist",
+        "translate": "NAV.BPM.TASKLIST.TITLE"
+      }
+    },
+    "~bpm~dashboard": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "bpm_dashboard",
+        "icon": "archive",
+        "name": "dashboard",
+        "navigationType": "item",
+        "title": "Dashboard",
+        "url": "/bpm/dashboard",
+        "translate": "NAV.BPM.DASHBOARD.TITLE"
+      }
+    },
+    "~bpm~modeler": {
+      "elements": {},
+      "properties": {
+        "contentAreaLayout": "bpwizard/default/design/MyLayout",
+        "navigationId": "bpm_modelert",
+        "icon": "archive",
+        "name": "modeler",
+        "navigationType": "item",
+        "title": "Modeler",
+        "url": "/bpm/modeler",
+        "translate": "NAV.BPM.MODELER.TITLE"
+      }
+    }
+  },
+  "controlFiels": [
+    {
+      "name": "associations",
+      "icon": "recent_actors",
+      "title": "Associations",
+      "controlFieldMetaData": [
+        {
+          "name": "accociationCardinality",
+          "title": "Relationship",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "OneToOne|One to one, OneToMany|One to many, ManyToOne|Many to one, ManyToMany|Many to many"
+          ]
+        },
+        {
+          "name": "accociationType",
+          "title": "Accociation Type",
+          "controlType": "radio",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "New|Existing"
+          ]
+        },
+        {
+          "name": "accociationWith",
+          "title": "Select Content Type",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://bpw:resourceType"
+          ]
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "binary",
+      "icon": "theaters",
+      "title": "Binary",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "icon": "category",
+      "title": "Category",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Name",
+          "controlType": "select",
+          "required": true,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://bpw:category"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "icon": "check",
+      "title": "Checkbox",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "controlType": "texts",
+          "hintText": "list-text hint",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "customField",
+      "icon": "reorder",
+      "title": "Custom Field",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "validationRegEx",
+          "title": "Validation RegEx",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://configuration/validationRule"
+          ]
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "controlType": "script",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "date",
+      "icon": "calenda_today",
+      "title": "Date",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "dateTime",
+      "icon": "view_day",
+      "title": "Date and Time",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "file",
+      "icon": "file_copy",
+      "title": "File",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "hiddenField",
+      "icon": "keyboard_hide",
+      "title": "Hidden Field",
+      "controlFieldMetaData": [
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "icon": "image",
+      "title": "Image",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "keyValue",
+      "icon": "event_note",
+      "title": "Key/Value",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "lineDivider",
+      "icon": "horizontal_split",
+      "title": "Line Divider",
+      "controlFieldMetaData": [
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "multiSelect",
+      "icon": "format_list_bulleted",
+      "title": "Multi Select",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Name",
+          "controlType": "texts",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "permissions",
+      "icon": "account_circle",
+      "title": "Permissions",
+      "controlFieldMetaData": [
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "icon": "radio_button_checked",
+      "title": "Radio",
+      "controlFieldMetaData": [
+        {
+          "name": "dataType",
+          "title": "Data Type",
+          "controlType": "radio",
+          "required": true,
+          "readonly": false,
+          "selectOptions": [
+            "Text|True/False|Decimal|Whole Number"
+          ]
+        },
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Name",
+          "controlType": "texts",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "readonly",
+      "icon": "offline_pin",
+      "title": "Read-only Field",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Name",
+          "controlType": "textArea",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "richText",
+      "icon": "text_format",
+      "title": "Rich Text",
+      "controlFieldMetaData": [
+        {
+          "name": "dataType",
+          "title": "Data Type",
+          "controlType": "radio",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "Text|Decimal|Whole Number"
+          ]
+        },
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "unique",
+          "title": "unique",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "validationRegEx",
+          "title": "Validation RegEx",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://configuration/validationRule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "icon": "select_all",
+      "title": "Select",
+      "controlFieldMetaData": [
+        {
+          "name": "dataType",
+          "title": "Data Type",
+          "controlType": "radio",
+          "required": true,
+          "readonly": false,
+          "selectOptions": [
+            "Text|True/False|Decimal|Whole Number"
+          ]
+        },
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "unique",
+          "title": "Unique",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "value",
+          "title": "Name",
+          "controlType": "texts",
+          "required": true,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "siteArea",
+      "icon": "archive",
+      "title": "Site Area",
+      "controlFieldMetaData": [
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "icon": "flag",
+      "title": "Tag",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "textArea",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "icon": "text_fields",
+      "title": "Text",
+      "controlFieldMetaData": [
+        {
+          "name": "dataType",
+          "title": "Data Type",
+          "controlType": "radio",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "Text|Decimal|Whole Number"
+          ]
+        },
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "showInList",
+          "title": "Show In List",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "unique",
+          "title": "unique",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "validationRegEx",
+          "title": "Validation RegEx",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://configuration/validationRule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "textArea",
+      "icon": "textsms",
+      "title": "Text Area",
+      "controlFieldMetaData": [
+        {
+          "name": "dataType",
+          "title": "Data Type",
+          "controlType": "radio",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "Text|Decimal|Whole Number"
+          ]
+        },
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "validationRegEx",
+          "title": "Validation RegEx",
+          "controlType": "select",
+          "required": false,
+          "readonly": false,
+          "selectOptions": [
+            "jcr://configuration/validationRule"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "time",
+      "icon": "access_time",
+      "title": "Time",
+      "controlFieldMetaData": [
+        {
+          "name": "defaultValue",
+          "title": "Default Value",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "hint",
+          "title": "Hint",
+          "controlType": "text",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "controlType": "text",
+          "required": true,
+          "readonly": false
+        },
+        {
+          "name": "required",
+          "title": "Required",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "systemIndexed",
+          "title": "System Indexed",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        },
+        {
+          "name": "userSearchable",
+          "title": "User Searchable",
+          "controlType": "checkbox",
+          "required": false,
+          "readonly": false
+        }
+      ]
+    }
+  ]
+}}

@@ -1,0 +1,72 @@
+{
+  "repository": "bpwizard",
+  "workspace": "default",
+  "nodePath": "/bpwizard/library/camunda/rootSiteArea/home",
+  "name": "home",
+  "siteAreaLayout": {
+    "contentWidth": 80,
+    "sidePane": {
+      "left": true,
+      "width": 20,
+      "viewers": [
+        {
+          "renderTemplate": "bpwizard/default/design/MySidePaneRenderTemplate",
+          "contentPath": [
+            "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MySidePaneContent1"
+          ],
+          "title": "MySidePaneRenderTemplate"
+        }
+      ]
+    },
+    "rows": [
+      {
+        "columns": [
+          {
+            "width": 100,
+            "viewers": [
+              {
+                "renderTemplate": "bpwizard/default/design/MyRenderTemplate",
+                "contentPath": [
+                  "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                ],
+                "title": "MyRenderTemplate"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "columns": [
+          {
+            "width": 100,
+            "viewers": [
+              {
+                "renderTemplate": "bpwizard/default/design/MyContentRenderLayout",
+                "contentPath": [
+                  "bpwizard/default/bpwizard/library/camunda/rootSiteArea/home/MyContent"
+                ],
+                "title": "MyRenderTemplate"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "elements": {
+    "body": "sa content"
+  },
+  "metadata": {},
+  "searchData": {},
+  "badge": {},
+  "properties": {
+    "contentAreaLayout": "bpwizard/default/design/MyLayout",
+    "navigationId": "bpm_home",
+    "icon": "archive",
+    "name": "home",
+    "navigationType": "item",
+    "title": "Home",
+    "url": "/bpm/home",
+    "translate": "NAV.BPM.HOME.TITLE"
+  }
+}

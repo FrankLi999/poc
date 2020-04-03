@@ -1,0 +1,65 @@
+{
+    "schema": {
+      "type": "object", 
+      "name": "MyContent", 
+      "properties": {
+        "properties": {
+          "type": "object",
+          "properties": {
+            "workflow": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "categories": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": ["workflow", "title"]
+        },  
+        "elements" : {
+          "type": "object",
+          "properties": {
+            "name": {
+            "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["name", "body"]
+        }
+      }
+    },
+    "layout": [{
+      "type": "flex",
+      "flex-flow": "column nowrap",
+      "items": [{
+        "key": "elements.name", 
+        "title": "Name"
+      }, {
+        "key": "properties.title", 
+        "title": "Title"
+      }, {
+        "key": "properties.description", 
+        "title": "Description"
+      }, {
+        "key": "properties.categories", 
+        "title": "Category"
+      }, {
+        "key": "properties.workflow", 
+        "title": "Workflow"
+      }]
+    }, {
+      "type": "flex",
+      "flex-flow": "column wrap",
+      "items": [{
+        "key": "elements.body", 
+        "title": "Body"
+      }]
+    }]
+  }

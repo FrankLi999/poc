@@ -1,5 +1,36 @@
 # Copied from https://github.com/vaquarkhan/flowing-retail-microservice-kafka
 
+  checkout ->  order -> payment -> Inventory -> Shipping --> Monitoring
+  
+     topic: flowing-retail
+	 
+   1) checkout:
+	   Message<Order> message = new Message<Order>("OrderPlacedEvent", order);
+	   messageSender.send(message);
+	   
+	   org.springframework.messaging.Message<String> kafkaMessage = MessageBuilder
+					.withPayload(jsonMessage)
+					.setHeader(KafkaHeaders.TOPIC, retailTopic)
+					.setHeader("type", m.getMessageType())
+					.build();
+	2) Order:
+		@KafkaListener(topics = "${message.topic.name}", containerFactory = "kafkaListenerContainerFactory")
+		@Transactional
+		public void messageReceived(
+				@Payload  String jsonMessage,
+				@Header("type") String messageType) throws Exception {
+				
+			...
+			trigger order processing bpm
+			
+		}
+		
+		2.1 Retrieve OrderPayment
+		    get traceid from db
+			
+				"RetrievePaymentCommand", //
+				traceId, //
+			
 # Order fulfillment sample application demonstrating concepts in the context of DDD and Microservices. 
 
 This sample application shows how to implement
