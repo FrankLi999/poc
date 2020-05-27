@@ -14,9 +14,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bpwizard.bpm.content.helper.BaseProcessUnitTestCase;
+import com.bpwizard.bpm.content.helper.BaseProcessTestCase;
 
-public class OrderProcessDefinitionTest extends BaseProcessUnitTestCase {
+public class OrderProcessDefinitionTest extends BaseProcessTestCase {
 
     private static final String ORDER_PROCESS_KEY = "order";
     @Autowired

@@ -10,7 +10,7 @@ import com.camunda.demo.springboot.conf.TestApplication;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE,
- 	classes = {TestApplication.class})
+	classes = {TestApplication.class})
 @ContextConfiguration(classes = {StandaloneInMemoryTestConfiguration.class})
 public abstract class BaseProcessTestCase {
 

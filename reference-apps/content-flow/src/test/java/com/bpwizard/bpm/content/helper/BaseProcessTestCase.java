@@ -13,7 +13,7 @@ import com.bpwizard.bpm.content.conf.TestApplication;
 //@ContextConfiguration(classes = {StandaloneInMemoryTestConfiguration.class})
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE,
- 	classes = {TestApplication.class})
+	classes = {TestApplication.class})
 @ContextConfiguration(classes = {StandaloneInMemoryTestConfiguration.class})
 
 public abstract class BaseProcessTestCase {

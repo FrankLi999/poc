@@ -1,4 +1,5 @@
 package com.bpwizard.bpm.content;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
@@ -10,8 +11,11 @@ import org.camunda.bpm.engine.DecisionService;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
+import org.camunda.bpm.engine.test.assertions.ProcessEngineTests;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.Variables;
+import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,24 +26,47 @@ import com.bpwizard.bpm.content.helper.BaseProcessTestCase;
 public class DmnTest extends BaseProcessTestCase {
 
 	private static final String DECISION_KEY = "orderDecision";
-
 	@Autowired
 	public ProcessEngine processEngine;
-    
+
 	@Rule
 	@ClassRule
 	public static ProcessEngineRule processEngineRule;
-	
+
 	@PostConstruct
 	void initRule() {
-		//// With Coverage: processEngineRule = TestCoverageProcessEngineRuleBuilder.create(processEngine).build();
-		processEngineRule = new ProcessEngineRule(processEngine);
+		//// With Coverage: processEngineRule =
+		//// TestCoverageProcessEngineRuleBuilder.create(processEngine).build();
+		// processEngineRule = new ProcessEngineRule(processEngine);
+		processEngineRule = TestCoverageProcessEngineRuleBuilder.create(processEngine).build();
 	}
-	
+
+	@Before
+	public void setup() {
+		ProcessEngineTests.init(processEngine);
+	}
+
+//    @Test
+//    @Deployment(resources = "bpmn/testDemoProcess.bpmn")
+//    public void startTestProcess() throws InterruptedException {
+////	    List<String> groups = new ArrayList<>();
+////	    groups.add("wcm-admins1");
+////	    groups.add("wcm-authors1");
+////	    IdentityService identityService = processEngineRule.getIdentityService();
+////	    System.out.println(identityService);
+////	    identityService.setAuthentication("demo1", groups);
+//	    
+//    	RuntimeService runtimeService = processEngine.getRuntimeService();
+//	    ProcessInstance pi = runtimeService.startProcessInstanceByKey(TEST_PROCESS_KEY);
+//	    assertThat(pi).isNotNull();
+//        runtimeService.deleteProcessInstance(pi.getId(), "JUnit test");
+////      identityService.clearAuthentication();
+//    }
+
 	@Test
 	@Deployment(resources = "dmn/Example.dmn")
-	public void startTestProcess() throws InterruptedException {
-		DecisionService decisionService = processEngineRule.getDecisionService();
+	public void startTestDmn() throws InterruptedException {
+		DecisionService decisionService = processEngine.getDecisionService();
 		// Set input variables
 		VariableMap variables = Variables.createVariables().putValue("status", "silver").putValue("sum", 9000);
 
@@ -48,29 +75,22 @@ public class DmnTest extends BaseProcessTestCase {
 
 		// Check that one rule has matched
 		assertThat(results).hasSize(1);
-		
+
 		DmnDecisionRuleResult result = results.getSingleResult();
-	    assertThat(result)
-	      .containsOnly(
-	        entry("result", "notok"),
-	        entry("reason", "you took too much man, you took too much!")
-	      );
+		assertThat(result).containsOnly(entry("result", "notok"),
+				entry("reason", "you took too much man, you took too much!"));
 
-	    // Change input variables
-	    variables.putValue("status", "gold");
+		// Change input variables
+		variables.putValue("status", "gold");
 
-	    // Evaluate decision again
-	    results = decisionService.evaluateDecisionTableByKey(DECISION_KEY, variables);
+		// Evaluate decision again
+		results = decisionService.evaluateDecisionTableByKey(DECISION_KEY, variables);
 
-	    // Check new result
-	    assertThat(results).hasSize(1);
+		// Check new result
+		assertThat(results).hasSize(1);
 
-	    result = results.getSingleResult();
-	    assertThat(result)
-	      .containsOnly(
-	        entry("result", "ok"),
-	        entry("reason", "you get anything you want")
-	      );
+		result = results.getSingleResult();
+		assertThat(result).containsOnly(entry("result", "ok"), entry("reason", "you get anything you want"));
 
 	}
 }

@@ -5,6 +5,13 @@
 	<groupId>com.bpwizrd.bpm.content</groupId>
 	<artifactId>bpm-unit-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
 
 	<properties>
 		<camunda.spring-boot.version>3.3.1</camunda.spring-boot.version>
@@ -23,6 +30,7 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<!--  
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -30,6 +38,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -106,8 +115,8 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<!-- <scope>test</scope> -->
-			<scope>compile</scope>
+			<scope>test</scope>
+			<!--  <scope>compile</scope> -->
 		</dependency>
 		<dependency>
 		    <groupId>mysql</groupId>
