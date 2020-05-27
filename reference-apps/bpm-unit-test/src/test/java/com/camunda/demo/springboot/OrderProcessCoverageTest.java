@@ -20,6 +20,7 @@ import javax.annotation.PostConstruct;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
+import org.camunda.bpm.engine.test.mock.Mocks;
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder;
 import org.camunda.bpm.scenario.ProcessScenario;
 import org.camunda.bpm.scenario.Scenario;
@@ -40,16 +41,24 @@ import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-import com.bpwizard.bpm.content.helper.BaseProcessTestCase;
+import com.bpwizard.bpm.content.helper.BaseProcessWithMockTestCase;
 import com.camunda.demo.springboot.adapter.AmqpReceiver;
+import com.camunda.demo.springboot.adapter.RetrievePaymentAdapter;
+import com.camunda.demo.springboot.adapter.SendShipGoodsAmqpAdapter;
 import com.camunda.demo.springboot.rest.OrderRestController;
 
 @Deployment(resources = { "order.bpmn" })
-public class OrderProcessCoverageTest extends BaseProcessTestCase {
+public class OrderProcessCoverageTest extends BaseProcessWithMockTestCase {
 
 	@Mock
 	private ProcessScenario orderProcess;
-
+	
+	@Autowired
+	RetrievePaymentAdapter retrievePaymentAdapter;
+	
+	@Autowired
+	SendShipGoodsAmqpAdapter sendShipGoodsAmqpAdapter;
+	
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 
@@ -74,13 +83,14 @@ public class OrderProcessCoverageTest extends BaseProcessTestCase {
 	@PostConstruct
 	void initRule() {
 		processEngineRule = TestCoverageProcessEngineRuleBuilder.create(processEngine).build();
-		// Without Coverage: new ProcessEngineRule(processEngine);
 	}
 	
 	@Before
 	public void setup() throws Exception {
 		MockitoAnnotations.initMocks(this);
 
+		Mocks.register("retrievePaymentAdapter", retrievePaymentAdapter);
+		Mocks.register("sendShipGoodsAmqpAdapter", sendShipGoodsAmqpAdapter);
 		mockRestServer = MockRestServiceServer.createServer(restTemplate);
 		amqpReceiver = new AmqpReceiver(processEngineRule.getProcessEngine());
 

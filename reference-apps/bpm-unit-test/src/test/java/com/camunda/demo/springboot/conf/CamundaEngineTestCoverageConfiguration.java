@@ -5,8 +5,8 @@ import org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCovera
 import org.camunda.bpm.spring.boot.starter.configuration.impl.AbstractCamundaConfiguration;
 import org.springframework.boot.test.context.TestConfiguration;
 
-@TestConfiguration
-//@EnableProcessApplication
+// @TestConfiguration 
+// configured via StandaloneInMemoryTestConfigurationWithMock
 public class CamundaEngineTestCoverageConfiguration extends AbstractCamundaConfiguration {
 
 	@Override
