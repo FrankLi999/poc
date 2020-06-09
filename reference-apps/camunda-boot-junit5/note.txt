@@ -1,0 +1,123 @@
+## Junit 4 based
+
+## Spring boot/Junit 4 based
+
+	<dependency>
+		<groupId>org.camunda.bpm.springboot</groupId>
+		<artifactId>camunda-bpm-spring-boot-starter-test</artifactId>
+		<version>${camunda.spring-boot.version}</version>
+		<scope>test</scope>
+	</dependency>
+	
+### bpm-unit-test.properties
+    
+    camunda.bpm.generate-unique-process-engine-name=true
+	camunda.bpm.generate-unique-process-application-name=true
+	spring.datasource.generate-unique-name=true
+
+    @ComponentScan(basePackages = { "com.camunda.demo.springboot" })
+	@EnableAutoConfiguration(exclude = { RabbitAutoConfiguration.class })
+	@TestConfiguration
+	@TestPropertySource(locations = { "classpath:bpm-unit-test.properties" })
+	public class TestApplication {
+    }
+    
+    @RunWith(SpringRunner.class)
+	@SpringBootTest(webEnvironment = WebEnvironment.NONE,
+		classes = {TestApplication.class})
+	@ContextConfiguration(classes = {StandaloneInMemoryTestConfiguration.class})
+	public abstract class BaseProcessTestCase {
+	
+	}
+	
+### Test coverage
+
+	<dependency>
+		<groupId>org.camunda.bpm.extension</groupId>
+		<artifactId>camunda-bpm-process-test-coverage</artifactId>
+		<version>0.3.2</version>
+		<scope>test</scope>
+	</dependency>
+
+### Assert
+    	<dependency>
+		    <groupId>org.camunda.bpm.assert</groupId>
+		    <artifactId>camunda-bpm-assert</artifactId>
+		    <version>6.0.0</version>
+		    <scope>test</scope>
+		</dependency>
+		
+    has an local build at C:\projects\camunda\11-camunda-bpm-assert,  7.0.0-SNAPSHOT build for method
+    org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.findId
+    
+### assert-scenario
+    used local build, 1.0.0-SNAPSHOT build.
+		<dependency>
+			<groupId>org.camunda.bpm.extension</groupId>
+			<artifactId>camunda-bpm-assert-scenario</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+		</dependency>
+	
+	has an local build(built core project only, 1.0.0-SNAPSHOT), C:\projects\camunda\12-camunda-bpm-assert-scenario
+	
+     updated camunda-bpm-assert dependency to use latest local build, 7.0.0-SNAPSHOT
+    
+    	<dependency>
+		 	<groupId>org.camunda.bpm.assert</groupId>
+		    <artifactId>camunda-bpm-assert</artifactId>
+		    <version>6.0.0</version>
+		    <scope>test</scope>
+		</dependency>
+		
+### Test Coverage
+   		<dependency>
+			<groupId>org.camunda.bpm.extension</groupId>
+			<artifactId>camunda-bpm-process-test-coverage</artifactId>
+			<version>0.3.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		@TestConfiguration
+		public class CamundaEngineTestCoverageConfiguration extends AbstractCamundaConfiguration {
+		
+			@Override
+			public void preInit(SpringProcessEngineConfiguration configuration) {
+				ProcessCoverageConfigurator.initializeProcessCoverageExtensions(configuration);
+			}
+		}		
+	
+	    or 
+	    
+	    public class StandaloneInMemoryTestConfiguration extends ProcessCoverageInMemProcessEngineConfiguration {
+			public StandaloneInMemoryTestConfiguration() {
+				// super();
+				this.databaseSchemaUpdate = DB_SCHEMA_UPDATE_DROP_CREATE;
+				this.jdbcUrl = "jdbc:h2:mem:camundatest;DB_CLOSE_ON_EXIT=FALSE";
+				
+				this.jobExecutorActivate = false;
+				// this.expressionManager = new MockExpressionManager();
+				this.idGenerator = new StrongUuidGenerator();
+				//isDbMetricsReporterActivate = false;
+				historyLevel = HistoryLevel.HISTORY_LEVEL_FULL;
+				
+				
+			}
+		}
+		
+## camunda-bpm-spring-boot-starter-test
+   C:\projects\camunda\08-camunda-bpm-spring-boot-starter-3.4.3
+   
+   updated pom under C:\projects\camunda\08-camunda-bpm-spring-boot-starter-3.4.3\starter-test
+	   <properties>
+	    <camunda-assert.artifact>camunda-bpm-assert</camunda-assert.artifact>
+	    <camunda-assert.version>6.0.0</camunda-assert.version>
+	    
+	    <!--
+	    <camunda-assert.artifact>camunda-bpm-assert-assertj3-11-1</camunda-assert.artifact>
+	    <camunda-assert.version>4.0.0</camunda-assert.version>
+		-->
+	  </properties>
+   
+   
