@@ -1,0 +1,7 @@
+abstract color impl cloneable <= BlueColor, GreenColor
+
+ColorStore
+   map<colorName, Color>
+   getColor() - get.andThen(clone)
+   
+client: ColorStore.getColor()

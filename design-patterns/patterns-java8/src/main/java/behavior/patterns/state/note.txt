@@ -1,0 +1,7 @@
+  abstract State(onPrev, onNext) <= solid states(player.changeState, player.doNext, player.doPrev)
+     ^
+     |
+     |
+     Player(change state, doNext, doPrev)
+     
+     
