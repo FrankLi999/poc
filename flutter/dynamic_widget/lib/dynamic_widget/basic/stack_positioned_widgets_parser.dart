@@ -1,13 +1,8 @@
-import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:dynamic_widget/dynamic_widget.dart';
+import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class PositionedWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "Positioned" == widgetName;
-  }
-
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
@@ -22,14 +17,12 @@ class PositionedWidgetParser extends WidgetParser {
       height: map.containsKey("height") ? map["height"] : null,
     );
   }
+
+  @override
+  String get widgetName => "Positioned";
 }
 
 class StackWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "Stack" == widgetName;
-  }
-
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
@@ -48,4 +41,7 @@ class StackWidgetParser extends WidgetParser {
           map['children'], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Stack";
 }

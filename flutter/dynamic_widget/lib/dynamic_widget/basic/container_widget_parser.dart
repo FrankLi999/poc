@@ -1,13 +1,8 @@
-import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:dynamic_widget/dynamic_widget.dart';
+import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class ContainerWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "Container" == widgetName;
-  }
-
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
@@ -47,4 +42,7 @@ class ContainerWidgetParser extends WidgetParser {
       return containerWidget;
     }
   }
+
+  @override
+  String get widgetName => "Container";
 }

@@ -32,6 +32,10 @@
 * [Wrap Widget](#wrap-widget)
 * [ClipRRect Widget](#cliprrect-widget)
 * [SafeArea Widget](#safearea-widget)
+* [ListTile Widget](#listtile-widget)
+* [SelectableText Widget](#selectabletext-widget)
+* [Icon Widget](#icon-widget)
+* [DropCapText Widget](#dropcaptext-widget)
 
 ## Container Widget
 Container widget, here to see flutter [Container widget](https://docs.flutter.io/flutter/widgets/Container-class.html) definition.
@@ -386,7 +390,7 @@ Wrap widget, here to see flutter [Wrap widget](https://docs.flutter.io/flutter/w
 | children|The widgets below this widget in the tree. |List&#60;Widget&#62;| | |
 
 ## ClipRRect Widget
-ClipRRect, here to see flutter [TextSpan](https://api.flutter.dev/flutter/widgets/ClipRRect-class.html) definition. Supported json properties:
+ClipRRect, here to see flutter [ClipRRect](https://api.flutter.dev/flutter/widgets/ClipRRect-class.html) definition. Supported json properties:
 
 | property        | definition   | type  | value  | sample |
 | ---| ---| ---   | ---| ---|
@@ -405,3 +409,64 @@ SafeArea, here to see flutter [SafeArea](https://api.flutter.dev/flutter/widgets
 | left |Whether to avoid system intrusions on the left.|bool| true or false, default is true|true|
 | minimum |This minimum padding to apply.|String|left,top,right,bottom|"8,10,12,8"|
 | child|The widget below this widget in the tree.  |Widget|| |
+
+## ListTile Widget
+ListTile, here to see flutter [ListTile](https://api.flutter.dev/flutter/material/ListTile-class.html) definition. Supported json properties:
+
+| property        | definition   | type  | value  | sample |
+| ---| ---| ---   | ---| ---|
+| contentPadding |The tile's internal padding.|String| left,top,right,bottom|"8,10,12,8"|
+| dense |Whether this list tile is part of a vertically dense list.|bool| true or false, default is false|true|
+| enabled |Whether this list tile is interactive.|bool| true or false, default is true|true|
+| isThreeLine |Whether this list tile is intended to display three lines of text.|bool| true or false, default is false|true|
+| leading |A widget to display before the title.|Widget|||
+| tapEvent |tap event  |String||route://goToProductDetail|
+| selected |If this tile is also enabled then icons and text are rendered with the same color.|bool| true or false, default is false|true|
+| subtitle |Additional content displayed below the title.|Widget|||
+| title |The primary content of the list tile.|Widget|||
+| trailing |A widget to display after the title.|Widget|||
+
+## SelectableText Widget
+SelectableText, here to see flutter [SelectableText](https://api.flutter.dev/flutter/material/SelectableText-class.html) definition. Supported json properties:
+
+| property        | definition   | type  | value  | sample |
+| ---| ---| ---   | ---| ---|
+| data|The text to display|String| |"I am a text"|
+| textAlign|How the text should be aligned horizontally.|String|One of the following string:<br>left (default)<br>right<br>center<br>justify<br>start<br>end|"left"|
+| maxLines|An optional maximum number of lines for the text to span, wrapping if necessary. If the text exceeds the given number of lines, it will be truncated according to overflow. |int| |3|
+| textDirection|The directionality of the text.|String| One of the following string:<br>ltr (default) <br>rtl |"ltr"|
+| textSpan|The text to display as a TextSpan. |TextSpan|  | |
+
+## Icon Widget
+Icon, here to see flutter [Icon](https://api.flutter.dev/flutter/widgets/Icon-class.html) definition. Supported json properties:
+
+| property        | definition   | type  | value  | sample |
+| ---| ---| ---   | ---| ---|
+| data|The icon to display. The available icons are described |String| |"fa.google" : font_awesome_flutter lib's icon, "favorite" : flutter's icon|
+| size|The size of the icon in logical pixels. |double||12.0|
+| color|The color to use when drawing the icon.|String| "#AARRGGBB" or "#RRGGBB"|"#FF00FF"<br>"#00FF00FF"|
+| semanticLabel|Semantic label for the icon.|String| ||
+| textDirection|The text direction to use for rendering the icon.|String| One of the following string:<br>ltr (default) <br>rtl |"ltr"|
+
+## DropCapText Widget
+DropCapText,  Supported json properties:
+
+| property        | definition   | type  | value  | sample |
+| ---| ---| ---   | ---| ---|
+| data|The text to display |String| ||"I am a text"|
+| selectable|Text can be selected |bool|||
+| mode|Drop cap mode|String| One of the following string:<br>inside (default) <br>upwards <br>aside <br>baseline |"#FF00FF"<br>"#00FF00FF"|
+| style|The style to apply to the text and the children.|TextStyle| | {"color": "#00FFFF", "fontSize": 26.0}|
+| dropCapStyle|The drop cap letter style|TextStyle| | {"color": "#00FFFF", "fontSize": 26.0}|
+| textAlign|How the text should be aligned horizontally.|String|One of the following string:<br>left (default)<br>right<br>center<br>justify<br>start<br>end|"left"|
+| dropCap|The drop cap |Widget | {&quot;width&quot;:216.1,&quot;height&quot;:162.1,&quot;child&quot;:{&quot;type&quot;:&quot;NetworkImage&quot;,&quot;src&quot;:&quot;https://b.appsimg.com/upload/momin/2019/01/23/101/1548249269085.png &quot;,&quot;click_event&quot; : &quot;route://productDetail?goods_id=123&quot;}}|
+| dropCapStyle|The drop cap padding|String|left,top,right,bottom|"8,10,12,8"|
+| dropCapChars|The drop cap chars length|int||1|
+| forceNoDescent|forceNoDescent|bool|||
+| parseInlineMarkdown|if parse markdown |bool|||
+| textDirection|The directionality of the text.|String| One of the following string:<br>ltr (default) <br>rtl |"ltr"|
+| overflow|How visual overflow should be handled.|String|One of the following string:<br>ellipsis (default)<br>clip<br>fade|"ellipsis"|
+| maxLines|An optional maximum number of lines for the text to span, wrapping if necessary. If the text exceeds the given number of lines, it will be truncated according to overflow. |int| One of the following string:<br>start (default) <br>end|"end"|
+| dropCapPosition|drop cap position |String| |3|
+
+

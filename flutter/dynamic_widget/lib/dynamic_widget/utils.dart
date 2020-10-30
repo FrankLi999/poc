@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:dynamic_widget/dynamic_widget.dart';
+import 'package:dynamic_widget/dynamic_widget/drop_cap_text.dart';
 import 'package:flutter/widgets.dart';
 
 TextAlign parseTextAlign(String textAlignString) {
@@ -576,4 +578,46 @@ Clip parseClipBehavior(String clipBehaviorString) {
       return Clip.antiAliasWithSaveLayer;
   }
   return Clip.antiAlias;
+}
+
+DropCapMode parseDropCapMode(String value) {
+  if (value == null) {
+    return null;
+  }
+
+  switch (value) {
+    case 'inside':
+      return DropCapMode.inside;
+    case 'upwards':
+      return DropCapMode.upwards;
+    case 'aside':
+      return DropCapMode.aside;
+    default:
+      return DropCapMode.inside;
+  }
+}
+
+DropCapPosition parseDropCapPosition(String value) {
+  if (value == null) {
+    return null;
+  }
+
+  switch (value) {
+    case 'start':
+      return DropCapPosition.start;
+    case 'end':
+      return DropCapPosition.end;
+    default:
+      return DropCapPosition.start;
+  }
+}
+
+DropCap parseDropCap(Map<String, dynamic> map, BuildContext buildContext,
+    ClickListener listener) {
+  return DropCap(
+    width: map['width'],
+    height: map['height'],
+    child:
+        DynamicWidgetBuilder.buildFromMap(map["child"], buildContext, listener),
+  );
 }

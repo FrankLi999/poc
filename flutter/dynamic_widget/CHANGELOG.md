@@ -26,3 +26,35 @@
 ## [1.0.4] - Support web application
 
 * Support web application
+
+## [1.0.5] - fix bugs
+
+* fix bugs
+
+## [1.0.6] - Add SafeArea and ListTile widgets.
+
+* Add SafeArea and ListTile widgets
+
+## [2.0.0] - Thanks [@mrjacobphillips](https://github.com/mrjacobphillips) for contributing "SelectableText"、"Icon" and "DropCapText" widgets.
+
+* Add "SelectableText"、"Icon" and "DropCapText" widgets.
+* Fix "Text" widget's maxLines default value.
+
+## [2.0.1] - increase parsing performance, and bugfix.
+
+* Use map to find WidgetParser, increase parsing performance.
+* fix ListView, GridView and PageView scrollDirection property.
+
+## [2.0.2] - bugfix.
+
+* Bugfix
+
+## [2.0.3] - Upgrade android projects, and migrate androidx
+
+* ## Upgrading pre 1.12 Android projects, https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects
+* Migrate Androidx
+
+
+
+
+

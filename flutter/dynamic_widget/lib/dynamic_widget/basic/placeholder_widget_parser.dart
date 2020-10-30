@@ -4,11 +4,6 @@ import 'package:flutter/widgets.dart';
 
 class PlaceholderWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Placeholder" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Placeholder(
@@ -22,4 +17,7 @@ class PlaceholderWidgetParser extends WidgetParser {
           map.containsKey('fallbackHeight') ? map['fallbackHeight'] : 400.0,
     );
   }
+
+  @override
+  String get widgetName => "Placeholder";
 }

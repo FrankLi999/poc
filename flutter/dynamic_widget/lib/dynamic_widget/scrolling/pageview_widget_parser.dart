@@ -3,16 +3,12 @@ import 'package:flutter/widgets.dart';
 
 class PageViewWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "PageView" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
-    var scrollDirection = Axis.horizontal;
-    if (map.containsKey("scrollDirection")) {
-      scrollDirection = map["scrollDirection"];
+    var scrollDirection = Axis.vertical;
+    if (map.containsKey("scrollDirection") &&
+        "horizontal" == map["scrollDirection"]) {
+      scrollDirection = Axis.horizontal;
     }
     return PageView(
       scrollDirection: scrollDirection,
@@ -23,4 +19,7 @@ class PageViewWidgetParser extends WidgetParser {
           map['children'], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "PageView";
 }

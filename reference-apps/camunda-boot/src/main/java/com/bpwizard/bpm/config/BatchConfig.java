@@ -17,7 +17,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.bpwizard.bpm.assignment.MyAssignmentHandler;
+import com.bpwizard.bpm.batch.assignment.MyAssignmentHandler;
 import com.bpwizard.bpm.batch.handler.PrintStringBatchJobHandler;
 import com.bpwizard.bpm.batch.notification.client.NotificationService;
 

@@ -3,11 +3,6 @@ import 'package:flutter/widgets.dart';
 
 class CenterWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Center" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Center(
@@ -18,4 +13,7 @@ class CenterWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Center";
 }

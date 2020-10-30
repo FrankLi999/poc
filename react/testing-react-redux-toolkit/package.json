@@ -1,0 +1,67 @@
+{
+  "name": "unit-testing-react-redux",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test-ci": "react-scripts test --watchAll=false",
+    "test-debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "coverage": "npm test -- --coverage --watchAll=false",
+    "lint": "eslint --ext .ts --ext .tsx .",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!/node_modules/",
+      "!src/serviceWorker.ts",
+      "!src/index.tsx"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.2.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react-redux": "^7.1.7",
+    "bootstrap": "^4.5.0",
+    "classnames": "^2.2.6",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.1.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.8.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack-env": "^1.15.2",
+    "env-cmd": "^10.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "install": "^0.13.0",
+    "npm": "^6.14.6",
+    "prettier": "^2.0.5"
+  }
+}

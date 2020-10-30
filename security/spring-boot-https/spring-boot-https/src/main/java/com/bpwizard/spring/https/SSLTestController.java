@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SSLTestController {
 	@GetMapping(value = "/ssl-test")
     public String greeting() {
-		
         return "Self Signed SSL is Working!!";
     }
 }

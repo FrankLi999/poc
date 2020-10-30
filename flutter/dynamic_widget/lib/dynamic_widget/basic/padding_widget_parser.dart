@@ -4,11 +4,6 @@ import 'package:flutter/widgets.dart';
 
 class PaddingWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Padding" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Padding(
@@ -19,4 +14,7 @@ class PaddingWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Padding";
 }

@@ -4,11 +4,6 @@ import 'package:flutter/widgets.dart';
 
 class WrapWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Wrap" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Wrap(
@@ -36,4 +31,7 @@ class WrapWidgetParser extends WidgetParser {
           map['children'], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Wrap";
 }

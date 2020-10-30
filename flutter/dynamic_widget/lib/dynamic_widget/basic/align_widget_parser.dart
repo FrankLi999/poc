@@ -4,11 +4,6 @@ import 'package:flutter/widgets.dart';
 
 class AlignWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Align" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Align(
@@ -22,4 +17,7 @@ class AlignWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Align";
 }

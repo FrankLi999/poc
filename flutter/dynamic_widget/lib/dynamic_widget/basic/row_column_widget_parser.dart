@@ -1,13 +1,8 @@
-import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:dynamic_widget/dynamic_widget.dart';
+import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class RowWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "Row" == widgetName;
-  }
-
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
@@ -34,14 +29,12 @@ class RowWidgetParser extends WidgetParser {
           map['children'], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Row";
 }
 
 class ColumnWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "Column" == widgetName;
-  }
-
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
@@ -68,4 +61,7 @@ class ColumnWidgetParser extends WidgetParser {
           map['children'], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Column";
 }

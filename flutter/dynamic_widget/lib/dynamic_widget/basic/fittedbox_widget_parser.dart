@@ -4,11 +4,6 @@ import 'package:flutter/widgets.dart';
 
 class FittedBoxWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "FittedBox" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return FittedBox(
@@ -20,4 +15,7 @@ class FittedBoxWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "FittedBox";
 }

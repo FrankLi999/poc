@@ -3,11 +3,6 @@ import 'package:flutter/widgets.dart';
 
 class AspectRatioWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "AspectRatio" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return AspectRatio(
@@ -16,4 +11,7 @@ class AspectRatioWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "AspectRatio";
 }

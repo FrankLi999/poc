@@ -3,11 +3,6 @@ import 'package:flutter/widgets.dart';
 
 class OpacityWidgetParser extends WidgetParser {
   @override
-  bool forWidget(String widgetName) {
-    return "Opacity" == widgetName;
-  }
-
-  @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {
     return Opacity(
@@ -19,4 +14,7 @@ class OpacityWidgetParser extends WidgetParser {
           map["child"], buildContext, listener),
     );
   }
+
+  @override
+  String get widgetName => "Opacity";
 }

@@ -1,0 +1,4 @@
+Mediator helps in establishing loosely coupled communication between objects and helps in reducing 
+the direct references to each other. 
+
+within the mediator, several related objects are tightly coupled each other. 

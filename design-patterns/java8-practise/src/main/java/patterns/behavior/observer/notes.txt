@@ -1,0 +1,5 @@
+Java Message Service (JMS) uses Observer design pattern along with Mediator pattern to 
+allow applications to subscribe and publish data to other applications.
+
+
+JMS - message store as mediator and message Listener as observers.
